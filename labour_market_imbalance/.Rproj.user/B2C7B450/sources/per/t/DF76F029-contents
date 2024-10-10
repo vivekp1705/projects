@@ -1,0 +1,473 @@
+library(shiny)
+ui <- fluidPage(
+  checkboxGroupInput("check", label = "What is your favourite series?"),
+  choices = c("a", "b", "c"),
+  selected = "None")
+)
+server <- function(input, output){
+  output$text <- renderText(input$check)
+}
+
+shinyApp(ui, server)
+
+#if (interactive()) {
+  ui <- fluidPage(
+    textInput("caption", "caption", "DS"),
+    verbatimTextOutput("value")
+#    checkboxInput("A", "A"),verbatimTextOutput("value")
+  )
+  server <- function(input, output) {
+    output$value <- renderText({ input$caption })
+  }
+  shinyApp(ui, server)
+}
+
+
+{ui <- fluidPage(
+  
+  # Copy the line below to make a checkbox
+  checkboxInput("checkbox", label = "Choice A", value = TRUE),
+  
+server <- hr(),
+  fluidRow(column(3, verbatimTextOutput("value")))
+  
+)
+function(input, output) {
+  
+  # You can access the value of the widget with input$checkbox, e.g.
+  output$value <- renderPrint({ input$checkbox })
+  
+}
+shinyApp(ui, server)
+}
+
+
+
+
+
+
+
+#exercise 2
+ui3 <- fluidPage(
+  textInput("name", "What's your name?"),
+  textOutput("text")
+)
+
+server3 <- function(input, output){
+  output$text <- renderText({paste0("Hello ", input$name, " !")})
+}
+shinyApp(ui3, server3)
+
+#exercise 3
+
+load ("ewcs.RData")
+# Underskilled
+ewcs$underskilled <- ifelse(ewcs$skill == "I need further training to cope well with my duties", 1, 0)
+count(ewcs, underskilled)
+
+# Overskilled
+ewcs$overskilled <- NA
+ewcs$overskilled[ewcs$skill == "I have the skills to cope with more demanding duties"] <- 1
+ewcs$overskilled[ewcs$skill != "I have the skills to cope with more demanding duties"] <- 0
+count (ewcs, overskilled)
+
+# Mismatch
+ewcs <- ewcs %>%
+  mutate(mismatch = case_when(
+    ewcs$skill == "My present skills correspond well with my duties" ~ 0,
+    ewcs$skill == "I have the skills to cope with more demanding duties" | ewcs$skill == "I need further training to cope well with my duties" ~ 1))
+
+# Keep EU countries
+df <- filter(ewcs, eu27 == 1)
+
+df <- df %>%
+  group_by(country, year) %>%
+  summarise (share = weighted.mean(mismatch, w = wgt, na.rm = TRUE) * 100) %>%
+  ungroup()
+
+#defining ui
+
+time <- unique(ewcs$year)
+
+ui4 <- fluidPage(
+  radioButtons("year", "Choose a year", time),
+  textOutput("text"),
+  #titlePanel(title = h4("44% workers in France experience skill mismatch")),
+  mainPanel(plotOutput("plot1"))
+)
+
+server4 <- function(input, output){
+  datareact <- reactive({
+    df %>% 
+      filter(year == input$year)
+  })
+  output$plot1 <- renderPlot({
+    datareact() %>% 
+      #filter(year == renderText()) %>% 
+      #filter(country == "Belgium" | country == "Spain" | country == "Italy" | country == "Germany" | country == "Luxembourg" | country == "France") %>% 
+      #filter(skill == "My present skills correspond well with my duties") %>% 
+      ggplot2::ggplot(aes(x = country, y =  share, fill = country == "France"))+
+      geom_col()+
+      labs(#title = "Skill mismatch in France compared to the neighbouring countries",
+           subtitle = "Share of workers experiencing mismatch",
+           x = 'Countries',
+           y = "% Skill Mismatch",
+           caption = "Source: EWCS") + 
+      #scale_y_continuous(breaks = seq(0,35,5)) +
+      theme(panel.background = element_blank(),
+            axis.title.x = element_text(face="italic", margin = margin(8, 00, 8, 00)),
+            axis.title.y = element_text(face="italic", margin = margin(0, 08, 0, 08)),
+            axis.text.x = element_text(angle=45, hjust=0.9),
+            legend.position = "none", 
+            legend.background = element_blank(),
+            legend.title = element_blank(),
+            axis.line = element_line(size = 1),
+            axis.title = element_text(size = 12),
+            axis.text = element_text(size = 11),
+            legend.text = element_blank(),
+            #legend.spacing = unit(2, 'cm'),
+            plot.title = element_text(size = 18, hjust = 0.5, face = 'bold'),
+            plot.subtitle = element_text(size = 14, hjust = 0.5, face = "italic"))
+  })
+}
+
+shinyApp(ui4, server4)
+
+`#dynamic ui
+
+#exercise 5
+
+#defining ui
+
+ui5  <- 
+  fluidPage (
+    selectInput("prefer", "Do you prefer movies or series?", c("None", "Movies", "Series"), selected
+                 ="None"),
+selectInput ("item", "What is your favorite item?", choices = NULL))
+
+#defining server
+server5 <- function(input, output){
+  observeEvent(input$prefer, {
+    if(input$prefer == "Movies"){
+      updateSelectInput(inputId = "item", choices = c("Batman", "Tenet", "none"), selected = "None")
+    } else if(input$prefer == "Series"){
+      updateSelectInput(inputId = "item", choices = c("The Queens Gambit", "GoT", "None"), selected = "None")
+    } else if(input$prefer == "None"){
+      updateSelectInput(inputId = "item", choices = "")
+    }
+  })
+}
+
+shinyApp(ui5, server5)
+
+
+rm(list = ls())
+
+#block 4, ecercise 1
+
+ui <- fluidPage(
+  titlePanel("My first app with complex layouts", "Bold"),
+  
+fluidRow(
+  column(4,
+         actionButton("button", "click on the button")),
+  column(8,
+         dateRangeInput("date", "Date Range",
+                        start = "1993-01-05",
+                        end = as.character(Sys.Date()))))
+)
+
+server <- function(input, output){
+}
+
+shinyApp(ui, server)
+
+#exercise 2
+
+library(tidyverse)
+library(dplyr)
+library(ggplot2)
+library(shiny)
+library(DT)
+
+load ("ewcs.RData")
+# Underskilled
+ewcs$underskilled <- ifelse(ewcs$skill == "I need further training to cope well with my duties", 1, 0)
+#count(ewcs, underskilled)
+
+# Overskilled
+ewcs$overskilled <- NA
+ewcs$overskilled[ewcs$skill == "I have the skills to cope with more demanding duties"] <- 1
+ewcs$overskilled[ewcs$skill != "I have the skills to cope with more demanding duties"] <- 0
+count (ewcs, overskilled)
+
+# Mismatch
+ewcs <- ewcs %>%
+  mutate(mismatch = case_when(
+    ewcs$skill == "My present skills correspond well with my duties" ~ 0,
+    ewcs$skill == "I have the skills to cope with more demanding duties" | ewcs$skill == "I need further training to cope well with my duties" ~ 1))
+
+# Keep EU countries
+df <- filter(ewcs, eu27 == 1)
+
+df <- df %>%
+  group_by(country, year, gender) %>%
+  summarise (share.mismatch = weighted.mean(mismatch, w = wgt, na.rm = TRUE) * 100,
+             share.overskilled = weighted.mean(overskilled, w = wgt, na.rm = TRUE) * 100,
+             share.underskilled = weighted.mean(underskilled, w = wgt, na.rm = TRUE) * 100) %>%
+  ungroup()
+
+
+
+df <- df %>%
+  mutate (color = case_when (
+    country == "France" ~ 1,
+    country == "Belgium" | country == "Belgium" | country == "Luxembourg" | country == "Germany" |
+      country == "Italy" | country == "Spain" ~ 2,
+    country != "France" & country != "Belgium" & country != "Belgium" & country != "Luxembourg" & country != "Germany" &
+      country != "Italy" & country != "Spain" ~ 3
+  ))
+
+time <- unique(ewcs$year)
+
+ui <- fluidPage(
+  titlePanel("Skills mismatch in Europe with a focus for France and its neighbouring countries"),
+  
+  fluidRow(
+    column(2, 
+           selectInput("year", "Choose a year", choices = time),
+           selectInput("sex", "Choose a gender", choices = c("Men", "Women", "Both")),
+           selectInput("age", "Choose an age group", choices = c("less than 34", "35 - 49", "more than 50"))),
+    
+    column(10,
+           navbarPage(
+             "Type of Skills Mismatch",
+             tabPanel(title = "Mismatch", plotOutput("plot1")),
+             tabPanel(title = "Overskilled", plotOutput("plot2")),
+             tabPanel(title = "Underskilled", plotOutput("plot3"))
+             )
+    )
+),
+fluidRow(DT::dataTableOutput("table")
+  )
+)
+
+#the server
+server <- function(input, output){
+  datareact <- reactive({
+    df %>% 
+      filter(year == input$year)
+  })
+  
+  france.sm <- reactive ({
+    df %>% 
+      filter (year == input$year & country == "France") %>%
+      select (share.mismatch) %>%
+      mutate (share.mismatch = round (share.mismatch, 0)) 
+  })
+  
+  france.so <- reactive ({
+    df %>% 
+      filter (year == input$year & country == "France") %>%
+      select (share.overskilled) %>%
+      mutate (share.overskilled = round (share.overskilled, 0)) 
+  })
+  
+  france.su <- reactive ({
+    df %>% 
+      filter (year == input$year & country == "France") %>%
+      select (share.underskilled) %>%
+      mutate (share.underskilled = round (share.underskilled, 0)) 
+  })
+  
+  output$plot1 <- renderPlot({
+    datareact() %>% 
+      #filter(year == renderText()) %>% 
+      #filter(country == "Belgium" | country == "Spain" | country == "Italy" | country == "Germany" | country == "Luxembourg" | country == "France") %>% 
+      #filter(skill == "My present skills correspond well with my duties") %>% 
+      ggplot2::ggplot(aes(x = reorder(country,share.mismatch), y = share.mismatch, fill = factor(color)))+
+      geom_col()+
+      scale_fill_manual(values = c("#004494", "#00449490", "#00449450"))+
+      labs(title = paste0(france.sm()," % of the workers in France experience skill mismatch"),
+        subtitle = paste0("Share of workers experiencing mismatch ", input$year),
+        x = 'Countries',
+        y = "% Skill Mismatch",
+        caption = paste0("Source: EWCS ", input$year)) + 
+      #scale_y_continuous(breaks = seq(0,35,5)) +
+      theme(panel.background = element_blank(),
+            axis.title.x = element_text(face="italic", margin = margin(8, 00, 8, 00)),
+            axis.title.y = element_text(face="italic", margin = margin(0, 08, 0, 08)),
+            axis.text.x = element_text(angle=45, hjust=0.9),
+            legend.position = "none", 
+            legend.background = element_blank(),
+            legend.title = element_blank(),
+            axis.line = element_line(size = 1),
+            axis.title = element_text(size = 12),
+            axis.text = element_text(size = 11),
+            legend.text = element_blank(),
+            #legend.spacing = unit(2, 'cm'),
+            plot.title = element_text(size = 18, hjust = 0.5, face = 'bold'),
+            plot.subtitle = element_text(size = 14, hjust = 0.5, face = "italic"))
+  })
+  
+  output$plot2 <- renderPlot({
+    datareact() %>% 
+      #filter(year == renderText()) %>% 
+      #filter(country == "Belgium" | country == "Spain" | country == "Italy" | country == "Germany" | country == "Luxembourg" | country == "France") %>% 
+      #filter(skill == "My present skills correspond well with my duties") %>% 
+      ggplot2::ggplot(aes(x = reorder(country,share.overskilled), y = share.overskilled, fill = factor(color)))+
+      geom_col()+
+      scale_fill_manual(values = c("#004494", "#00449490", "#00449450"))+
+      labs(title = paste0(france.so()," % of the workers in France are overskilled"),
+           subtitle = paste0("Share of overskilled workers in ", input$year ),
+           x = 'Countries',
+           y = "% Overskilled Workers",
+           caption = paste0("Source: EWCS ", input$year)) + 
+      #scale_y_continuous(breaks = seq(0,35,5)) +
+      theme(panel.background = element_blank(),
+            axis.title.x = element_text(face="italic", margin = margin(8, 00, 8, 00)),
+            axis.title.y = element_text(face="italic", margin = margin(0, 08, 0, 08)),
+            axis.text.x = element_text(angle=45, hjust=0.9),
+            legend.position = "none", 
+            legend.background = element_blank(),
+            legend.title = element_blank(),
+            axis.line = element_line(size = 1),
+            axis.title = element_text(size = 12),
+            axis.text = element_text(size = 11),
+            legend.text = element_blank(),
+            #legend.spacing = unit(2, 'cm'),
+            plot.title = element_text(size = 18, hjust = 0.5, face = 'bold'),
+            plot.subtitle = element_text(size = 14, hjust = 0.5, face = "italic"))
+  })
+  
+  output$plot3 <- renderPlot({
+    datareact() %>% 
+      #filter(year == renderText()) %>% 
+      #filter(country == "Belgium" | country == "Spain" | country == "Italy" | country == "Germany" | country == "Luxembourg" | country == "France") %>% 
+      #filter(skill == "My present skills correspond well with my duties") %>% 
+      ggplot2::ggplot(aes(x = reorder(country,share.underskilled), y = share.underskilled, fill = factor(color)))+
+      geom_col()+
+      scale_fill_manual(values = c("#004494", "#00449490", "#00449450"))+
+      labs(title = paste0(france.su()," % of the workers in France are underskilled"),
+           subtitle = paste0("Share of underskilled workers in ", input$year),
+           x = 'Countries',
+           y = "% Underskilled Workers",
+           caption = paste0("Source: EWCS ", input$year)) + 
+      #scale_y_continuous(breaks = seq(0,35,5)) +
+      theme(panel.background = element_blank(),
+            axis.title.x = element_text(face="italic", margin = margin(8, 00, 8, 00)),
+            axis.title.y = element_text(face="italic", margin = margin(0, 08, 0, 08)),
+            axis.text.x = element_text(angle=45, hjust=0.9),
+            legend.position = "none", 
+            legend.background = element_blank(),
+            legend.title = element_blank(),
+            axis.line = element_line(size = 1),
+            axis.title = element_text(size = 12),
+            axis.text = element_text(size = 11),
+            legend.text = element_blank(),
+            #legend.spacing = unit(2, 'cm'),
+            plot.title = element_text(size = 18, hjust = 0.5, face = 'bold'),
+            plot.subtitle = element_text(size = 14, hjust = 0.5, face = "italic"))
+  })
+  
+  output$table <- renderDataTable(datareact())
+}  
+
+
+#the app
+shinyApp(ui, server)
+
+library(rsconnect)
+
+#plotly exercise 1
+
+library(plotly)
+
+x <- df %>% 
+    #filter(year == renderText()) %>% 
+    #filter(country == "Belgium" | country == "Spain" | country == "Italy" | country == "Germany" | country == "Luxembourg" | country == "France") %>% 
+    #filter(skill == "My present skills correspond well with my duties") %>% 
+    ggplot2::ggplot(aes(x = reorder(country,share.underskilled), y = share.underskilled, fill = factor(color)))+
+    geom_col()+
+    scale_fill_manual(values = c("#004494", "#00449490", "#00449450"))+
+    labs(title = paste0( "% of the workers in France are underskilled"),
+         subtitle = paste0("Share of underskilled workers in "),
+         x = 'Countries',
+         y = "% Underskilled Workers",
+         caption = paste0("Source: EWCS ")) + 
+    #scale_y_continuous(breaks = seq(0,35,5)) +
+    theme(panel.background = element_blank(),
+          axis.title.x = element_text(face="italic", margin = margin(8, 00, 8, 00)),
+          axis.title.y = element_text(face="italic", margin = margin(0, 08, 0, 08)),
+          axis.text.x = element_text(angle=45, hjust=0.9),
+          legend.position = "none", 
+          legend.background = element_blank(),
+          legend.title = element_blank(),
+          axis.line = element_line(size = 1),
+          axis.title = element_text(size = 12),
+          axis.text = element_text(size = 11),
+          legend.text = element_blank(),
+          #legend.spacing = unit(2, 'cm'),
+          plot.title = element_text(size = 18, hjust = 0.5, face = 'bold'),
+          plot.subtitle = element_text(size = 14, hjust = 0.5, face = "italic"))
+
+ggplotly(x)
+
+ggplotly(x, tooltip = c("share.underskilled", "country"))
+
+
+#exercise 2 plotly
+
+ewcs %>% 
+  filter(country == "France") %>% 
+  group_by(year) %>%
+  summarise (share.mismatch = weighted.mean(mismatch, w = wgt, na.rm = TRUE) * 100,
+             share.overskilled = weighted.mean(overskilled, w = wgt, na.rm = TRUE) * 100,
+             share.underskilled = weighted.mean(underskilled, w = wgt, na.rm = TRUE) * 100) 
+  
+plot_ly(ewcs %>% 
+            filter(country == "France") %>% 
+            group_by(year) %>%
+            summarise (share.mismatch = weighted.mean(mismatch, w = wgt, na.rm = TRUE) * 100,
+                       share.overskilled = weighted.mean(overskilled, w = wgt, na.rm = TRUE) * 100,
+                       share.underskilled = weighted.mean(underskilled, w = wgt, na.rm = TRUE) * 100),
+        x = ~year, y = ~share.mismatch) %>% 
+  add_lines() %>% 
+  layout(title = "Skill mismatch in France between 2005 to 2015",
+         xaxis = c(Year),
+         yaxis = c(% of skill mismatch))
+  
+#exercise 3 plotly
+plot_ly(ewcs %>% 
+          filter(country == "France" | country == "Belgium" | country == "Germany" | country == "Italy"
+                 | country == "Spain" | country == "Luxembourg") %>% 
+          group_by(country, year) %>%
+          summarise (share.mismatch = weighted.mean(mismatch, w = wgt, na.rm = TRUE) * 100,
+                     share.overskilled = weighted.mean(overskilled, w = wgt, na.rm = TRUE) * 100,
+                     share.underskilled = weighted.mean(underskilled, w = wgt, na.rm = TRUE) * 100),
+        x = ~year, y = ~share.mismatch, color = ~country, text = ~country) %>% 
+  add_lines(hovertemplate = paste0("%{text}",", %{x} - %{y:.2f}:%<extra></extra>")) %>% 
+  layout(title = "Evolution of skill mismatch in European countries, 2005 to 2015",
+         xaxis = list(title = "Year"),
+         yaxis = list(title = "% of Skill Mismatch"),
+         legend = list(title = list(text = "Country"), x = 100, y = 0.5))
+
+#plotly and shiny together
+
+plot_ly(ewcs %>% 
+          na.omit(filter(eu27 == 1)) %>% 
+          filter(country != "FYROM") %>% 
+          na.omit(filter(year == 2015)) %>%
+          group_by(country, year) %>%
+          summarise (share.mismatch = weighted.mean(mismatch, w = wgt, na.rm = TRUE) * 100,
+                     #share.overskilled = weighted.mean(overskilled, w = wgt, na.rm = TRUE) * 100,
+                     #share.underskilled = weighted.mean(underskilled, w = wgt, na.rm = TRUE) * 100
+                     ) %>% 
+          #ungroup() %>% 
+          mutate(country = fct_reorder(country, share.mismatch)),
+        x = ~country, y = ~share.mismatch, type = "bar") %>% 
+  #add_lines(hovertemplate = paste0("%{text}",", %{x} - %{y:.2f}:%<extra></extra>")) %>% 
+  layout(title = "Skills mismatch ranges from 24% to 53% in the EU, 2015",
+         xaxis = list(title = "Year"),
+         yaxis = list(title = "% of Skill Mismatch"),
+         legend = list(title = list(text = "Country"), x = 100, y = 0.5))

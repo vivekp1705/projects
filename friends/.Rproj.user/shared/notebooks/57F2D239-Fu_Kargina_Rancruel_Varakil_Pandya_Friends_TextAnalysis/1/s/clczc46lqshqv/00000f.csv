@@ -1,0 +1,6 @@
+"0","# boxplot of number of dialogues in each season"
+"0",""
+"0","friends_main_chars %>%"
+"0","  group_by(Season, Speaker) %>%"
+"0","  summarize(SentenceCount = n()) %>% select(Season, SentenceCount)"
+"2","`summarise()` has grouped output by 'Season'. You can override using the `.groups` argument."

@@ -1,0 +1,6 @@
+"0","#We set the directory"
+"0",""
+"0","friends_df <- read_excel(path = paste0(""C:/Users/bluff/OneDrive - Burgundy School of Business/BSB/R Studio Projects/season2/friends"",""/friends_df.xlsx""))"
+"0",""
+"0",""
+"0",""

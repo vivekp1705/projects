@@ -1,0 +1,518 @@
+
+#loading the directory
+
+library(ggplot2)
+library(tidyverse)
+library(dplyr)
+
+#setting the directory
+setwd("C:/Users/bluff/OneDrive - Burgundy School of Business/BSB/R Markdown and ggplot2")
+dir(path = "assignment")
+
+#loading the data
+file_path_1 <- file.path("assignment", "NCD_BMI_30A.csv")
+file_path_2 <- file.path("assignment", "obesity-cleaned.csv")
+bmi <- read.csv(file = file_path_1, header = T)
+by_countries <- read.csv(file = file_path_2, header = T)
+#by_countries <- readxl::read_xlsx(file_path_2)
+
+#Checking the data type
+str(bmi)
+
+#Cleaning the data
+bmi$Global = as.numeric(substr(bmi$Global, 1, 4)) #getting numeric data 
+bmi$Africa = as.numeric(substr(bmi$Africa, 1, 4))
+bmi$Americas = as.numeric(substr(bmi$Americas, 1, 4))
+bmi$South.East.Asia = as.numeric(substr(bmi$South.East.Asia, 1, 4))
+bmi$Europe = as.numeric(substr(bmi$Europe, 1, 4))
+bmi$Eastern.Mediterranean = as.numeric(substr(bmi$Eastern.Mediterranean, 1, 4))
+bmi$Western.Pacific = as.numeric(substr(bmi$Western.Pacific, 1, 4))
+bmi$WHO.region = substr(bmi$WHO.region, 2, 12) #removing leading spaces in column WHO region
+
+
+
+
+#Checking the data type
+str(bmi)
+
+#pivoting the main data set
+bmi <- bmi %>% pivot_longer(cols = c(Global, Africa, Americas, South.East.Asia, Europe, 
+                                     Eastern.Mediterranean, Western.Pacific),
+                            names_to = "Continents",
+                            values_to = "Percentage of Obesity")
+
+
+#removing unwanted column from the table after pivoting
+bmi <- bmi[-c(3)]
+
+bmi$Continents[bmi$Continents == 'South.East.Asia'] <- 'South East Asia' 
+bmi$Continents[bmi$Continents == 'Eastern.Mediterranean'] <- 'Eastern Mediterranean' 
+bmi$Continents[bmi$Continents == 'Western.Pacific'] <- 'Western Pacific' 
+
+
+#Plot 1 - All continents together
+bmi %>% 
+  filter(Continents != "Global" & WHO.region == "Both sexes") %>%
+  ggplot(aes(x = Year, y = `Percentage of Obesity`)) + 
+  geom_line(aes(col = Continents), alpha = 0.95, size = 1.5)+
+  geom_smooth()+
+  scale_x_continuous(breaks = (seq(1975, 2015, 10))) + 
+  scale_y_continuous(breaks = seq(0,40,5))+
+  theme(panel.background = element_blank(),
+        axis.title.x = element_text(face="italic", margin = margin(8, 00, 8, 00)),
+        axis.title.y = element_text(face="italic", margin = margin(0, 08, 0, 08)),
+        legend.position = "top", 
+        legend.background = element_blank(),
+        legend.key = element_rect(color = "white", fill = NA), 
+        axis.line = element_line(size = 1),
+        axis.title = element_text(size = 12),
+        axis.text = element_text(size = 9),
+        legend.text = element_text(size = 10),
+        legend.title = element_text(size = 10),
+        plot.title = element_text(size = 18, hjust = 0.5, face = 'bold'),
+        plot.subtitle = element_text(size = 14, hjust = 0.5, face = "italic")) +
+  labs(title = "Overview of the increase in obesity from 1975 to 2016",
+       subtitle = "Highest in the Americas, least in South East Asia and Africa",
+       caption = "Source: Global Health Observatory (https://www.who.int/gho/en)")
+
+#filtering for males in 2016 and 1995
+americas_2016_1995_ <-  filter(bmi, Year == "1975" & WHO.region != "Both sexes" |
+                           Year == "1995" & WHO.region != "Both sexes"  
+                           | Year == "2016" & WHO.region != "Both sexes")
+
+
+#2 - Plotting the graph for gender based obesity in 1975, 1995 and in 2016 in Americas
+
+americas_2016_1995_ %>% 
+  arrange(Year) %>% 
+  filter(Continents == "Americas") %>% 
+  ggplot(aes(y = `Percentage of Obesity` , x = Year ,fill = WHO.region)) + #Continents
+  geom_col(width = 15, position = position_dodge2(width = 8)) + 
+  scale_fill_manual(values = c("#CC0066", "#000066"))+
+  scale_x_discrete(limits = c(1975, 1995, 2016)) +
+  labs(title = "Increase in average obesity among males and females",
+       subtitle = "of Americas from 1975 to 2016
+       ",
+       x = 'Years',
+       y = "Percentage of Obesity",
+       caption = "Source: Global Health Observatory (https://www.who.int/gho/en)") + 
+  scale_y_continuous(breaks = seq(0,35,5)) +
+  theme(panel.background = element_blank(),
+        axis.title.x = element_text(face="italic", margin = margin(8, 00, 8, 00)),
+        axis.title.y = element_text(face="italic", margin = margin(0, 08, 0, 08)),
+        legend.position = "top", 
+        legend.background = element_blank(),
+        legend.title = element_blank(),
+        axis.line = element_line(size = 1),
+        axis.title = element_text(size = 12),
+        axis.text = element_text(size = 11),
+        legend.text = element_text(size = 12),
+        legend.spacing = unit(2, 'cm'),
+        plot.title = element_text(size = 18, hjust = 0.5, face = 'bold'),
+        plot.subtitle = element_text(size = 14, hjust = 0.5, face = "italic"))
+
+
+#3 Both gender obesity over the years across continents
+bmi %>% 
+  filter(WHO.region != "Both sexes" & Continents != "Global") %>% 
+  ggplot(aes(x = Year, y = `Percentage of Obesity`, color = WHO.region)) + 
+  geom_line(size = 1.5)+
+  facet_wrap(~Continents)+
+  scale_x_continuous(breaks = seq(1975,2016,10))+
+  scale_y_continuous(breaks = seq(0,40,10))+
+  scale_color_manual(values = c("#CC0066", "#000066"), name = "Gender")+
+  theme_minimal()+
+  labs(title = "Changes in average obesity among males and females",
+       subtitle = "across all continents between 1975 to 2016",
+       caption = "Source: Global Health Observatory (https://www.who.int/gho/en)")+
+  theme(axis.title.x = element_text(face="italic", margin = margin(8, 00, 8, 00)),
+        axis.title.y = element_text(face="italic", margin = margin(0, 08, 0, 08)),
+        axis.line = element_line(size = 1),
+        axis.title = element_text(size = 12),
+        axis.text = element_text(size = 8),
+        legend.text = element_text(size = 10),
+        plot.title = element_text(size = 18, hjust = 0.5, face = 'bold'),
+        plot.subtitle = element_text(size = 14, hjust = 0.5, face = "italic"))
+  
+  
+#4 box plot of all the continents of their mean over the years
+
+bmi %>% 
+  filter(Continents != "Global" & WHO.region == "Both sexes") %>%
+  ggplot(aes(x = Continents, y = `Percentage of Obesity`, fill = Continents)) +
+  geom_boxplot()+
+  stat_summary(fun = "mean", geom = "point", shape = 10, size = 2, color = "white")+
+  coord_flip()+
+  scale_y_continuous(breaks = seq(0,35,5))+
+  theme_light()+
+  labs(title = "The range of average obese population on these continents",
+       subtitle = "between 1975 to 2016",
+       caption = "Source: Global Health Observatory (https://www.who.int/gho/en)",
+       y = "Percentage of Obesity")+
+  theme(panel.background = element_blank(),
+        axis.title.x = element_text(face="italic", margin = margin(8, 00, 8, 00)),
+        axis.title.y = element_blank(),
+        legend.position = "right", 
+        legend.background = element_blank(),
+        legend.title = element_text(size = 10),
+        axis.line = element_line(size = 1),
+        axis.title = element_text(size = 10),
+        axis.text = element_text(size = 9),
+        legend.text = element_text(size = 8),
+        legend.spacing = unit(2, 'cm'),
+        plot.title = element_text(size = 15, hjust = 0.5, face = 'bold'),
+        plot.subtitle = element_text(size = 12, hjust = 0.5, face = "italic"))+
+  scale_fill_manual(values = c("#E69F00", "#009E73", "#0072B2", "#CC79A7", "#999999", "#F0E442"))
+
+#countries in Americas - Argentina, 
+Americas <- by_countries %>% filter(Country == "Argentina" |
+                             Country == "Brazil" |
+                             Country == "Canada"|
+                             Country == "Chile" |
+                             Country == "Colombia" |
+                             Country == "Ecuador" |
+                             Country == "Mexico" |
+                             Country == "Peru" |
+                             Country == "United States of America" |
+                             Country == "Venezuela (Bolivarian Republic of)")
+
+#5 mean obesity for the countries in Americas in 2016
+str(Americas)
+Americas %>% 
+  filter(Year == 2016) %>% 
+  group_by(Country) %>%
+  summarise(mean = mean(as.numeric(Obesity))) %>% 
+  ggplot(aes(x = reorder(Country, -mean), y = mean, fill = -mean)) + 
+  geom_col(width = 0.7)+
+  theme_classic()+
+  coord_flip()+
+  labs(title = "Obese population in countries from Americas",
+       subtitle = "in 2016",
+       y = "Percentage of Obesity",
+       caption = "Source: Global Health Observatory (https://www.who.int/gho/en)")+
+  theme(panel.background = element_blank(),
+        axis.title.x = element_text(face="italic", margin = margin(8, 00, 8, 00)),
+        axis.title.y = element_blank(),
+        legend.position = "right", 
+        legend.background = element_blank(),
+        legend.title = element_text(size = 14),
+        axis.line = element_line(size = 1),
+        axis.title = element_text(size = 12),
+        axis.text = element_text(size = 10),
+        legend.text = element_text(size = 11),
+        legend.spacing = unit(2, 'cm'),
+        plot.title = element_text(size = 18, hjust = 0.5, face = 'bold'),
+        plot.subtitle = element_text(size = 14, hjust = 0.5, face = "italic"))+
+  scale_fill_continuous(name = "Percentage of Obesity")
+
+
+#adding colors
+install.packages("thematic")
+library(thematic)
+colors <- thematic::okabe_ito(11)[-6]
+colors[c(7)] <- "#660000"
+colors[c(8)] <- "#99CC00"
+colors[c(9)] <- "#56B4E9"
+colors[c(10)] <-"#000033"
+colors
+
+#6 - top 10 countries in 2016
+by_countries %>%
+  filter(Sex== "Both sexes" & Year == 2016) %>% 
+  group_by(Country) %>%
+  dplyr::summarize(`Average Obesity Percentage` = round(mean(as.numeric(Obesity)),2)) %>% 
+  arrange(desc(`Average Obesity Percentage`)) %>% 
+  top_n(10) %>% 
+  ggplot(aes(x = reorder(Country, -`Average Obesity Percentage`), y = `Average Obesity Percentage`))+
+  geom_col(width = 0.75, fill = colors)+
+  #scale_color_manual(values = colors)+
+  coord_flip()+
+  labs(title = "Top 10 Obese countries in the world",
+       subtitle = "in 2016",
+       caption = "Source: Global Health Observatory (https://www.who.int/gho/en)")+
+  theme_classic()+
+  theme(panel.background = element_blank(),
+        axis.title.x = element_text(face="italic", margin = margin(8, 00, 8, 00)),
+        axis.title.y = element_blank(),
+        legend.position = "right", 
+        legend.background = element_blank(),
+        legend.title = element_text(size = 10),
+        axis.line = element_line(size = 1),
+        axis.title = element_text(size = 10),
+        axis.text = element_text(size = 8),
+        legend.text = element_text(size = 9),
+        legend.spacing = unit(2, 'cm'),
+        plot.title = element_text(size = 15, hjust = 0.5, face = 'bold'),
+        plot.subtitle = element_text(size = 12, hjust = 0.5, face = "italic"))+
+  scale_fill_continuous(name = "Percentage of Obesity")
+
+
+#7 Comparing least obese and most obese countries in 2016
+
+by_countries %>%
+  filter(Sex== "Both sexes" & Year == 1975) %>% 
+  group_by(Country) %>%
+  dplyr::summarize(`Average Obesity Percentage` = round(mean(as.numeric(Obesity)),2)) %>% 
+  arrange(desc(`Average Obesity Percentage`)) %>% 
+  top_n(-5)
+
+top <- by_countries %>% 
+  filter(Country == "Viet Nam" |
+         Country == "Bangladesh" |
+           Country == "Cambodia" |
+           Country == "Nepal" |
+           Country == "India" |
+           Country == "Nauru" |
+           Country == "Palau" |
+           Country == "Cook Islands" |
+           Country == "Marshall Islands" |
+           Country == "Tuvalu" )
+
+top %>% 
+  filter(Sex == "Both sexes" & Year == 2016) %>%
+  group_by(Country) %>% 
+  summarize(`Average Obesity Percentage` = as.numeric(Obesity)) %>% 
+  arrange(desc(`Average Obesity Percentage`)) %>% 
+  ggplot(aes(y = reorder(Country, `Average Obesity Percentage`), x = `Average Obesity Percentage`, 
+             fill = -`Average Obesity Percentage`))+
+  geom_col(size = 2, fill = colors, alpha = 2.5)+
+  theme_minimal()+
+  scale_x_continuous(breaks = seq(0,50,10))+
+  labs(title = "Most Obese and Least Obese Countries",
+       subtitle = "in 2016",
+       caption = "Source: Global Health Observatory (https://www.who.int/gho/en)")+
+  theme(panel.background = element_blank(),
+        axis.title.x = element_text(face="italic", margin = margin(8, 00, 8, 00)),
+        axis.title.y = element_blank(),
+        axis.line = element_line(size = 1),
+        axis.title = element_text(size = 10),
+        axis.text = element_text(size = 9),
+        plot.title = element_text(size = 15, hjust = 0.5, face = 'bold'),
+        plot.subtitle = element_text(size = 12, hjust = 0.5, face = "italic"),
+        aspect.ratio = 6/5)+
+  scale_fill_continuous(name = "Percentage of Obesity")
+
+#8 Highest average obesity among genders, comparison (table)
+
+s <- na.omit(by_countries) %>%
+  filter(Sex != "Both sexes") %>% 
+  group_by(Country, Sex) %>%
+  dplyr::summarize(`Average Obesity Percentage` = round(mean(as.numeric(Obesity)),2)) %>% 
+  arrange(desc(`Average Obesity Percentage`)) %>% 
+  top_n(25)
+s
+#s shows the highest obesity among both genders 
+
+
+str(by_countries)
+
+by_countries$Obesity <- na.omit(as.numeric(by_countries$Obesity))
+  
+
+# highest mean obesity in 2016
+males <- str(by_countries)
+
+mf16 <- by_countries %>%
+  filter(Sex != "Both sexes" & Year == 2016) %>% 
+  group_by(Country) %>% 
+  pivot_wider(id_cols = Country,
+              names_from = Sex,
+              values_from = Obesity)
+
+#creating the diff between men and women
+mf16$Diff = mf16$Male - mf16$Female
+
+rm(a)
+
+#arranging by highest and lowest difference between
+a <- mf16 %>% arrange(desc(Diff))
+a <- na.omit(a)
+a <- (a[-11:-181,])
+c("#CC0066", "#000066")
+clrs <- c("#000066", "#CC0066")
+type <- rep(c("Male", "Female"), each = 10)
+a$type = type
+a %>% ggplot(aes(x = Diff, y = reorder(Country, Diff), fill = type))+
+  geom_col(width = 0.5)+
+  scale_x_continuous(breaks = seq(-20,10,6))+
+  theme_minimal()+
+  labs(title = "Countries with the Highest Difference in Obesity",
+       subtitle = "among Men and Women in 2016",
+       caption = "Source: Global Health Observatory (https://www.who.int/gho/en)",
+       x = "Difference between Female and Male Obesity",
+       y = "Country")+
+  theme(panel.background = element_blank(),
+        axis.title.x = element_text(face="italic", margin = margin(6, 00, 6, 00)),
+        axis.title.y = element_text(face="italic", margin = margin(0, 10, 0, 10)),
+        axis.line = element_line(size = 1),
+        axis.title = element_text(size = 10),
+        axis.text = element_text(size = 9),
+        legend.title = element_text(size = 10, hjust = 0.5, face = 'bold'),
+        plot.title = element_text(size = 15, hjust = 0.5, face = 'bold'),
+        plot.subtitle = element_text(size = 12, hjust = 0.5, face = "italic"),
+        aspect.ratio = 7/5)+
+  scale_fill_manual(name = "Gender", values = c("#CC0066", "#000066"))
+
+
+#group by countries 
+
+grp <- by_countries %>%
+  filter(Sex == "Both sexes") %>%  
+  group_by(Country) %>% 
+  summarize(mean = na.omit(mean(as.numeric(Obesity))))
+
+# WorldMap
+
+#adding names of the countries to match the two data sets
+
+grp$Country[grp$Country == "United States of America"] <- "USA"
+grp$Country[grp$Country == "United Kingdom of Great Britain and Northern Ireland"] <- "UK"
+grp$Country[grp$Country == "Congo (Republic)"] <- "Republic of Congo"
+grp$Country[grp$Country == "Congo (DRC)"] <- "Democratic Republic of the Congo"
+grp$Country[grp$Country == "Macedonia (FYROM)"] <-"North Macedonia"
+grp$Country[grp$Country == "Russian Federation"] <-"Russia"
+grp$Country[grp$Country == "Denmark"] <-"Greenland"
+grp$Country[grp$Country == "Democratic People's Republic of Korea"] <- "North Korea"
+grp$Country[grp$Country == "Venezuela (Bolivarian Republic of)"] <- "Venezuela"
+grp$Country[grp$Country == "Côte d'Ivoire"] <- "Ivory Coast"
+grp$Country[grp$Country == "Congo"] <- "Republic of Congo"
+grp$Country[grp$Country == "United Republic of Tanzania"] <- "Tanzania"
+grp$Country[grp$Country == "Bolivia (Plurinational State of)"] <- "Bolivia"
+grp$Country[grp$Country == "Viet Nam"] <- "Vietnam"
+grp$Country[grp$Country == "Republic of Korea"] <- "South Korea"
+grp$Country[grp$Country == "Lao People's Democratic Republic"] <- "Laos"
+grp$Country[grp$Country == "Iran (Islamic Republic of)"] <- "Iran"
+grp$Country[grp$Country == "Sudan (former)"] <- "South Sudan"
+grp$Country[grp$Country == "South Sudan"] <- "Sudan"
+grp$Country[grp$Country == "Czechia"] <- "Czech Republic"
+grp$Country[grp$Country == "Syrian Arab Republic"] <- "Syria"
+
+Sudan (former)
+
+
+w_map
+
+world_map <- map_data("world")
+world_map <- subset(world_map, region!= "Antarctica")
+ggplot(grp) +
+  geom_map(
+    data = world_map, map = world_map, aes(map_id = region),
+    fill = "white", color = "White", size = 0.5
+  ) +
+  geom_map(map = world_map, aes(map_id = grp$Country,
+                                fill = grp$mean), size = 0.25) +
+  scale_fill_gradient2(low = "White",
+                       mid = "Yellow",
+                      high = "Black",
+                      name = "Average Obesity Percentage") +
+  expand_limits(x = world_map$long, y = world_map$lat)
+
+world_map$
+  
+  
+
++
+  labs(x="",y="",title ="World Hotspots",
+       subtitle = "(P.S. some countries data are unavailable)",
+       caption = "Daily weather data of all 194 country capitals (2018 - 2022 YTD)")+
+  theme(panel.grid=element_blank(),
+        panel.border=element_blank()) +
+  theme(axis.ticks=element_blank(),
+        axis.text=element_blank())+
+  theme(legend.position="top")+
+  theme(plot.title = element_text(size = 20,hjust = 0.5,face = 'bold'),
+        plot.subtitle = element_text(size = 15,hjust = 2))
+
+
+
+
+#South.East.Asia
+bmi %>% 
+  filter(Continents == "Americas") %>%
+  filter(WHO.region != "Both Sexes") %>% 
+  ggplot(aes(x = Year, y = `Percentage of Obesity`, color = WHO.region)) + 
+  geom_line()+
+  geom_smooth()
+
+#Europe
+bmi %>% 
+  filter(Continents == "Europe") %>%
+  filter(WHO.region != "Both Sexes") %>% 
+  ggplot(aes(x = Year, y = `Percentage of Obesity`, color = WHO.region)) + 
+  geom_point()+
+  geom_smooth()
+
+
+#Eastern.Mediterranean
+bmi %>% 
+  filter(Continents == "Eastern.Mediterranean") %>%
+  filter(WHO.region != "Both Sexes") %>% 
+  ggplot(aes(x = Year, y = `Percentage of Obesity`, color = WHO.region)) + 
+  geom_point()+
+  geom_smooth()
+
+
+
+#Western.Pacific
+bmi %>% 
+  filter(Continents == "Western.Pacific") %>%
+  filter(WHO.region != "Both Sexes") %>% 
+  ggplot(aes(x = Year, y = `Percentage of Obesity`, color = WHO.region)) + 
+  geom_point()+
+  geom_smooth()
+
+str(bmi$Continents)
+#Africa
+bmi %>% 
+  filter(Continents == "Africa") %>%
+  filter(WHO.region != "Both Sexes") %>% 
+  ggplot(aes(x = Year, y = `Percentage of Obesity`, color = WHO.region)) + 
+  geom_point()+
+  geom_smooth()+
+  
+  #Americas
+  bmi %>% 
+  filter(Continents == "Americas" & WHO.region != "Both sexes") %>%
+  ggplot(aes(x = Year, y = `Percentage of Obesity`, color = WHO.region)) + 
+  geom_point() +
+  #geom_smooth()
+
+  
+  bmi %>% 
+  filter(WHO.region == "Female" & Continents != "Global") %>% 
+  ggplot(aes(x = Year, y = `Percentage of Obesity`)) + 
+  geom_area(fill = "#CC0066")+
+  facet_wrap(~Continents)+
+  theme_minimal()+
+  scale_x_continuous(breaks = seq(1975,2016,10))+
+  scale_y_continuous(breaks = seq(0,40,5))+
+  labs(title = "Changes in average obesity among females",
+       subtitle = "across all continents from 1975 to 2016",
+       caption = "Source: Global Health Observatory (https://www.who.int/gho/en)")+
+  theme(axis.title.x = element_text(face="italic", margin = margin(8, 00, 8, 00)),
+        axis.title.y = element_text(face="italic", margin = margin(0, 08, 0, 08)),
+        axis.line = element_line(size = 1),
+        axis.title = element_text(size = 12),
+        axis.text = element_text(size = 8),
+        legend.text = element_text(size = 10),
+        plot.title = element_text(size = 18, hjust = 0.5, face = 'bold'),
+        plot.subtitle = element_text(size = 14, hjust = 0.5, face = "italic"))
+
+
+installed.packages("northamericamap")
+
+
+#Males and Females comparison Americas
+
+#males <- subset(bmi, select = c(1,3, 6, 9,12,15,18,21,24,27,30,33,36,39,42,45,48,51,
+#                               54,57,60,63,66,69,72,75,78,81,84,87,90,93,96,99,102,
+#                                105,108,111,114,117,120,123,126))
+#females <- subset(bmi, select = c(1,4, 7, 10,13,16,19,22,25,28,31,34,37,40,43,46,49,52,
+#                                  55,58,61,64,67,70,73,76,79,82,85,88,91,94,97,100,103,
+#                                  106,109,112,115,118,121,124,127))
+#
+#as.numeric(males$X2016.1)
+
+#mean(na.omit(as.numeric(substr(males$X2016.1, 1, 4))))
+#europe = 
+#p <- ggplot(males, x = )

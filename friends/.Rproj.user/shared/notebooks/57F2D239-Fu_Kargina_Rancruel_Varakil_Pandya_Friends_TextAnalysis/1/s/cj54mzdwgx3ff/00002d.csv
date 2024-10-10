@@ -1,0 +1,11 @@
+"0","# Loading the UDPipe English model
+ud_model <- udpipe_download_model(language = ""english"")
+"
+"2","trying URL 'https://raw.githubusercontent.com/jwijffels/udpipe.models.ud.2.5/master/inst/udpipe-ud-2.5-191206/english-ewt-ud-2.5-191206.udpipe'
+"
+"2","Content type 'application/octet-stream'"
+"2"," length 16309608 bytes (15.6 MB)
+"
+"2","downloaded 15.6 MB
+
+"

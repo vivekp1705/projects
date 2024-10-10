@@ -1,0 +1,4 @@
+"0","# this method was used to make the entire project easily workable for group members"
+"0",""
+"0"," friends_df <- read_excel(path = paste0(getwd(),""/friends_df.xlsx""))"
+"0",""

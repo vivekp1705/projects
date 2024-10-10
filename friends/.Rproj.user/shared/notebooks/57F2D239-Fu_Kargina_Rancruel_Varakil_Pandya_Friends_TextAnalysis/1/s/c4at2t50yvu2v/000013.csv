@@ -1,0 +1,5 @@
+"0","wordcloud(chandler_sentiment$word,
+          max.words = 75, random.order = FALSE, colors = brewer.pal(8, ""Dark2""))
+"
+"2","Error in gzfile(file, ""wb"") : cannot open the connection
+"

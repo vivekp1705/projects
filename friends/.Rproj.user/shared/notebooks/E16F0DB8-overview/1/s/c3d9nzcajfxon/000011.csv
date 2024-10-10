@@ -1,0 +1,4 @@
+"0","# histogram showing the count of sentences per season"
+"0","sentences <- friends_main_chars %>%"
+"0","  group_by(Season) %>%"
+"0","  summarize(SentenceCount = n())"

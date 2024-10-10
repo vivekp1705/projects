@@ -1,0 +1,218 @@
+sjd2 %>% 
+  filter(country == "France") %>% 
+  #summarise(mismatch = mean(value)) %>% 
+  ggplot2::ggplot(aes(x = skill1, y = value))+
+  geom_col()+
+  coord_flip()+
+  scale_color_gradient(low = "red", high = "green")+
+  labs(title = "Skill mismatch in France compared to the neighbouring countries",
+       subtitle = "Share of workers experiencing mismatch",
+       x = 'Countries',
+       y = "Level of Skill Mismatch",
+       caption = "Source: OECD, 2015") + 
+  #scale_y_continuous(breaks = seq(0,35,5)) +
+  theme(panel.background = element_blank(),
+        axis.title.x = element_text(face="italic", margin = margin(8, 00, 8, 00)),
+        axis.title.y = element_text(face="italic", margin = margin(0, 08, 0, 08)),
+        axis.text.x = element_text(hjust=0.9),
+        legend.position = "none", 
+        legend.background = element_blank(),
+        legend.title = element_blank(),
+        axis.line = element_line(size = 1),
+        axis.title = element_text(size = 12),
+        axis.text = element_text(size = 11),
+        legend.text = element_blank(),
+        #legend.spacing = unit(2, 'cm'),
+        plot.title = element_text(size = 18, hjust = 0.5, face = 'bold'),
+        plot.subtitle = element_text(size = 14, hjust = 0.5, face = "italic"))
+
+
+p <- sjd2 %>% 
+  filter(skill1 == "Basic Skills (Content)") %>% 
+  filter(skill2 == "Speaking") %>%
+  filter(region != "All") %>% 
+    ggplot2::ggplot(aes(x = reorder(country, value), y = value, fill = region))+
+    geom_col()+
+  #scale_color_gradient(low = "red", high = "green")+
+  labs(title = "Skill-2 mismatch across selected regions",
+  #     subtitle = "Share of workers experiencing mismatch",
+       x = 'Countries',
+       y = "Level of Skill Mismatch",
+       caption = "Source: OECD, 2015") + 
+  #scale_y_continuous(breaks = seq(0,35,5)) +
+  theme(panel.background = element_blank(),
+        axis.title.x = element_text(face="italic", margin = margin(8, 00, 8, 00)),
+        axis.title.y = element_text(face="italic", margin = margin(0, 08, 0, 08)),
+        axis.text.x = element_text(hjust=0.9, angle = 45),
+        legend.position = "none", 
+        legend.background = element_blank(),
+        legend.title = element_blank(),
+        axis.line = element_line(size = 1),
+        axis.title = element_text(size = 12),
+        axis.text = element_text(size = 11),
+        legend.text = element_blank(),
+        #legend.spacing = unit(2, 'cm'),
+        plot.title = element_text(size = 18, hjust = 0.5, face = 'bold'),
+        plot.subtitle = element_text(size = 14, hjust = 0.5, face = "italic"))
+
+ggplotly(p)
+
+
+
+ggplotly(sjd2 %>% 
+group_by(country, skill1) %>% 
+  summarise(mismatch = mean(value)) %>% 
+  ggplot2::ggplot(aes(x = reorder(skill1, mismatch), y = mismatch))+
+  geom_col()+
+  coord_flip()+
+  labs(title = "Skill 1 comparision across selected regions",
+       subtitle = "Share of workers experiencing mismatch",
+       x = 'Level1 Skills',
+       y = "Level of Skill Mismatch",
+       caption = "Source: OECD, 2015") + 
+  #scale_y_continuous(breaks = seq(0,35,5)) +
+  theme(panel.background = element_blank(),
+        axis.title.x = element_text(face="italic", margin = margin(8, 00, 8, 00)),
+        axis.title.y = element_text(face="italic", margin = margin(0, 08, 0, 08)),
+        axis.text.x = element_text(angle=45, hjust=0.9),
+        legend.position = "top", 
+        legend.background = element_blank(),
+        legend.title = element_blank(),
+        axis.line = element_line(size = 1),
+        axis.title = element_text(size = 12),
+        axis.text = element_text(size = 11),
+        legend.text = element_blank(),
+        #legend.spacing = unit(2, 'cm'),
+        plot.title = element_text(size = 18, hjust = 0.5, face = 'bold'),
+        plot.subtitle = element_text(size = 14, hjust = 0.5, face = "italic"))) %>% 
+  layout(title = list(text = "fdbvsfb"))
+  
+  
+ sjd2 %>% 
+  filter(country == "France") %>% 
+  group_by(country, skill1) %>% 
+  summarise(mismatch = mean(value)) 
+ 
+sjd2[which.min(sjd2$value),2]
+  
+ggplotly(sjd2_reordered %>% 
+           #group_by(country, skill1) %>% 
+           #summarise(mismatch = mean(value)) %>% 
+           ggplot2::ggplot(aes(x = reorder(skill1, value), y = value, fill = skill1, 
+                               text = paste0("Type of Skill: ", {skill1}, '<br>',
+                                             "Level of Mismatch ", {value})))+
+           geom_col()+
+           coord_flip()+
+           scale_fill_manual(values = c("#D1EAF0", "#ADD8E6", "#82EEFD", "#87CEEB", "#90E0EF", "#0077B6", "#61A5C2"))+
+           labs(title = paste0("Labour market at the top level in ","input$country,
+                               'has the highest shortage of ', rs12a()[which.max(rs12a()$value),2]"),
+                x = '',
+                y = "OECD Skill Mismatch Indicator",
+                caption = "Source: OECD, 2015") + 
+           #scale_y_continuous(breaks = seq(0,35,5)) +
+           theme(panel.background = element_blank(),
+                 axis.title.x = element_text(face="italic", margin = margin(8, 00, 8, 00)),
+                 axis.title.y = element_text(face="italic", margin = margin(0, 08, 0, 08)),
+                 axis.text.x = element_text(angle=45, hjust=0.9),
+                 legend.position = "none", 
+                 legend.background = element_blank(),
+                 legend.title = element_blank(),
+                 axis.line = element_line(size = 1),
+                 axis.title = element_text(size = 9),
+                 axis.text = element_text(size = 8),
+                 legend.text = element_blank(),
+                 #legend.spacing = unit(2, 'cm'),
+                 plot.title = element_text(size = 12, hjust = 0.5, face = "bold"),
+                 plot.subtitle = element_text(size = 10, hjust = 0.5, face = "italic")), 
+         tooltip = "text") %>% 
+  
+
+
+  
+sjd2_reordered %>% 
+  filter(region == "Oceania" & country == "Australia") %>% 
+  group_by(skill1) %>% 
+  summarize(skill2_max = sprintf("%.2f", round(max(value, na.rm = TRUE), 2)), # changes display formatting so all values show two decimal places
+            skill2_min = sprintf("%.2f", round(min(value, na.rm = TRUE), 2)),
+            skill2_median = sprintf("%.2f", round(median(value, na.rm = TRUE), 2)),
+            skill2_mean = sprintf("%.2f", round(mean(value, na.rm = TRUE), 2)),
+            skill2_stdev = sprintf("%.2f", round(sd(value, na.rm = TRUE), 2))
+  )
+
+
+sjd2_oecd <- sjd2_reordered  %>% filter(country == "OECD" & region == "") %>%  select(-region)
+sjd2_eu <- sjd2_reordered  %>% filter(country == "European Union" & region == "") %>%  select(-region)
+
+sjd2_oecd <- sjd2_oecd %>% 
+              mutate(region = 'Oceania')
+sjd2_eu <- sjd2_eu %>% 
+  mutate(region = 'Oceania')
+
+sjd2_1 <- sjd2_oecd %>% 
+  mutate(region = 'Americas')
+sjd2_2 <- sjd2_oecd %>% 
+  mutate(region = 'Europe - EU')
+sjd2_3 <- sjd2_oecd %>% 
+  mutate(region = 'Europe - non-EU')
+
+sjd2_oecd <- rbind(sjd2_oecd, 
+                   sjd2_1,
+                   sjd2_2,
+                   sjd2_3)
+
+sjd2eu1 <- sjd2_eu %>% 
+  mutate(region = 'Americas')
+sjd2eu2 <- sjd2_eu %>% 
+  mutate(region = 'Europe - EU')
+sjd2eu3 <- sjd2_eu %>% 
+  mutate(region = 'Europe - non-EU')
+
+sjd2_eu <- rbind(sjd2_eu, 
+                   sjd2eu1,
+                   sjd2eu2,
+                   sjd2eu3)
+
+sjd2_oecd <- rbind(sjd2_reordered, sjd2_oecd, sjd2_eu)
+
+c("#D1EAF0", "#ADD8E6", "#82EEFD", "#87CEEB", "#90E0EF", "#0077B6", "#61A5C2")
+
+sjd2_oecd  <- sjd2_oecd %>% 
+  mutate(color = case_when(country %in% c('Australia', 'New Zealand') ~ "#D1EAF0", 
+                            country %in% c('Canada', 'Mexico', 'United States', 'Chile') ~ "#ADD8E6", 
+                            country %in% c('European Union', 'OECD') ~ "#82EEFD",
+                            country %in% c('Iceland', 'Norway', 'Switzerland', 'Turkey') ~ "#90E0EF",
+                            TRUE ~ '#87CEEB'))
+
+rm(list = ls(sjd2_reordered))
+
+
+#countries with skill 1 demand
+library(tidyverse)
+str(as.numeric((sjd2_reordered %>% filter(skill1 == "Technical Skills" & skill2 == "Overall" & country == "OECD" & region != "All") 
+                %>% select(value))))
+
+sjd2_reordered %>% select(country, skill2, value) %>% 
+  arrange(desc(value)) %>% 
+  unique(skill2) %>% 
+  top_n(5)
+
+library(shinydashboard)
+
+dashboardPage(
+  dashboardHeader(),
+  dashboardSidebar(),
+  dashboardBody()
+)
+
+unique(sjd2_reordered$country) %>% 
+nrow()
+
+n_distinct(sjd2_reordered$country)
+
+
+library(rsconnect)
+rsconnect::setAccountInfo(name='vivekp',
+                          token='59EE3A850E7070A164B0C795E438A1AA',
+                          secret='L1XHTliot1GGWrZqawX9GsV52eSJnlENzS6Npv1l')
+
+rsconnect::deployApp("C:/Users/bluff/OneDrive - Burgundy School of Business/BSB/Shiny/assignment/shinyassignment")

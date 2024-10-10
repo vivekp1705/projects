@@ -1,0 +1,246 @@
+country,skill1,value,continent
+Australia,Basic Skills (Content),0.217,Oceania
+Australia,Basic Skills (Process),0.28,Oceania
+Australia,Social Skills,0.201,Oceania
+Australia,Complex Problem Solving Skills,0.219,Oceania
+Australia,Technical Skills,0.012,Oceania
+Australia,Systems Skills,0.227,Oceania
+Australia,Resource Management Skills,0.117,Oceania
+Austria,Basic Skills (Content),0.252,Europe
+Austria,Basic Skills (Process),0.223,Europe
+Austria,Social Skills,0.108,Europe
+Austria,Complex Problem Solving Skills,0.187,Europe
+Austria,Technical Skills,-0.026,Europe
+Austria,Systems Skills,0.218,Europe
+Austria,Resource Management Skills,0.032,Europe
+Belgium,Basic Skills (Content),0.207,Europe
+Belgium,Basic Skills (Process),0.19,Europe
+Belgium,Social Skills,0.151,Europe
+Belgium,Complex Problem Solving Skills,0.147,Europe
+Belgium,Technical Skills,-0.097,Europe
+Belgium,Systems Skills,0.16,Europe
+Belgium,Resource Management Skills,0.023,Europe
+Canada,Basic Skills (Content),0.137,Americas
+Canada,Basic Skills (Process),0.154,Americas
+Canada,Social Skills,0.1,Americas
+Canada,Complex Problem Solving Skills,0.168,Americas
+Canada,Technical Skills,0.053,Americas
+Canada,Systems Skills,0.189,Americas
+Canada,Resource Management Skills,0.102,Americas
+Chile,Basic Skills (Content),-0.032,Americas
+Chile,Basic Skills (Process),-0.039,Americas
+Chile,Social Skills,-0.02,Americas
+Chile,Complex Problem Solving Skills,-0.086,Americas
+Chile,Technical Skills,0.03,Americas
+Chile,Systems Skills,-0.119,Americas
+Chile,Resource Management Skills,-0.034,Americas
+Czech Republic,Basic Skills (Content),0.19,Europe
+Czech Republic,Basic Skills (Process),0.205,Europe
+Czech Republic,Social Skills,0.107,Europe
+Czech Republic,Complex Problem Solving Skills,0.218,Europe
+Czech Republic,Technical Skills,0.121,Europe
+Czech Republic,Systems Skills,0.219,Europe
+Czech Republic,Resource Management Skills,0.148,Europe
+Denmark,Basic Skills (Content),0.27,Europe
+Denmark,Basic Skills (Process),0.297,Europe
+Denmark,Social Skills,0.146,Europe
+Denmark,Complex Problem Solving Skills,0.274,Europe
+Denmark,Technical Skills,0.058,Europe
+Denmark,Systems Skills,0.3,Europe
+Denmark,Resource Management Skills,0.175,Europe
+Estonia,Basic Skills (Content),0.108,Europe
+Estonia,Basic Skills (Process),0.141,Europe
+Estonia,Social Skills,0.105,Europe
+Estonia,Complex Problem Solving Skills,0.097,Europe
+Estonia,Technical Skills,-0.073,Europe
+Estonia,Systems Skills,0.111,Europe
+Estonia,Resource Management Skills,0.03,Europe
+Finland,Basic Skills (Content),0.54,Europe
+Finland,Basic Skills (Process),0.474,Europe
+Finland,Social Skills,0.319,Europe
+Finland,Complex Problem Solving Skills,0.498,Europe
+Finland,Technical Skills,0.018,Europe
+Finland,Systems Skills,0.548,Europe
+Finland,Resource Management Skills,0.268,Europe
+France,Basic Skills (Content),0.167,Europe
+France,Basic Skills (Process),0.211,Europe
+France,Social Skills,0.158,Europe
+France,Complex Problem Solving Skills,0.094,Europe
+France,Technical Skills,-0.016,Europe
+France,Systems Skills,0.133,Europe
+France,Resource Management Skills,0.169,Europe
+Germany,Basic Skills (Content),0.259,Europe
+Germany,Basic Skills (Process),0.228,Europe
+Germany,Social Skills,0.228,Europe
+Germany,Complex Problem Solving Skills,0.244,Europe
+Germany,Technical Skills,-0.034,Europe
+Germany,Systems Skills,0.263,Europe
+Germany,Resource Management Skills,0.1,Europe
+Greece,Basic Skills (Content),0.314,Europe
+Greece,Basic Skills (Process),0.236,Europe
+Greece,Social Skills,0.191,Europe
+Greece,Complex Problem Solving Skills,0.241,Europe
+Greece,Technical Skills,-0.021,Europe
+Greece,Systems Skills,0.202,Europe
+Greece,Resource Management Skills,0.084,Europe
+Hungary,Basic Skills (Content),0.055,Europe
+Hungary,Basic Skills (Process),0.11,Europe
+Hungary,Social Skills,0.128,Europe
+Hungary,Complex Problem Solving Skills,0.028,Europe
+Hungary,Technical Skills,-0.076,Europe
+Hungary,Systems Skills,0.042,Europe
+Hungary,Resource Management Skills,-0.004,Europe
+Iceland,Basic Skills (Content),0.338,Europe
+Iceland,Basic Skills (Process),0.372,Europe
+Iceland,Social Skills,0.211,Europe
+Iceland,Complex Problem Solving Skills,0.356,Europe
+Iceland,Technical Skills,0.047,Europe
+Iceland,Systems Skills,0.405,Europe
+Iceland,Resource Management Skills,0.236,Europe
+Ireland,Basic Skills (Content),0.331,Europe
+Ireland,Basic Skills (Process),0.454,Europe
+Ireland,Social Skills,0.372,Europe
+Ireland,Complex Problem Solving Skills,0.414,Europe
+Ireland,Technical Skills,0.061,Europe
+Ireland,Systems Skills,0.393,Europe
+Ireland,Resource Management Skills,0.286,Europe
+Italy,Basic Skills (Content),0.375,Europe
+Italy,Basic Skills (Process),0.311,Europe
+Italy,Social Skills,0.19,Europe
+Italy,Complex Problem Solving Skills,0.341,Europe
+Italy,Technical Skills,0.094,Europe
+Italy,Systems Skills,0.348,Europe
+Italy,Resource Management Skills,0.159,Europe
+Latvia,Basic Skills (Content),0.169,Europe
+Latvia,Basic Skills (Process),0.157,Europe
+Latvia,Social Skills,0.12,Europe
+Latvia,Complex Problem Solving Skills,0.153,Europe
+Latvia,Technical Skills,0.033,Europe
+Latvia,Systems Skills,0.158,Europe
+Latvia,Resource Management Skills,0.123,Europe
+Lithuania,Basic Skills (Content),0.152,Europe
+Lithuania,Basic Skills (Process),0.156,Europe
+Lithuania,Social Skills,0.101,Europe
+Lithuania,Complex Problem Solving Skills,0.179,Europe
+Lithuania,Technical Skills,0.023,Europe
+Lithuania,Systems Skills,0.187,Europe
+Lithuania,Resource Management Skills,0.124,Europe
+Luxembourg,Basic Skills (Content),0.262,Europe
+Luxembourg,Basic Skills (Process),0.177,Europe
+Luxembourg,Social Skills,0.135,Europe
+Luxembourg,Complex Problem Solving Skills,0.203,Europe
+Luxembourg,Technical Skills,-0.049,Europe
+Luxembourg,Systems Skills,0.2,Europe
+Luxembourg,Resource Management Skills,0.091,Europe
+Mexico,Basic Skills (Content),-0.127,Americas
+Mexico,Basic Skills (Process),-0.149,Americas
+Mexico,Social Skills,-0.152,Americas
+Mexico,Complex Problem Solving Skills,-0.135,Americas
+Mexico,Technical Skills,0.062,Americas
+Mexico,Systems Skills,-0.187,Americas
+Mexico,Resource Management Skills,-0.176,Americas
+Netherlands,Basic Skills (Content),0.349,Europe
+Netherlands,Basic Skills (Process),0.385,Europe
+Netherlands,Social Skills,0.287,Europe
+Netherlands,Complex Problem Solving Skills,0.36,Europe
+Netherlands,Technical Skills,-0.023,Europe
+Netherlands,Systems Skills,0.384,Europe
+Netherlands,Resource Management Skills,0.166,Europe
+New Zealand,Basic Skills (Content),0.213,Oceania
+New Zealand,Basic Skills (Process),0.245,Oceania
+New Zealand,Social Skills,0.13,Oceania
+New Zealand,Complex Problem Solving Skills,0.224,Oceania
+New Zealand,Technical Skills,0.118,Oceania
+New Zealand,Systems Skills,0.236,Oceania
+New Zealand,Resource Management Skills,0.059,Oceania
+Norway,Basic Skills (Content),0.146,Europe
+Norway,Basic Skills (Process),0.173,Europe
+Norway,Social Skills,-0.024,Europe
+Norway,Complex Problem Solving Skills,0.202,Europe
+Norway,Technical Skills,0.066,Europe
+Norway,Systems Skills,0.243,Europe
+Norway,Resource Management Skills,0.129,Europe
+Poland,Basic Skills (Content),0.021,Europe
+Poland,Basic Skills (Process),0.042,Europe
+Poland,Social Skills,-0.035,Europe
+Poland,Complex Problem Solving Skills,0.074,Europe
+Poland,Technical Skills,0.091,Europe
+Poland,Systems Skills,0.084,Europe
+Poland,Resource Management Skills,-0.039,Europe
+Portugal,Basic Skills (Content),0.277,Europe
+Portugal,Basic Skills (Process),0.338,Europe
+Portugal,Social Skills,0.175,Europe
+Portugal,Complex Problem Solving Skills,0.283,Europe
+Portugal,Technical Skills,0.039,Europe
+Portugal,Systems Skills,0.328,Europe
+Portugal,Resource Management Skills,0.133,Europe
+Slovak Republic,Basic Skills (Content),0.194,Europe
+Slovak Republic,Basic Skills (Process),0.187,Europe
+Slovak Republic,Social Skills,0.156,Europe
+Slovak Republic,Complex Problem Solving Skills,0.186,Europe
+Slovak Republic,Technical Skills,0.045,Europe
+Slovak Republic,Systems Skills,0.199,Europe
+Slovak Republic,Resource Management Skills,0.147,Europe
+Slovenia,Basic Skills (Content),0.114,Europe
+Slovenia,Basic Skills (Process),0.037,Europe
+Slovenia,Social Skills,0.081,Europe
+Slovenia,Complex Problem Solving Skills,0.021,Europe
+Slovenia,Technical Skills,-0.063,Europe
+Slovenia,Systems Skills,0.005,Europe
+Slovenia,Resource Management Skills,-0.042,Europe
+Spain,Basic Skills (Content),0.342,Europe
+Spain,Basic Skills (Process),0.307,Europe
+Spain,Social Skills,0.187,Europe
+Spain,Complex Problem Solving Skills,0.256,Europe
+Spain,Technical Skills,0.027,Europe
+Spain,Systems Skills,0.302,Europe
+Spain,Resource Management Skills,0.093,Europe
+Sweden,Basic Skills (Content),0.228,Europe
+Sweden,Basic Skills (Process),0.289,Europe
+Sweden,Social Skills,0.227,Europe
+Sweden,Complex Problem Solving Skills,0.174,Europe
+Sweden,Technical Skills,-0.083,Europe
+Sweden,Systems Skills,0.213,Europe
+Sweden,Resource Management Skills,0.1,Europe
+Switzerland,Basic Skills (Content),0.126,Europe
+Switzerland,Basic Skills (Process),0.144,Europe
+Switzerland,Social Skills,0.101,Europe
+Switzerland,Complex Problem Solving Skills,0.101,Europe
+Switzerland,Technical Skills,0.031,Europe
+Switzerland,Systems Skills,0.108,Europe
+Switzerland,Resource Management Skills,0.065,Europe
+Turkey,Basic Skills (Content),-0.025,Asia
+Turkey,Basic Skills (Process),-0.004,Asia
+Turkey,Social Skills,-0.01,Asia
+Turkey,Complex Problem Solving Skills,-0.024,Asia
+Turkey,Technical Skills,0.096,Asia
+Turkey,Systems Skills,-0.058,Asia
+Turkey,Resource Management Skills,-0.067,Asia
+United Kingdom,Basic Skills (Content),0.055,Europe
+United Kingdom,Basic Skills (Process),0.083,Europe
+United Kingdom,Social Skills,0.026,Europe
+United Kingdom,Complex Problem Solving Skills,0.091,Europe
+United Kingdom,Technical Skills,0.082,Europe
+United Kingdom,Systems Skills,0.077,Europe
+United Kingdom,Resource Management Skills,0.045,Europe
+United States,Basic Skills (Content),0.093,Americas
+United States,Basic Skills (Process),0.092,Americas
+United States,Social Skills,0.11,Americas
+United States,Complex Problem Solving Skills,0.057,Americas
+United States,Technical Skills,-0.054,Americas
+United States,Systems Skills,0.062,Americas
+United States,Resource Management Skills,0.05,Americas
+European Union,Basic Skills (Content),0.229,NA
+European Union,Basic Skills (Process),0.229,NA
+European Union,Social Skills,0.159,NA
+European Union,Complex Problem Solving Skills,0.206,NA
+European Union,Technical Skills,-0.001,NA
+European Union,Systems Skills,0.221,NA
+European Union,Resource Management Skills,0.099,NA
+OECD,Basic Skills (Content),0.191,NA
+OECD,Basic Skills (Process),0.197,NA
+OECD,Social Skills,0.131,NA
+OECD,Complex Problem Solving Skills,0.177,NA
+OECD,Technical Skills,0.018,NA
+OECD,Systems Skills,0.187,NA
+OECD,Resource Management Skills,0.088,NA
