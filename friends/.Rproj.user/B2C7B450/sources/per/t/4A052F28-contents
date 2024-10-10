@@ -1,0 +1,1772 @@
+---
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+<br>
+
+![](Friends_logo.png)
+
+# Friends Text Analysis {.tabset}
+
+```{r load_package, include = FALSE}
+# install the following libraries if not already installed 
+
+library(tidyverse)
+library(rvest)
+library(stringr)
+library(stringi)
+library(XML)
+library(rstudioapi)
+library(dplyr)
+library(readr)
+library(tidyverse)
+library(tidytext)
+library(syuzhet)
+library(wordcloud)
+library(ggplot2)
+library(tidytext)
+library(tm)
+library(wordcloud2)
+library(SnowballC)
+library(cowplot)
+library(pastecs)
+library(tidytext)
+library(readxl)
+library(plotly)
+library(kableExtra)
+library(udpipe)
+library(gridExtra)
+getwd()
+```
+
+
+```{r data, include = FALSE}
+# this method was used to make the entire project easily workable for group members
+
+ friends_df <- read_excel(path = paste0(getwd(),"/friends_df.xlsx"))
+
+```
+
+## Overview
+
+### **Most Popular Locations and Phrases in the TV Show**
+
+```{r location, echo = FALSE, message=FALSE, warning=FALSE}
+
+# Identify locations mentioned in the script
+locations <- c("central perk", "monica's apartment", "joey's apartment", "chandler's apartment", "ross's apartment", "phoebe's apartment", "childhood home", "bloomingdale's office")
+
+
+friends_df %>% 
+  mutate(Line = str_to_lower(Script)) %>%
+  unnest_tokens(bigram, Line, token = "ngrams", n = 2)%>%
+  separate(bigram, into = c("word1", "word2"), sep = " ") %>%
+  filter(!word1 %in% stop_words$word) %>%
+  filter(!word2 %in% stop_words$word) %>%
+  unite(bigram, word1, word2, sep = " ") %>% 
+  filter(bigram %in% locations) %>% 
+  count(bigram, sort = TRUE) %>% 
+  ggplot(aes(x = bigram, y = n, fill = n)) +
+  geom_bar(stat = "identity") +
+  xlab("Location") +
+  ylab("Frequency") +
+  ggtitle("Central Perk is mentioned 546 times")+
+  coord_flip()+
+  theme(panel.background = element_blank(),
+                       axis.title.x = element_text(face="italic", margin = margin(8, 00, 8, 00)), # adjusting margin of axis label from the axis values
+                       axis.title.y = element_text(face="italic", margin = margin(00, 8, 00, 8)),
+                       legend.position = "none", 
+                       legend.background = element_blank(),
+                       #legend.title = element_text(size = 10),
+                       axis.line = element_line(linewidth = 1),
+                       axis.title = element_text(size = 9),
+                       axis.text = element_text(size = 9),
+                       legend.text = element_text(size = 8),
+                       #legend.spacing = unit(2, 'cm'),
+                       plot.title = element_text(size = 14, hjust = 0.5, face = 'bold', family = "Verdana"),
+                       plot.subtitle = element_text(size = 12, hjust = 0.5, face = "italic", family = "Verdana"))#+
+  #               scale_fill_manual(values = c("#0077B6", "#ADD8E6", "#82EEFD", "#87CEEB", "#90E0EF", "#0077B6"))
+
+```
+
+<br> <br>
+
+```{r catchphrases, warning=FALSE, include=FALSE, message=FALSE, echo=FALSE}
+
+# Define the character names
+characters <- c("Chandler", "Monica", "Ross", "Rachel", "Joey", "Phoebe")
+
+# Count the number of mentions of each character
+char_counts <- sapply(characters, function(name) {
+  script <- paste(friends_df$Script, collapse = " ")
+  count <- str_count(script, regex(paste0("\\b", name, "\\b"), ignore_case = TRUE))
+  return(count)
+})
+
+# Ross
+
+paste(friends_df$Script, collapse = " ") %>% 
+  str_count(regex("\\s*ross", ignore_case = TRUE))
+
+paste(friends_df$Script, collapse = " ") %>% 
+  str_count(regex("\\s*on\\s*a\\s*break", ignore_case = TRUE))
+
+paste(friends_df$Script, collapse = " ") %>% 
+  str_count(regex("\\s*paleontolog\\s*", ignore_case = TRUE))
+
+paste(friends_df %>% filter(Speaker == "Ross") %>% select(Script), collapse = " ") %>% 
+  str_count(regex("\\s*divorce", ignore_case = TRUE))
+
+# Janice
+paste(friends_df %>% filter(Speaker == "Janice") %>% select(Script), collapse = " ") %>% 
+  str_count(regex("my\\s*god", ignore_case = TRUE))
+
+# ugly naked guy
+paste(friends_df$Script, collapse = " ") %>% 
+  str_count(regex("ugly\\s*naked\\s*guy", ignore_case = TRUE))
+
+# gunther
+paste(friends_df %>% filter(Speaker == "Gunther") %>% select(Script), collapse = " ") %>% 
+  str_count(regex("\\s*rachel", ignore_case = TRUE))
+
+# joey
+paste(friends_df$Script, collapse = " ") %>% 
+  str_count(regex("\\s*joey", ignore_case = TRUE)) 
+
+
+
+joey <- c("JOEY DOES NOT SHARE FOOD", "How you doin?", "An actor", "Dr. Drake Ramore")
+counts_joey <- c(paste(friends_df$Script, collapse = " ") %>% 
+  str_count(regex("\\s*share\\s*food", ignore_case = TRUE)), 
+  
+  paste(friends_df$Script, collapse = " ") %>% 
+  str_count(regex("\\s*how\\s*you\\s*doin", ignore_case = TRUE)), 
+  
+  paste(friends_df$Script, collapse = " ") %>% 
+  str_count(regex("\\s*actor", ignore_case = TRUE)), 
+  
+  paste(friends_df$Script, collapse = " ") %>% 
+  str_count(regex("\\s*drake", ignore_case = TRUE))
+  )
+  
+# phoebe
+
+phoebe <- c("Smelly Cat", "My lobster", "Twin sister")
+phoebe_counts <- c(
+paste(friends_df$Script, collapse = " ") %>% 
+  str_count(regex("s*smelly\\s*cat", ignore_case = TRUE)),
+
+paste(friends_df$Script, collapse = " ") %>% 
+  str_count(regex("\\s*lobster", ignore_case = TRUE)),
+
+paste(friends_df$Script, collapse = " ") %>% 
+  str_count(regex("\\s*twin", ignore_case = TRUE))
+)
+
+# monica
+
+monica <- c("I KNOW!", "My Restaurant", "SEVEN!", "MOM!")
+monica_counts <- c(
+paste(friends_df %>% filter(Speaker == "Monica") %>% select(Script), collapse = " ") %>% 
+  str_count(regex("s*i\\s*know", ignore_case = TRUE)),
+
+paste(friends_df %>% filter(Speaker == "Monica") %>% select(Script), collapse = " ") %>% 
+  str_count(regex("\\s*restaurant", ignore_case = TRUE)),
+
+paste(friends_df %>% filter(Speaker == "Monica") %>% select(Script), collapse = " ") %>% 
+  str_count(regex("\\s*seven", ignore_case = TRUE)),
+
+paste(friends_df %>% filter(Speaker == "Monica") %>% select(Script), collapse = " ") %>% 
+  str_count(regex("\\s*mom", ignore_case = TRUE))
+)
+# chandler
+
+chandler <- c("Joey", "Monica", "Oh MY GOD!")
+chandler_counts <- c(paste(friends_df %>% filter(Speaker == "Chandler") %>% select(Script), collapse = " ") %>% 
+  str_count(regex("\\s*joe", ignore_case = TRUE)),
+
+paste(friends_df %>% filter(Speaker == "Chandler") %>% select(Script), collapse = " ") %>% 
+  str_count(regex("\\s*monica\\s*", ignore_case = TRUE)),
+
+paste(friends_df %>% filter(Speaker == "Chandler") %>% select(Script), collapse = " ") %>% 
+  str_count(regex("\\s*oh\\s*my\\s*god", ignore_case = TRUE))
+)
+# rachel
+
+rachel <- c("Job", "NOOOOO!", "It is so Pretty")
+rachel_counts <- c(paste(friends_df %>% filter(Speaker == "Rachel") %>% select(Script), collapse = " ") %>% 
+  str_count(regex("\\s*job", ignore_case = TRUE)),
+
+paste(friends_df %>% filter(Speaker == "Rachel") %>% select(Script), collapse = " ") %>% 
+  str_count(regex("\\s*nooo", ignore_case = TRUE)),
+
+paste(friends_df %>% filter(Speaker == "Rachel") %>% select(Script), collapse = " ") %>% 
+  str_count(regex("\\s*pretty", ignore_case = TRUE))
+)
+
+
+```
+
+
+### **Most popular phrases used by the main characters from friends and the number of times it is used by them**
+<div class = "row">
+<div class = col-md-4>
+
+**Catchphrases of Ross**
+
+![](ross.jpeg)
+
+
+```{r ross catchphrases, echo=FALSE, warning=FALSE, message=F}
+
+# Define the catchphrases of Ross
+
+
+ross <- c("WE WERE ON A BREAK", "Paleontology", "Divorce")
+counts <- c(paste(friends_df$Script, collapse = " ") %>% 
+  str_count(regex("\\s*on\\s*a\\s*break", ignore_case = TRUE)), 
+  paste(friends_df$Script, collapse = " ") %>% 
+  str_count(regex("\\s*paleontolog\\s*", ignore_case = TRUE)), 
+  paste(friends_df %>% filter(Speaker == "Ross") %>% select(Script), collapse = " ") %>% 
+  str_count(regex("\\s*divorce", ignore_case = TRUE))
+  )
+
+# Create a data frame with the catchphrases and counts
+df <- data.frame(Catchphrases = ross, Count = counts)
+
+# Print the data frame as an HTML table using kable()
+kable(df, format = "html", col.names = c("Catchphrases", "Count")) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"))
+```
+
+
+</div>
+
+<div class = col-md-4>
+**Catchphrases of Joey**
+
+![](joey.jpeg)
+
+
+```{r joey catchphrases, echo=FALSE, warning=FALSE, message=F}
+
+# Create a data frame with the catchphrases and counts
+df <- data.frame(Catchphrases = joey, Count = counts_joey)
+
+# Print the data frame as an HTML table using kable()
+kable(df, format = "html", col.names = c("Catchphrases", "Count")) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"))
+```
+
+</div>
+<div class = col-md-4>
+
+**Catchphrases of Monica**
+
+![](monica.jpeg)
+```{r monica catchphrases, echo=FALSE, warning=FALSE, message=F}
+
+# Create a data frame with the catchphrases and counts
+df <- data.frame(Catchphrases = monica, Count = monica_counts)
+
+# Print the data frame as an HTML table using kable()
+kable(df, format = "html", col.names = c("Catchphrases", "Count")) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"))
+```
+  </div>
+</div>
+
+<div class = "row">
+<div class = col-md-4>
+
+**Catchphrases of Rachel**
+
+![](rachel.jpeg)
+
+```{r rachel catchphrases, echo=FALSE, warning=FALSE, message=F}
+
+# Create a data frame with the catchphrases and counts
+df <- data.frame(Catchphrases = rachel, Count = rachel_counts)
+
+# Print the data frame as an HTML table using kable()
+kable(df, format = "html", col.names = c("Catchphrases", "Count")) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"))
+```
+
+
+</div>
+<div class = col-md-4>
+
+**Catchphrases of Phoebe**
+
+![](phoebe.jpeg)
+
+```{r phoebe catchphrases, echo=FALSE, warning=FALSE, message=F}
+
+# Create a data frame with the catchphrases and counts
+df <- data.frame(Catchphrases = phoebe, Count = phoebe_counts)
+
+# Print the data frame as an HTML table using kable()
+kable(df, format = "html", col.names = c("Catchphrases", "Count")) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"))
+```
+
+</div>
+<div class = col-md-4>
+
+**Catchphrases of Chandler**
+
+![](chandler.jpeg)
+
+```{r chandler catchphrases, echo=FALSE, warning=FALSE, message=F}
+
+# Create a data frame with the catchphrases and counts
+df <- data.frame(Catchphrases = chandler, Count = chandler_counts)
+
+# Print the data frame as an HTML table using kable()
+kable(df, format = "html", col.names = c("Catchphrases", "Count")) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"))
+
+```
+
+
+</div>
+</div>
+
+
+
+### **Ross is mentioned most number of times in the script**
+<br>
+However, the name of Phoebe is used as Pheebs and it is mentioned 441 times in the script.
+
+```{r 6 main characters, warning=FALSE, message=FALSE, echo=FALSE}
+data.frame(Character = characters, Count = char_counts) %>% 
+  ggplot(aes(x = reorder(Character, -Count), y = Count,  fill = Character)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Number of times the main character were mentioned in the show", x = "Character", y = "Count")+
+    theme(panel.background = element_blank(),
+                       axis.title.x = element_text(face="italic", margin = margin(8, 00, 8, 00)), # adjusting margin of axis label from the axis values
+                       axis.title.y = element_text(face="italic", margin = margin(00, 8, 00, 8)),
+                       legend.position = "none", 
+                       legend.background = element_blank(),
+                       #legend.title = element_text(size = 10),
+                       axis.line = element_line(linewidth = 1),
+                       axis.title = element_text(size = 9),
+                       axis.text = element_text(size = 9),
+                       legend.text = element_text(size = 8),
+                       #legend.spacing = unit(2, 'cm'),
+                       plot.title = element_text(size = 14, hjust = 0.5, face = 'bold', family = "Verdana"),
+                       plot.subtitle = element_text(size = 12, hjust = 0.5, face = "italic", family = "Verdana"))+
+                 scale_fill_manual(values = c("#0077B6", "#ADD8E6", "#82EEFD", "#87CEEB", "#90E0EF", "#0077B6"))
+```
+
+## Episodes and Seasons
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+#-----episodes_per_Season-------------
+
+
+episodes_per_season <- friends_df %>% 
+  group_by(Season) %>% 
+  summarise(Episode = n_distinct(Episode)) %>% 
+  mutate(Season = factor(Season)) 
+
+episodes_per_season$c<- rep('black', nrow(episodes_per_season))
+episodes_per_season$c[episodes_per_season$Episode>24] <- "#82EEFD"
+episodes_per_season$c[episodes_per_season$Episode<=24&episodes_per_season$Episode>=23] <- "#0077B6"
+episodes_per_season$c[episodes_per_season$Episode<23] <- "#ADD8E6"
+
+ggplot(data = episodes_per_season, aes(x = Season, y = Episode, fill = c)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Episodes per Season",
+       x = "Seasons",
+       y = "Count of Episodes") +
+  geom_text(aes(label = Episode), vjust = -0.3, size = 3, col = "black") +
+  #scale_fill_viridis_d() +
+  coord_flip() +
+  scale_fill_identity() +
+  theme_classic() +
+   theme(panel.background = element_blank(), 
+        axis.title.x = element_text(face="italic", margin = margin(8, 00, 8, 00)), #adjusting margins of x and y axis titles
+        axis.title.y = element_text(face="italic", margin = margin(0, 08, 0, 08)),
+        axis.text.x = element_text(hjust=0.9, angle = 45), #text aligned at an angle
+        axis.line = element_line(linewidth = 1),
+        axis.title = element_text(size = 9),
+        axis.text = element_text(size = 9),
+        legend.text = element_text(size = 8),
+        #legend.spacing = unit(2, 'cm'),
+        plot.title = element_text(size = 14, hjust = 0.5, face = 'bold', family = "Verdana"),
+        plot.subtitle = element_text(size = 8, hjust = 0.5, face = "italic", family = "Verdana"))
+
+
+
+```
+<br>
+
+### **Number of Lines in all episodes (1-228) all seasons are clustered in 3 different ways**
+
+Some episodes have more than **500 lines** while most episodes are clustered below **300 lines**
+
+However, Season 09, Episode 23 has the highest number of lines - **623** and Season 10, Episode 17 has **610 lines**
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# Scripts per Episode
+
+scripts_per_Season <- friends_df %>% 
+  group_by(Episode) %>% 
+  summarise(Script = n_distinct(Script))
+
+
+
+f1 <- friends_df[,1:4]
+f1episode <- f1%>%
+  group_by(f1$Season,f1$Episode)%>%
+  count()
+
+f1episode <- cbind(Episode = 1:nrow(f1episode), f1episode) 
+
+# Here we can get the number of total lines in each episode which can show the time of each episode.
+f1episode$colour <- rep('black', nrow(f1episode))
+f1episode$colour[f1episode$n>600] <- 'firebrick1'
+f1episode$colour[f1episode$n>=400&f1episode$n<=600] <- 'royalblue'
+f1episode$colour[f1episode$n<400] <- 'forestgreen'
+
+
+
+ggplot(f1episode,aes(x=f1episode$Episode,y=f1episode$n))+
+  geom_point(color=f1episode$colour)+
+  labs(
+    title = "Three types of episodes",
+#    subtitle = "Red is most lines included;Blue is the middle;Green are the mode",
+    x=" Episode",
+    y="Count of line of each script"
+  )+  geom_label(
+    label="S - 9 Ep - 23, Lines - 623", #, '<br>',
+   # "S - 10 Ep - 17, Lines - 610"), 
+    x=50,
+    y=623,
+    label.padding = unit(0.55, "lines"), # Rectangle size around label
+    label.size = 0.35,
+    color = "black",
+    fill="#69b3a2"
+  )+
+  geom_label(
+      label="S - 10 Ep - 17, Lines - 610" ,
+   # "S - 10 Ep - 17, Lines - 610"), 
+    x=50,
+    y=580,
+    label.padding = unit(0.55, "lines"), # Rectangle size around label
+    label.size = 0.35,
+    color = "black",
+    fill="#69b3a2"
+  )+
+  theme_classic()+
+  theme(axis.ticks = element_blank(),
+        axis.text.x = element_blank())
+```
+
+```{r , include = FALSE}
+# Define the main characters
+main_characters <- c("Rachel", "Monica", "Phoebe", "Ross", "Chandler", "Joey")
+
+# Filter the data frame by the main characters
+friends_filtered <- friends_df %>%
+  filter(Speaker %in% main_characters)
+
+# Select the relevant columns
+friends_selected <- friends_filtered %>%
+  select(Season, Episode, Speaker, Script)
+
+# Group the data frame by season, episode, script, and speaker, and combine the lines for each speaker
+friends_grouped <- friends_selected %>%
+  group_by(Season, Episode, Script, Speaker)
+
+
+```
+
+### **Most Used Trigrams Across All Seasons**
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+#Wordcloud
+
+used_words_df <- friends_df %>%
+  unnest_tokens(word, Script, token = "ngrams", n = 3)
+
+# Remove stop words
+used_words_df <- used_words_df %>%
+  anti_join(stop_words)
+
+word_freq <- used_words_df %>%
+  count(word, sort = TRUE) %>%
+  na.omit()
+
+# Filter by frequency and select top 100
+word_freq_top50 <- word_freq %>%
+  filter(n >= 5) %>%
+  slice_max(n = 50, order_by = n)
+
+wordcloud(words = word_freq_top50$word, freq = word_freq_top50$n,
+          scale=c(4, 0.5), min.freq = 5, max.words=50, random.order = FALSE,
+          rot.per=0.35, colors=brewer.pal(8, "Dark2"))
+```
+
+
+```{r , include = FALSE}
+#--------------------Stacked bar graph of number of lines spoken by character per season----------------
+
+
+# Group the data by season and speaker, and count the number of lines
+lines_by_speaker_season <- friends_df %>% 
+  group_by(Speaker, Season) %>% 
+  summarize(total_lines = n()) %>% 
+  filter(Speaker != "Opening Credits") %>% 
+  arrange(Season, desc(total_lines))
+
+# Create a vector of main characters to use for the legend
+main_characters <- c("Monica", "Joey", "Chandler", "Ross", "Rachel", "Phoebe")
+
+# Filter the data to only include main characters
+lines_by_main_character_season <- lines_by_speaker_season %>% 
+  filter(Speaker %in% main_characters)
+
+# Create a grouped bar chart
+theme_set(theme_bw()) + theme(plot.width = 10)
+
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+
+plot <- ggplot(lines_by_main_character_season, aes(x = as.integer(Season), y = total_lines)) +
+  geom_line(aes(color = Speaker)) +
+  geom_point(aes(color = Speaker)) +
+  scale_x_continuous(breaks = 1:10) +
+  xlab("Season") +
+  ylab("Number of Lines") +
+  ggtitle("Number of Lines Spoken by Main Characters per Season") +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  facet_wrap(~Speaker, ncol = 2)
+
+plot + guides(color = FALSE)
+
+```
+
+### **Wordcloud of Rachel's most frequent words**
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+#------- Filter data to only include lines spoken by Rachel----- 
+
+# Filter for lines spoken by Rachel
+rachel_lines <- friends_df %>% 
+  filter(Speaker == "Rachel") %>% 
+  select(Script)
+
+# Tokenize words and filter stop words
+rachel_words <- rachel_lines %>% 
+  unnest_tokens(word, Script) %>% 
+  anti_join(stop_words)
+
+# Count word frequency and select top 50
+rachel_word_freq <- rachel_words %>% 
+  count(word, sort = TRUE) %>% 
+  slice_max(n = 50, order_by = n)
+
+# Create wordcloud
+wordcloud(words = rachel_word_freq$word, freq = rachel_word_freq$n, 
+          scale=c(5,1), rot.per=0.35, min.freq=5, 
+          random.color=TRUE, colors=brewer.pal(8, "Dark2"),
+          main = "Wordcloud of Rachel's most frequent words")
+```
+
+### **Wordcloud of Joey's most frequent words**
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# Filter data to only include lines spoken by Joey
+joey_lines <- friends_df %>% 
+  filter(Speaker == "Joey") %>% 
+  select(Script)
+
+# Tokenize words and filter stop words
+joey_words <- joey_lines %>% 
+  unnest_tokens(word, Script) %>% 
+  anti_join(stop_words)
+
+# Count word frequency and select top 50
+joey_word_freq <- joey_words %>% 
+  count(word, sort = TRUE) %>% 
+  slice_max(n = 50, order_by = n)
+
+# Create wordcloud
+wordcloud(words = joey_word_freq$word, freq = joey_word_freq$n, 
+          scale=c(5,1), rot.per=0.35, min.freq=5, 
+          random.color=TRUE, colors=brewer.pal(8, "Dark2"),
+          main = "Wordcloud of Joey's most frequent words")
+```
+
+### **Wordcloud of Ross's most frequent words**
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# Filter data to only include lines spoken by Ross
+ross_lines <- friends_df %>% 
+  filter(Speaker == "Ross") %>% 
+  select(Script)
+
+# Tokenize words and filter stop words
+ross_words <- ross_lines %>% 
+  unnest_tokens(word, Script) %>% 
+  anti_join(stop_words)
+
+# Count word frequency and select top 50
+ross_word_freq <- ross_words %>% 
+  count(word, sort = TRUE) %>% 
+  slice_max(n = 50, order_by = n)
+
+# Create wordcloud
+wordcloud(words = ross_word_freq$word, freq = ross_word_freq$n, 
+          scale=c(5,1), rot.per=0.35, min.freq=5, 
+          random.color=TRUE, colors=brewer.pal(8, "Dark2"),
+          main = "Wordcloud of Ross's most frequent words")
+```
+
+### **Wordcloud of Chandler's most frequent words**
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# Filter data to only include lines spoken by Chandler
+chandler_lines <- friends_df %>% 
+  filter(Speaker == "Chandler") %>% 
+  select(Script)
+
+# Tokenize words and filter stop words
+chandler_words <- chandler_lines %>% 
+  unnest_tokens(word, Script) %>% 
+  anti_join(stop_words)
+
+# Count word frequency and select top 50
+chandler_word_freq <- chandler_words %>% 
+  count(word, sort = TRUE) %>% 
+  slice_max(n = 50, order_by = n)
+
+# Create wordcloud
+wordcloud(words = chandler_word_freq$word, freq = chandler_word_freq$n, 
+          scale=c(5,1), rot.per=0.35, min.freq=5, 
+          random.color=TRUE, colors=brewer.pal(8, "Dark2"),
+          main = "Wordcloud of Chandler's most frequent words")
+```
+
+### **Wordcloud of Phoebe's most frequent words**
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# Filter data to only include lines spoken by Phoebe
+phoebe_lines <- friends_df %>% 
+  filter(Speaker == "Phoebe") %>% 
+  select(Script)
+
+# Tokenize words and filter stop words
+phoebe_words <- phoebe_lines %>% 
+  unnest_tokens(word, Script) %>% 
+  anti_join(stop_words)
+
+# Count word frequency and select top 50
+phoebe_word_freq <- phoebe_words %>% 
+  count(word, sort = TRUE) %>% 
+  slice_max(n = 50, order_by = n)
+
+# Create wordcloud
+wordcloud(words = phoebe_word_freq$word, freq = phoebe_word_freq$n, 
+          scale=c(5,1), rot.per=0.35, min.freq=5, 
+          random.color=TRUE, colors=brewer.pal(8, "Dark2"),
+          main = "Wordcloud of Phoebe's most frequent words")
+```
+
+### **Wordcloud of Monica's most frequent words**
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# Filter data to only include lines spoken by Monica
+monica_lines <- friends_df %>% 
+  filter(Speaker == "Monica") %>% 
+  select(Script)
+
+# Tokenize words and filter stop words
+monica_words <- monica_lines %>% 
+  unnest_tokens(word, Script) %>% 
+  anti_join(stop_words)
+
+# Count word frequency and select top 50
+monica_word_freq <- monica_words %>% 
+  count(word, sort = TRUE) %>% 
+  slice_max(n = 50, order_by = n)
+
+# Create wordcloud
+wordcloud(words = monica_word_freq$word, freq = monica_word_freq$n, 
+          scale=c(5,1), rot.per=0.35, min.freq=5, 
+          random.color=TRUE, colors=brewer.pal(8, "Dark2"),
+          main = "Wordcloud of Monica's most frequent words")
+```
+
+
+
+## Linguistic Analysis
+
+::: row
+::: col-md-2
+```{r, echo = FALSE, include=FALSE, warning=FALSE}
+# verbosity analysis
+
+script_words <- strsplit(friends_df$Script, "\\s+")
+
+round(script_words %>%
+  map_dbl(length) %>%
+  mean(),2)
+
+word_counts <- script_words %>% 
+  map_dbl(length)
+
+ggplot(data.frame(word_counts), aes(x = word_counts)) +
+  geom_histogram()
+
+sentences <- tibble(text = friends_df$Script) %>%
+  unnest_tokens(sentence, text, token = "sentences")
+
+
+sentence_lengths <- sentences %>%
+  mutate(length = str_count(sentence, "\\w+"))
+
+
+round(mean(na.omit(sentence_lengths$length)),2)
+```
+
+The average number of words in a dialogue in friends is
+**`r round(script_words %>%  map_dbl(length) %>% mean(),2)`**
+
+However, the average of all the words in each sentence of a dialogue
+spoken by all the characters is
+**`r round(mean(na.omit(sentence_lengths$length)),2)`**
+
+Moreover, most of the sentences have less than 3 words. They can be
+considered as an expression and can be removed for sentence analysis.
+:::
+
+::: col-md-10
+```{r echo = FALSE, warning=FALSE, message=FALSE}
+ggplot(data.frame(word_counts), aes(x = word_counts)) +
+  geom_histogram()+
+  xlab("Words in a dialogue") +
+  ylab("Word Count") +
+  ggtitle("Distribution of Words in a Dialogue")+
+  scale_x_continuous(limits = c(0,50))+
+  theme(panel.background = element_blank(),
+                       axis.title.x = element_text(face="italic", margin = margin(8, 00, 8, 00)), # adjusting margin of axis label from the axis values
+                       axis.title.y = element_text(face="italic", margin = margin(00, 8, 00, 8)),
+                       legend.position = "none", 
+                       legend.background = element_blank(),
+                       #legend.title = element_text(size = 10),
+                       axis.line = element_line(linewidth = 1),
+                       axis.title = element_text(size = 9),
+                       axis.text = element_text(size = 9),
+                       legend.text = element_text(size = 8),
+                       #legend.spacing = unit(2, 'cm'),
+                       plot.title = element_text(size = 14, hjust = 0.5, face = 'bold', family = "Verdana"),
+                       plot.subtitle = element_text(size = 12, hjust = 0.5, face = "italic", family = "Verdana"))
+
+```
+:::
+:::
+
+```{r, echo = FALSE, include=FALSE}
+# Create a list of the six main characters
+main_characters <- c("Monica", "Rachel", "Phoebe", "Ross", "Chandler", "Joey")
+
+# Initialize an empty data frame to store the results
+word_counts <- data.frame(Character = character(), 
+                          `Season 1` = integer(), 
+                          `Season 2` = integer(), 
+                          `Season 3` = integer(), 
+                          `Season 4` = integer(), 
+                          `Season 5` = integer(), 
+                          `Season 6` = integer(), 
+                          `Season 7` = integer(), 
+                          `Season 8` = integer(), 
+                          `Season 9` = integer(), 
+                          `Season 10` = integer())
+
+# Loop over each character
+for (i in 1:length(main_characters)) {
+  character <- main_characters[i]
+  
+  # Loop over each season
+  for (j in 1:10) {
+    season <- j
+    
+    # Subset the data frame to get the lines spoken by the current character in the current season
+    lines <- friends_df$Script[friends_df$Season == season & friends_df$Speaker == character]
+    
+    # Combine the lines into a single string and split into words
+    words <- unlist(strsplit(paste(lines, collapse = " "), " "))
+    
+    # Count the number of words and store in the results data frame
+    word_counts[i, j+1] <- length(words)
+  }
+}
+
+# Assign character names to the first column of the results data frame
+word_counts$Character <- main_characters
+
+plot_data <- gather(word_counts, key = "Season", value = "Word_Count", -Character)
+```
+
+<br> <br>
+
+::: row
+::: col-md-4
+:::
+
+::: col-md-10
+### **Count of words spoken by each character per season**
+:::
+:::
+
+```{r word_counts, echo = FALSE, , warning=FALSE, message=FALSE}
+# View the resulting data frame
+word_counts %>% 
+  kable(format = "html", row.names = T, escape = F) %>%
+  kable_minimal("striped", full_width = T, position = "center") %>% 
+  column_spec(3, color = ifelse(word_counts$Season.1 == max(word_counts$Season.1), "darkgreen","orange")) %>% 
+  column_spec(4, color = ifelse(word_counts$Season.2 == max(word_counts$Season.2), "darkgreen","orange")) %>% 
+  column_spec(5, color = ifelse(word_counts$Season.3 == max(word_counts$Season.3), "darkgreen","orange")) %>%  
+  column_spec(6, color = ifelse(word_counts$Season.4 == max(word_counts$Season.4), "darkgreen","orange")) %>% 
+  column_spec(7, color = ifelse(word_counts$Season.5 == max(word_counts$Season.5), "darkgreen","orange")) %>% 
+  column_spec(8, color = ifelse(word_counts$Season.6 == max(word_counts$Season.6), "darkgreen","orange")) %>% 
+  column_spec(9, color = ifelse(word_counts$Season.7 == max(word_counts$Season.7), "darkgreen","orange")) %>%
+  column_spec(10, color = ifelse(word_counts$Season.8 == max(word_counts$Season.8), "darkgreen","orange")) %>% 
+  column_spec(11, color = ifelse(word_counts$Season.9 == max(word_counts$Season.9), "darkgreen","orange")) %>% 
+  column_spec(12, color = ifelse(word_counts$Season.10 == max(word_counts$Season.10), "darkgreen","orange")) 
+
+```
+
+<br> <br>
+
+### **Overview of verbosity per character**
+
+```{r Character Word Counts, echo = FALSE, , warning=FALSE, message=FALSE}
+
+ggplot(plot_data, aes(x = Character, y = Word_Count, fill = Character)) + 
+  geom_boxplot() +
+  xlab("Character") +
+  ylab("Word Count") +
+  ggtitle("Word Counts by Character") +
+  theme(panel.background = element_blank(),
+                       axis.title.x = element_text(face="italic", margin = margin(8, 00, 8, 00)), # adjusting margin of axis label from the axis values
+                       axis.title.y = element_text(face="italic", margin = margin(00, 8, 00, 8)),
+                       legend.position = "none", 
+                       legend.background = element_blank(),
+                       #legend.title = element_text(size = 10),
+                       axis.line = element_line(linewidth = 1),
+                       axis.title = element_text(size = 9),
+                       axis.text = element_text(size = 9),
+                       legend.text = element_text(size = 8),
+                       #legend.spacing = unit(2, 'cm'),
+                       plot.title = element_text(size = 14, hjust = 0.5, face = 'bold', family = "Verdana"),
+                       plot.subtitle = element_text(size = 12, hjust = 0.5, face = "italic", family = "Verdana"))+
+                 scale_fill_manual(values = c("#0077B6", "#ADD8E6", "#82EEFD", "#87CEEB", "#90E0EF", "#0077B6"))
+```
+
+```{r words friends characters df, echo=FALSE, include=FALSE, warning=FALSE, message=FALSE}
+
+# words per dialogue of 6 main characters
+
+friends_main_chars <- friends_df[friends_df$Speaker %in% main_characters,]%>% 
+  mutate(word_count = str_count(Script, " ") + 1) %>% 
+  filter(word_count > 3)
+
+men_words <- friends_df[friends_df$Speaker %in% main_characters,]%>% 
+        filter(Speaker == "Joey" | Speaker == "Ross" | Speaker == "Chandler") %>%
+            unnest_tokens(word, Script) %>% 
+            anti_join(stop_words) %>% mutate(word = wordStem(word)) %>%
+  filter(!str_detect(word, "^\\d+$")) %>%
+  mutate(word = str_replace_all(word, "[^[:alnum:]']", "")) %>%
+  filter(!word %in% c("", "s")) 
+
+women_words <- friends_df[friends_df$Speaker %in% main_characters,]%>% 
+        filter(Speaker == "Rachel" | Speaker == "Monica" | Speaker == "Phoebe" | Speaker == "Janice") %>%
+            unnest_tokens(word, Script) %>% 
+            anti_join(stop_words) %>% mutate(word = wordStem(word)) %>%
+  filter(!str_detect(word, "^\\d+$")) %>%
+  mutate(word = str_replace_all(word, "[^[:alnum:]']", "")) %>%
+  filter(!word %in% c("", "s"))
+
+total_sentences <- friends_main_chars %>%
+  group_by(Speaker) %>%
+  summarize('Total Sentences' = n()) %>%
+  ungroup()
+
+avg_words <- friends_main_chars %>%
+  group_by(Speaker) %>%
+  summarize(AverageWords = round(mean(na.omit(str_count(Script, "\\S+"))),2)) %>%
+  ungroup()
+
+min_max_words <- friends_main_chars %>%
+  group_by(Speaker) %>%
+  summarize(MinWords = min(na.omit(str_count(Script, "\\S+"))),
+            MaxWords = max(na.omit(str_count(Script, "\\S+")))) %>%
+  ungroup()
+
+sd_words <- friends_main_chars %>%
+  group_by(Speaker) %>%
+  summarize(SD_Words = round(sd(na.omit(str_count(Script, "\\S+"))),2)) %>%
+  ungroup()
+
+
+
+```
+
+<br> <br>
+
+### **Analysis of the words spoken by the main characters in friends**
+
+```{r words friends characters table, echo=FALSE, warning=FALSE, message=FALSE}
+
+# table showing the word analysis of 6 main characters
+merge(total_sentences, avg_words, by = "Speaker") %>%
+  merge(min_max_words, by = "Speaker") %>%
+  merge(sd_words, by = "Speaker") %>% 
+  kable(format = "html", row.names = T, escape = F) %>%
+  kable_minimal("striped", full_width = T, position = "center")%>% 
+  column_spec(3, color = ifelse(total_sentences$`Total Sentences` == max(total_sentences$`Total Sentences`), "darkgreen","orange")) %>% 
+  column_spec(6, color = ifelse(min_max_words$MaxWords == max(min_max_words$MaxWords), "darkgreen","orange")) %>% 
+  column_spec(5, color = ifelse(min_max_words$MinWords == min(min_max_words$MinWords), "darkgreen","orange")) %>%  
+  column_spec(4, color = ifelse(avg_words$AverageWords == max(avg_words$AverageWords), "darkgreen","orange")) %>% 
+  column_spec(7, color = ifelse(sd_words$SD_Words == max(sd_words$SD_Words), "darkgreen","orange")) 
+
+```
+
+<br> <br>
+
+### **Most common words used in sentences with more than 3 words**
+
+```{r wordCloud of words in long sentences, echo=FALSE, warning=FALSE, message=FALSE}
+main_words <- friends_main_chars %>%
+            unnest_tokens(word, Script) %>% 
+            anti_join(stop_words) %>% mutate(word = wordStem(word)) %>%
+  filter(!str_detect(word, "^\\d+$")) %>%
+  mutate(word = str_replace_all(word, "[^[:alnum:]']", "")) %>%
+  filter(!word %in% c("", "s")) 
+
+wordcloud(gsub('"', '', main_words$word), max.words = 50, random.order = FALSE, colors = brewer.pal(8, "Dark2"))
+
+```
+
+```{r linguistic analysis data, include=FALSE, warning=FALSE, message=FALSE}
+
+# Loading the UDPipe English model
+ud_model <- udpipe_download_model(language = "english")
+ud_model <- udpipe_load_model(ud_model$file_model)
+
+# tokenization of main character words  
+
+ud_men_tokens <- data.frame(udpipe_annotate(ud_model, x = men_words$word))
+
+ud_women_tokens <- data.frame(udpipe_annotate(ud_model, x = women_words$word))
+
+ud_tokens <- rbind(ud_men_tokens, ud_women_tokens)
+
+# Filter for nouns, verbs, and adjectives
+noun_tags <- c("NOUN")
+verb_tags <- c("VERB")
+adj_tags <- c("ADJ")
+noun_verb_adj <- ud_tokens %>% 
+  filter(upos %in% c(noun_tags, verb_tags, adj_tags))
+
+noun_verb_adj_f <- ud_women_tokens %>% 
+  filter(upos %in% c(noun_tags, verb_tags, adj_tags))
+noun_verb_adj_m <- ud_men_tokens %>% 
+  filter(upos %in% c(noun_tags, verb_tags, adj_tags))
+
+# men_trigram <- friends_df %>% 
+#         filter(Speaker == "Joey" | Speaker == "Ross" | Speaker == "Chandler") %>% 
+#         unnest_tokens(word, Script, token = "ngrams", n= 1) %>% 
+#         filter(!word %in% stop_words$word) %>%
+#         pull(word) %>% paste(collapse = " ") %>% 
+# #        unnest_tokens(word, token = "ngrams", n= 3) %>% 
+#         str_split("\\s+") %>% unlist() %>% 
+#   tibble(word = .) %>% 
+#   mutate(id = row_number()) %>% 
+#   group_by(id) %>% 
+#   mutate(trigram = paste(lag(word, 2), lag(word), word, sep = " ")) %>% 
+#   slice(3:n())
+#   
+#   
+#   
+#           select(word) %>% 
+#           separate(col = "word", into = c("word", "word1", "word2"), sep = " ") %>% 
+#           filter(!word1 %in% stop_words$word) %>%
+#           filter(!word2 %in% stop_words$word) %>%
+#   unite(bigram, word1, word2, sep = " ") %>% 
+
+#anti_join(x = men_trigram, stop_words, by = "word") %>% 
+  
+```
+
+<br> <br>
+
+::: row
+::: col-md-6
+### **Most used verbs by the main characters**
+
+```{r linguistic analysis1, echo=FALSE, warning=FALSE, message=FALSE}
+wordcloud(gsub('"', '',
+          noun_verb_adj %>% 
+filter(upos %in% c("VERB")) %>%
+  select(doc_id, token_id, lemma, upos) %>%
+  group_by(doc_id) %>%
+  mutate(sentence_id = cumsum(token_id == 1)) %>%
+  ungroup() %>%
+  select(lemma)), max.words = 50, random.order = FALSE, colors = brewer.pal(8, "Dark2"))
+
+```
+:::
+
+::: col-md-6
+### **Most used adjectives by the main characters**
+
+```{r linguistic analysis2, echo=FALSE, warning=FALSE, message=FALSE}
+wordcloud(gsub('"', '',
+          noun_verb_adj %>% 
+filter(upos %in% c("ADJ")) %>%
+  select(doc_id, token_id, lemma, upos) %>%
+  group_by(doc_id) %>%
+  mutate(sentence_id = cumsum(token_id == 1)) %>%
+  ungroup() %>%
+  select(lemma)), max.words = 50, random.order = FALSE, colors = brewer.pal(8, "Dark2"))
+```
+:::
+:::
+
+<br>
+
+::: row
+::: col-md-6
+### **Most Verbs used by men**
+
+```{r linguistic analysis3, echo=FALSE, warning=FALSE, message=FALSE}
+wordcloud(gsub('"', '',
+          noun_verb_adj_m %>% 
+filter(upos %in% c("VERB")) %>%
+  select(doc_id, token_id, lemma, upos) %>%
+  group_by(doc_id) %>%
+  mutate(sentence_id = cumsum(token_id == 1)) %>%
+  ungroup() %>%
+  select(lemma)), max.words = 30, random.order = FALSE, colors = brewer.pal(8, "Dark2"))
+
+```
+:::
+
+::: col-md-6
+### **Most Verbs used by Women**
+
+```{r linguistic analysis4, echo=FALSE, warning=FALSE, message=FALSE}
+wordcloud(gsub('"', '',
+          noun_verb_adj_f %>% 
+filter(upos %in% c("VERB")) %>%
+  select(doc_id, token_id, lemma, upos) %>%
+  group_by(doc_id) %>%
+  mutate(sentence_id = cumsum(token_id == 1)) %>%
+  ungroup() %>%
+  select(lemma)), max.words = 30, random.order = FALSE, colors = brewer.pal(8, "Dark2"))
+```
+:::
+:::
+
+<br>
+
+::: row
+::: col-md-6
+### **Most Nouns used by Women**
+
+```{r linguistic analysis5, echo=FALSE, warning=FALSE, message=FALSE}
+wordcloud(gsub('"', '',
+          noun_verb_adj_f %>% 
+filter(upos %in% c("NOUN")) %>%
+  select(doc_id, token_id, lemma, upos) %>%
+  group_by(doc_id) %>%
+  mutate(sentence_id = cumsum(token_id == 1)) %>%
+  ungroup() %>%
+  select(lemma)),max.words = 30, random.order = FALSE, colors = brewer.pal(8, "Dark2"))
+```
+:::
+
+::: col-md-6
+### **Most Nouns used by Men**
+
+```{r linguistic analysis6, echo=FALSE, warning=FALSE, message=FALSE}
+wordcloud(gsub('"', '',
+          noun_verb_adj_m %>% 
+filter(upos %in% c("NOUN")) %>%
+  select(doc_id, token_id, lemma, upos) %>%
+  group_by(doc_id) %>%
+  mutate(sentence_id = cumsum(token_id == 1)) %>%
+  ungroup() %>%
+  select(lemma)),max.words = 30, random.order = FALSE, colors = brewer.pal(8, "Dark2"))
+```
+
+<br> <br>
+:::
+:::
+
+::: row
+::: col-md-6
+### **Most Adjectives used by Women**
+
+```{r linguistic analysis7, echo=FALSE, warning=FALSE, message=FALSE}
+wordcloud(gsub('"', '',
+          noun_verb_adj_f %>% 
+filter(upos %in% c("ADJ")) %>%
+  select(doc_id, token_id, lemma, upos) %>%
+  group_by(doc_id) %>%
+  mutate(sentence_id = cumsum(token_id == 1)) %>%
+  ungroup() %>%
+  select(lemma)),max.words = 30, random.order = FALSE, colors = brewer.pal(8, "Dark2"))
+```
+:::
+
+::: col-md-6
+### **Most Adjectives used by Men**
+
+```{r linguistic analysis8, echo=FALSE, warning=FALSE, message=FALSE}
+wordcloud(gsub('"', '',
+          noun_verb_adj_m %>% 
+filter(upos %in% c("ADJ")) %>%
+  select(doc_id, token_id, lemma, upos) %>%
+  group_by(doc_id) %>%
+  mutate(sentence_id = cumsum(token_id == 1)) %>%
+  ungroup() %>%
+  select(lemma)),max.words = 30, random.order = FALSE, colors = brewer.pal(8, "Dark2"))
+
+library(tidytext)
+```
+:::
+:::
+
+<br> <br>
+
+### **Most Adjectives used by Men**
+
+```{r linguistic analysis9, echo=FALSE, warning=FALSE, message=FALSE}
+# wordcloud(gsub('"', '',
+#  %>% 
+#           anti_join(y = stop_words, by = word1 )) ,max.words = 30, random.order = FALSE, colors = brewer.pal(8, "Dark2")) 
+```
+
+### **Sentence Analysis of the 6 Main Characters of Friends TV Series**
+
+```{r data for number of dialogues, echo=FALSE, include=FALSE}
+# boxplot of number of dialogues in each season
+
+friends_main_chars %>%
+  group_by(Season, Speaker) %>%
+  summarize(SentenceCount = n()) %>% select(Season, SentenceCount)
+
+# histogram showing the count of sentences per season
+sentences <- friends_main_chars %>%
+  group_by(Season) %>%
+  summarize(SentenceCount = n())
+```
+
+<br> <br>
+
+```{r boxplot of number of dialogues, echo=FALSE , warning=FALSE, message=FALSE}
+# range of sentences by characters 
+
+ggplot(data = friends_main_chars %>%
+  group_by(Season, Speaker) %>%
+  summarize(SentenceCount = n()),
+  aes(x = Speaker, y = SentenceCount, fill = Speaker )) +
+  geom_boxplot() +
+  labs(title = "Range of Sentences in all the Seasons of Main Characters",
+       x = "Speaker",
+       y = "Count of Sentences in Dialogues") +
+  theme(panel.background = element_blank(),
+                       axis.title.x = element_text(face="italic", margin = margin(8, 00, 8, 00)), # adjusting margin of axis label from the axis values
+                       axis.title.y = element_text(face="italic", margin = margin(00, 8, 00, 8)),
+                       legend.position = "none", 
+                       legend.background = element_blank(),
+                       #legend.title = element_text(size = 10),
+                       axis.line = element_line(linewidth = 1),
+                       axis.title = element_text(size = 9),
+                       axis.text = element_text(size = 9),
+                       legend.text = element_text(size = 8),
+                       #legend.spacing = unit(2, 'cm'),
+                       plot.title = element_text(size = 14, hjust = 0.5, face = 'bold', family = "Verdana"),
+                       plot.subtitle = element_text(size = 12, hjust = 0.5, face = "italic", family = "Verdana"))+
+                 scale_fill_manual(values = c("#0077B6", "#ADD8E6", "#82EEFD", "#87CEEB", "#90E0EF", "#0077B6"))
+```
+
+```{r histo sentence count, echo=FALSE, warning=FALSE, message=FALSE}
+
+# histogram showing the count of sentences per season
+friends_main_chars %>%
+  mutate(word_count = str_count(Script, " ") + 1) %>% 
+  filter(word_count > 3) %>% 
+  group_by(Season) %>%
+  summarize(SentenceCount = n()) %>% 
+  ggplot(aes(x = Season, y = SentenceCount, text = paste0("Season: ", {Season}, '<br>', #hoverinfo
+                                                          #"Region: ", {color}, '<br>',
+                                                          "Number of Sentences: ", {round(SentenceCount,2)})))+
+  geom_col(fill = ifelse(sentences$SentenceCount == min(sentences$SentenceCount), yes = "#82EEFD", 
+                         no = ifelse(sentences$SentenceCount > mean(sentences$SentenceCount), yes = "#0077B6",
+                         no = "#ADD8E6"))) +
+  labs(title = "Count of Sentences of Main Character Dialogues by Seasons",
+       x = "Speaker",
+       y = "Count of Sentences in Dialogues")+
+  scale_x_continuous(breaks = 1:10)+
+  geom_hline(yintercept = mean(sentences$SentenceCount), linetype = "dashed")+
+  theme(panel.background = element_blank(), 
+        axis.title.x = element_text(face="italic", margin = margin(8, 00, 8, 00)), #adjusting margins of x and y axis titles
+        axis.title.y = element_text(face="italic", margin = margin(0, 08, 0, 08)),
+        axis.text.x = element_text(hjust=0.9, angle = 45), #text aligned at an angle
+        legend.position = "top", 
+        legend.background = element_blank(),
+        legend.title = element_blank(),
+        #legend.title = element_text(size = 10),
+        axis.line = element_line(linewidth = 1),
+        axis.title = element_text(size = 9),
+        axis.text = element_text(size = 9),
+        legend.text = element_text(size = 8),
+        #legend.spacing = unit(2, 'cm'),
+        plot.title = element_text(size = 14, hjust = 0.5, face = 'bold', family = "Verdana"),
+        plot.subtitle = element_text(size = 8, hjust = 0.5, face = "italic", family = "Verdana"))
+
+
+
+```
+
+## Sentiment Analysis
+
+```{r sentiment analysis,echo=FALSE, warning=FALSE, include=FALSE}
+# Preparing the  data
+friends_df_clean <- friends_df %>%
+  mutate(Speaker = tolower(Speaker),
+         Script = tolower(Script)) %>%
+  unnest_tokens(word, Script) %>%
+  anti_join(stop_words) %>%
+  filter(!word %in% c(",", ".", "!", "?", ":", ";", "-", "_", "'", "\"", "(", ")", "[", "]", "{", "}", "<", ">"))
+
+#  sentiment lexicon
+afinn_lexicon <- get_sentiments("afinn")
+
+# Join the lexicon with the  data
+sentiments <- friends_df_clean %>%
+  inner_join(afinn_lexicon, by = "word")
+
+# sentiment scores by season
+sentiment_scores <- sentiments %>%
+  group_by(Season) %>%
+  summarise(sentiment = sum(value)) %>%
+  mutate(Episode = paste0("Season ", Season))
+
+
+sentiment_scores$colour <- rep('black', nrow(sentiment_scores))
+sentiment_scores$colour[sentiment_scores$sentiment>1400] <- "#82EEFD"
+sentiment_scores$colour[sentiment_scores$sentiment<=1400&sentiment_scores$sentiment>=1100] <- "#ADD8E6"
+sentiment_scores$colour[sentiment_scores$sentiment<1100] <-  "#0077B6"
+```
+### **Season 7 and 9 have the most sentiment score**
+
+```{r sentiment analysis1, echo=FALSE, message=FALSE, warning=FALSE}
+# Plotting the sentiment scores
+ggplot(sentiment_scores, aes(x = Episode, y =sentiment,
+                             fill=sentiment_scores$colour)) +
+  geom_bar(stat = "identity")+
+   scale_fill_identity() +
+  geom_text(label=sentiment_scores$sentiment)+
+  labs(x= "Seson", y = "Sentiment Score (afinn)", title = "Sentiment Analysis of Friends Series") +
+  theme_classic()+
+  theme(panel.background = element_blank(), 
+        axis.title.x = element_text(face="italic", margin = margin(8, 00, 8, 00)), #adjusting margins of x and y axis titles
+        axis.title.y = element_text(face="italic", margin = margin(0, 08, 0, 08)),
+        axis.text.x = element_text(hjust=0.9, angle = 45), #text aligned at an angle
+        axis.line = element_line(linewidth = 1),
+        axis.title = element_text(size = 9),
+        axis.text = element_text(size = 9),
+        legend.text = element_text(size = 8),
+        #legend.spacing = unit(2, 'cm'),
+        plot.title = element_text(size = 14, hjust = 0.5, face = 'bold', family = "Verdana"),
+        plot.subtitle = element_text(size = 8, hjust = 0.5, face = "italic", family = "Verdana"))
+
+```
+<br> <br>
+
+
+```{r sentiment analysis2, echo=FALSE, message=FALSE, warning=FALSE}
+#------------------------Sentiment analysis using "bing" lexicon -------------------------------
+
+
+library(tidytext)
+library(dplyr)
+library(ggplot2)
+library(RColorBrewer)
+
+tidy_friends <- friends_df %>%
+  select(Season, Episode, Script) %>%
+  unnest_tokens(word, Script) %>%
+  mutate(word = str_remove_all(word, "\r"))
+
+bing_sentiment <- tidy_friends %>%
+  inner_join(get_sentiments("bing")) %>%
+  mutate(linenumber = row_number()) %>%
+  group_by(Season, Episode, index = linenumber %/% 80) %>%
+  summarise(sentiment = sum(sentiment == "positive") - sum(sentiment == "negative")) %>%
+  ungroup() %>%
+  mutate(colour = if_else(sentiment >= 0, "firebrick1", "royalblue"))
+
+colors <- c("darkl blue", "white", "firebrick1")
+```
+
+### **Heatmap of bing sentiment Analysis**
+```{r sentiment analysis3, echo=FALSE, message=FALSE, warning=FALSE}
+ggplot(bing_sentiment, aes(x = (Episode-1)/max(Episode-1), y = factor(Season), fill = sentiment)) +
+  geom_tile() +
+  scale_x_continuous(labels = scales::percent_format(accuracy = 1), expand = c(0, 0)) +
+  scale_y_discrete(expand = c(0, 0)) +
+  scale_fill_gradient2(low = "firebrick1", high = "dark blue", mid = "white", 
+                       midpoint = 0, na.value = "white",
+                       guide = guide_colorbar(title = "Sentiment")) +
+  labs(x = "Season Progression (%)", y = "Season",
+       title = "Sentiment analysis of Friends TV show by season",
+       subtitle = "Bing lexicon") +
+  theme_minimal()
+
+
+
+
+
+
+```
+
+```{r sentiment analysis4, echo=FALSE, message=FALSE, warning=FALSE, include=FALSE}
+#------------------------------------- Sentiment analysis for NRC ----------------------------------------------------------
+
+
+tidy_friends1 <- friends_df %>%
+  select(Season, Episode, Speaker, Script) %>%
+  mutate(Speaker = if_else(Speaker == "Opening Credits", NA_character_, Speaker))
+
+tidy_friends1 <- tidy_friends1 %>%
+  unnest_tokens(word, Script) %>%
+  mutate(word = str_remove_all(word, "\r"))
+
+nrc_sentiments <- c("anger", "anticipation", "disgust", "fear", "joy", "negative", "positive", "sadness", "surprise", "trust")
+
+nrc_sentiment <- tidy_friends1 %>%
+  inner_join(get_sentiments("nrc")) %>%
+  mutate(linenumber = row_number()) %>%
+  group_by(Season, Episode, Speaker, sentiment) %>%
+  summarise(count = n()) %>%
+  ungroup() %>%
+  mutate(sentiment = factor(sentiment, levels = nrc_sentiments)) %>%
+  group_by(Season, sentiment) %>%
+  summarise(sentiment_score = sum(count)) %>%
+  ungroup()
+
+```
+
+<br> <br>
+
+### **Anticipation is the highest scored sentiment where as Disgust received the lowest sentiment score**
+
+```{r sentiment analysis5, echo=FALSE, message=FALSE, warning=FALSE}
+ggplot(nrc_sentiment, aes(x = Season, y = sentiment_score, color = sentiment, group=1)) +
+  geom_point(shape=23, size=3) +
+  geom_line(linetype = "dashed") +
+  labs(title = "NRC Sentiment Analysis by Season", y = "Sentiment score", x = "Season", color = "sentiment") +
+  facet_wrap(~sentiment, scales = "free_y", ncol = 2) +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))+
+   scale_x_continuous(breaks = 1:10)
+
+
+
+
+```
+
+
+```{r sentiment analysis6,echo=FALSE, message=FALSE, warning=FALSE, include=FALSE}
+#---------------------NRC analysis by character-----------------------------------------------------------
+
+
+tidy_friends2 <- friends_df %>%
+  select(Season, Episode, Speaker, Script) %>%
+  mutate(Speaker = if_else(Speaker == "Opening Credits", NA_character_, Speaker))
+
+tidy_friends2 <- tidy_friends2 %>%
+  unnest_tokens(word, Script) %>%
+  mutate(word = str_remove_all(word, "\r"))
+
+nrc_sentiments <- c("anger", "anticipation", "disgust", "fear", "joy", "negative", "positive", "sadness", "surprise", "trust")
+
+tidy_friends2 <- tidy_friends2 %>%
+  filter(Speaker %in% c("Rachel", "Monica", "Phoebe", "Ross", "Chandler", "Joey"))
+
+nrc_sentiment <- tidy_friends2 %>%
+  inner_join(get_sentiments("nrc")) %>%
+  mutate(linenumber = row_number()) %>%
+  group_by(Season, Episode, Speaker, sentiment) %>%
+  summarise(count = n()) %>%
+  ungroup() %>%
+  mutate(sentiment = factor(sentiment, levels = nrc_sentiments)) %>%
+  group_by(Speaker, sentiment) %>%
+  summarise(sentiment_score = sum(count)) %>%
+  ungroup() %>%
+  group_by(Speaker) %>%
+  mutate(total_score = sum(sentiment_score),
+         sentiment_percentage = sentiment_score/total_score * 100) %>%
+  ungroup()
+```
+<br> <br>
+
+### **Rachel has scored more in all emotions other than Anger, Ross has the highest score in Anger**
+
+```{r sentiment analysis7,echo=FALSE, message=TRUE, warning=FALSE}
+
+# plot with all sentiments
+ggplot(nrc_sentiment, aes(x=Speaker, y=sentiment_score,color = sentiment, group=1)) +
+  geom_point() +
+  geom_line(linetype="dotted",color="darkblue") +
+  labs(title = "NRC Sentiment analysis by Characters",
+       y = "Sentiment score", x = "Speaker") +
+  facet_wrap(~ sentiment, scales = "free_y",ncol = 2) +
+  scale_color_manual(values = c("positive" = "green", "negative" = "red", "anger" = "darkorange", "anticipation" = "gold", "disgust" = "purple", "fear" = "black", "joy" = "yellow", "sadness" = "blue", "surprise" = "pink")) +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+
+
+```
+
+```{r sentiment analysis8,echo=FALSE, message=FALSE, warning=FALSE}
+# Import Friends script data
+friends_script <- friends_df
+
+# Cleaning and preparing the data
+friends_words <- friends_script %>%
+  unnest_tokens(word, Script) %>%
+  anti_join(stop_words) %>%
+  #mutate(word = wordStem(word)) %>%
+  filter(!str_detect(word, "^\\d+$")) %>%
+  mutate(word = str_replace_all(word, "[^[:alnum:]']", "")) %>%
+  filter(!word %in% c("", "s")) 
+
+# Analyze sentiment and humor
+friends_sentiment <- friends_words %>%
+  inner_join(get_sentiments("afinn"), by = "word") %>%
+#  summarize(sentiment = sum(value)) %>%
+  mutate(humor = ifelse(value > 3, "humorous", "not humorous")) %>% 
+  filter(humor == "humorous")
+```
+
+### **Most Humourous Words Used by the Characters in Friends**
+
+```{r sentiment analysis9,echo=FALSE, message=FALSE, warning=FALSE}
+
+# Create a word cloud of humorous words
+wordcloud(friends_sentiment$word ,
+          max.words = 75, random.order = FALSE, colors = brewer.pal(8, "Dark2"))
+
+```
+
+### **Most humorous words used by Chandler**
+
+```{r sentiment analysis10, echo=FALSE, message=FALSE, warning=FALSE}
+# 
+# chandler_script <- friends_df %>% filter(Speaker == "Chandler")
+# 
+# # Clean and preprocess text
+# chandler_words <- chandler_script %>%
+#   unnest_tokens(word, Script) %>%
+#   anti_join(stop_words) %>%
+#   #mutate(word = wordStem(word)) %>%
+#   filter(!str_detect(word, "^\\d+$")) %>%
+#   mutate(word = str_replace_all(word, "[^[:alnum:]']", "")) %>%
+#   filter(!word %in% c("", "s")) 
+
+# Analyze sentiment and humor
+chandler_sentiment <- friends_sentiment %>%
+  filter(Speaker == "Chandler") %>% 
+  filter(humor == "humorous")
+  
+  
+
+# Create a word cloud of humorous words
+set.seed(123)
+wordcloud(chandler_sentiment$word,
+          max.words = 75, random.order = FALSE, colors = brewer.pal(8, "Dark2"))
+```
+
+
+
+## Objectification
+
+
+Friends has received criticism on social media from both new and old viewers. Many were disappointed by the storylines and some have accused the show of racism, sexism, and homophobia. However, not everyone agrees that "Friends" is problematic.
+
+### **The adjective "Stupid" was the most used among all the characters, followed by "Bitch" and "Fat"**
+
+
+```{r Sexist, echo = FALSE, message=FALSE, warning=FALSE}
+
+# Identify words with a sexist, homophobic and fat phobic connotation
+
+sexist_words <- c("slut", "bitch","whore", "homo", "fat", "ugly", "stupid")
+
+friends_words5 <- friends_selected %>%
+  unnest_tokens(word, Script) %>%
+  anti_join(stop_words)
+
+# Use of these words per character
+friends_words5 %>%
+  filter(word %in% sexist_words) %>%
+  filter(Speaker %in% main_characters) %>%
+  group_by(word, Speaker) %>%
+  summarise(count = n()) %>%
+  ggplot()+
+  aes(x = word, y = count, fill = Speaker) +
+  geom_col() +
+  facet_wrap(~Speaker) +
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank(), axis.line = element_line(colour = "black")) +
+  theme(axis.text.x = element_text(angle = 45, hjust=1)) +
+  theme(legend.position = "") +
+  labs(title = "Use of words with a sexist, homophobic and fatphobic connotation",
+       subtitle = "Total for all seasons  \n")+
+  scale_fill_manual(values = c("#0077B6", "#ADD8E6", "#82EEFD", "#87CEEB", "#90E0EF", "#0077B6"))
+```
+
+
+
+```{r, include = FALSE}
+friends_script <- friends_df
+
+# create a tibble with one row per word
+words_tibble <- friends_script %>%
+  unnest_tokens(word, Script)
+
+# identify the frequency of female objectifying words
+female_objectification_words <- c("lesbian","hot","fat","stripper", "sexy", "babe", "bimbo", "chick", "fox", "hottie", "babe-a-licious", "smoking", "stunning", "fine", "gorgeous", "bod", "rack", "legs", "ass", "butt", "boobs", "breasts", "beautiful")
+female_objectification_count <- words_tibble %>%
+  filter(word %in% female_objectification_words) %>%
+  count() %>%
+  pull(n)
+
+# identify the frequency of non-female objectifying words
+non_female_objectification_words <- c("tall", "naked man", "handsome", "attractive", "good-looking", "dashing", "suave")
+non_female_objectification_count <- words_tibble %>%
+  filter(word %in% non_female_objectification_words) %>%
+  count() %>%
+  pull(n)
+
+# calculate the ratio of female objectifying words to non-female objectifying words
+objectification_ratio <- female_objectification_count / non_female_objectification_count
+
+
+# identify the frequency of female objectifying words
+female_objectification_words <- c("hot", "sexy", "babe", "bimbo", "chick", "fox", "hottie", "babe-a-licious", "smoking", "stunning", "fine", "gorgeous", "bod", "rack", "legs", "ass", "butt", "boobs", "breasts")
+female_objectification_count <- words_tibble %>%
+  filter(word %in% female_objectification_words) %>%
+  count() %>%
+  pull(n)
+
+# identify the frequency of non-female objectifying words
+non_female_objectification_words <- c("handsome", "attractive", "good-looking", "dashing", "suave")
+non_female_objectification_count <- words_tibble %>%
+  filter(word %in% non_female_objectification_words) %>%
+  count() %>%
+  pull(n)
+
+# calculate the ratio of female objectifying words to non-female objectifying words
+objectification_ratio <- female_objectification_count / non_female_objectification_count
+
+# display the results
+objectification_ratio
+
+
+# create a tibble with one row per line of dialogue
+dialogue_tibble <- friends_df %>%
+  group_by(Episode, Season, Speaker) %>%
+  summarise(dialogue = paste(Script, collapse = " ")) %>%
+  ungroup()
+
+# words objectifying women
+f_objectification <- dialogue_tibble %>%
+  filter(str_detect(dialogue, paste(female_objectification_words, collapse = "|", sep = "\\b"))) %>% 
+  select(-dialogue)
+
+# per season
+tibble(f_objectification %>% 
+         group_by(Season) %>%
+         summarise(`Number of Words` = n())) %>% 
+  arrange(-`Number of Words`)
+
+# per character
+tibble(f_objectification %>% 
+         filter(Speaker == "Joey" | Speaker == "Ross" | Speaker == "Rachel" | Speaker == "Phoebe" | 
+                  Speaker == "Monica" | Speaker == "Chandler") %>% 
+         group_by(Speaker) %>%
+         summarise(`Number of Words` = n()) %>% 
+         arrange(-`Number of Words`))
+
+# words objectifying men
+m_objectification <- dialogue_tibble %>%
+  filter(str_detect(dialogue, paste(non_female_objectification_words, collapse = "|", sep = "\\b"))) %>% 
+  select(-dialogue)
+
+# per season
+m_objectification %>% 
+  group_by(Season) %>%
+  summarise(`Number of Words` = n()) %>% 
+  arrange(-`Number of Words`) %>% 
+  ggplot2::ggplot(aes(x = Season, y = `Number of Words`))+
+  geom_col() 
+
+
+# per character
+m_objectification %>% 
+  filter(Speaker == "Joey" | Speaker == "Ross" | Speaker == "Rachel" | Speaker == "Phoebe" | 
+           Speaker == "Monica" | Speaker == "Chandler") %>% 
+  group_by(Speaker) %>%
+  summarise(`Number of Words` = n()) %>% 
+  arrange(-`Number of Words`)
+```
+
+
+### **Number of objectifying words towards woman vs men across all Seasons**
+
+Women are objectified **`r round(objectification_ratio,2)`** times more than men across all the seasons of friends
+
+```{r objectification, echo = FALSE, warning = FALSE}
+
+# Objectifying words towards females per season
+
+plotf1 <- tibble(f_objectification %>% 
+         group_by(Season) %>%
+         summarise(`Number of Words` = n())) %>% 
+  arrange(-`Number of Words`) %>% 
+  mutate(min_max_value = case_when(`Number of Words` == min(`Number of Words`) ~ "Min",
+                                   `Number of Words` == max(`Number of Words`) ~ "Max",
+                                   TRUE ~ "Other")) %>% # add a column to identify the row with the minimum, maximum or other value
+  ggplot(aes(x = Season, y = `Number of Words`, fill = min_max_value)) + # use the new column as fill
+  geom_col() +
+  scale_fill_manual(values = c("Other" = "#CC6699", "Min" ="#FF6699"  , "Max" = "#CC3366")) + # manually set colors for each group
+  labs(subtitle = "Objectifying words towards females",
+       x = "Season",
+       y = "Number of Words") +
+  scale_x_continuous(breaks = 1:10) +
+  geom_hline(yintercept = mean(m_objectification$`Number of Words`), linetype = "dashed") +
+  theme(panel.background = element_blank(), 
+        axis.title.x = element_text(face = "italic", margin = margin(8, 0, 8, 0)), 
+        axis.title.y = element_text(face = "italic", margin = margin(0, 8, 0, 8)),
+        axis.text.x = element_text(hjust = 0.9, angle = 45), 
+        legend.position = "none", 
+        legend.background = element_blank(),
+        legend.title = element_blank(),
+        axis.line = element_line(linewidth = 1),
+        axis.title = element_text(size = 9),
+        axis.text = element_text(size = 9),
+        legend.text = element_text(size = 8),
+        plot.subtitle = element_text(size = 11, hjust = 0.5, face = "italic", family = "Verdana"))
+
+# Objectifying words towards males per season
+plotm1 <- m_objectification %>% 
+  group_by(Season) %>%
+  summarise(`Number of Words` = n()) %>% 
+  arrange(-`Number of Words`)%>% 
+  mutate(min_max_value = case_when(`Number of Words` == min(`Number of Words`) ~ "Min",
+                                   `Number of Words` == max(`Number of Words`) ~ "Max",
+                                   TRUE ~ "Other")) %>% # add a column to identify the row with the minimum, maximum or other value
+  ggplot(aes(x = Season, y = `Number of Words`, fill = min_max_value)) + # use the new column as fill
+  geom_col() +
+  scale_fill_manual(values = c("Other" = "#ADD8E6", "Min" ="#82EEFD"  , "Max" = "#0077B6")) + # manually set colors for each group
+  labs(subtitle = " Objectifying words towards males",
+       x = "Season",
+       y = "Number of Words") +
+  scale_x_continuous(breaks = 1:10) +
+  geom_hline(yintercept = mean(m_objectification$`Number of Words`), linetype = "dashed") +
+  theme(panel.background = element_blank(), 
+        axis.title.x = element_text(face = "italic", margin = margin(8, 0, 8, 0)), 
+        axis.title.y = element_text(face = "italic", margin = margin(0, 8, 0, 8)),
+        axis.text.x = element_text(hjust = 0.9, angle = 45), 
+        legend.position = "none", 
+        legend.background = element_blank(),
+        legend.title = element_blank(),
+        axis.line = element_line(linewidth = 1),
+        axis.title = element_text(size = 9),
+        axis.text = element_text(size = 9),
+        legend.text = element_text(size = 8),
+        plot.subtitle = element_text(size = 11, hjust = 0.5, face = "italic", family = "Verdana"))
+
+
+
+grid.arrange(plotf1, plotm1, ncol = 2, 
+             top = ggtitle("Comparing Objectification by Season"))
+
+```
+
+### **Number of objectifying words towards woman vs men per character**
+
+```{r OBJECTIFYING 2, echo = FALSE, warning = FALSE}
+
+# Objectifying words towards females per characters
+plotf2 <- tibble(f_objectification %>% 
+         filter(Speaker == "Joey" | Speaker == "Ross" | Speaker == "Rachel" | Speaker == "Phoebe" | 
+                  Speaker == "Monica" | Speaker == "Chandler") %>% 
+         group_by(Speaker) %>%
+         summarise(`Number of Words` = n()) %>% 
+         arrange(-`Number of Words`))%>% 
+  mutate(min_max_value = case_when(`Number of Words` == min(`Number of Words`) ~ "Min",
+                                   `Number of Words` == max(`Number of Words`) ~ "Max",
+                                   TRUE ~ "Other")) %>% # add a column to identify the row with the minimum, maximum or other value
+  ggplot(aes(x = Speaker, y = `Number of Words`, fill = min_max_value)) + # use the new column as fill
+  geom_col() +
+  scale_fill_manual(values = c("Other" = "#CC6699", "Min" ="#CC3366"  , "Max" = "#FF6699")) + # manually set colors for each group
+  labs(subtitle = "Objectifying words towards females",
+       x = "Character",
+       y = "Number of Words") +
+  theme(panel.background = element_blank(), 
+        axis.title.x = element_text(face = "italic", margin = margin(8, 0, 8, 0)), 
+        axis.title.y = element_text(face = "italic", margin = margin(0, 8, 0, 8)),
+        axis.text.x = element_text(hjust = 0.9, angle = 45), 
+        legend.position = "none", 
+        legend.background = element_blank(),
+        axis.line = element_line(linewidth = 1),
+        axis.title = element_text(size = 9),
+        axis.text = element_text(size = 9),
+        legend.text = element_text(size = 8),
+        plot.subtitle = element_text(size = 11, hjust = 0.5, face = "italic", family = "Verdana"))
+
+# Objectifying words towards males per characters
+plotm2 <- m_objectification %>% 
+  filter(Speaker == "Joey" | Speaker == "Ross" | Speaker == "Rachel" | Speaker == "Phoebe" | 
+           Speaker == "Monica" | Speaker == "Chandler") %>% 
+  group_by(Speaker) %>%
+  summarise(`Number of Words` = n()) %>% 
+  arrange(-`Number of Words`)%>% 
+  mutate(min_max_value = case_when(`Number of Words` == min(`Number of Words`) ~ "Min",
+                                   `Number of Words` == max(`Number of Words`) ~ "Max",
+                                   TRUE ~ "Other")) %>% # identify the row with the minimum, maximum or other value
+  ggplot(aes(x = Speaker, y = `Number of Words`, fill = min_max_value)) + # use the new column as fill
+  geom_col() +
+  scale_fill_manual(values = c("Other" = "#ADD8E6", "Min" ="#82EEFD"  , "Max" = "#0077B6")) + # manually set colors for each group
+  labs(subtitle = "Objectifying words towards males",
+       x = "Character",
+       y = "Number of Words") +
+  theme(panel.background = element_blank(), 
+        axis.title.x = element_text(face = "italic", margin = margin(8, 0, 8, 0)), 
+        axis.title.y = element_text(face = "italic", margin = margin(0, 8, 0, 8)),
+        axis.text.x = element_text(hjust = 0.9, angle = 45), 
+        legend.position = "none", 
+        legend.background = element_blank(),
+        legend.title = element_blank(),
+        axis.line = element_line(linewidth = 1),
+        axis.title = element_text(size = 9),
+        axis.text = element_text(size = 9),
+        legend.text = element_text(size = 8),
+        plot.subtitle = element_text(size = 11, hjust = 0.5, face = "italic", family = "Verdana"))
+
+grid.arrange(plotf2, plotm2, ncol = 2,
+             top = ggtitle("Comparing Objectification by character"))
+
+
+
+```
+
+
+
+```

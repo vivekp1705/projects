@@ -1,0 +1,5 @@
+"0","#We set the directory"
+"0",""
+"0","friends_df <- read_excel(path = paste0(getwd(),""/friends_df.xlsx""))"
+"2","Error: `path` does not exist: ‘C:/Users/bluff/Downloads/friends_df.xlsx’
+"

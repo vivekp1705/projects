@@ -1,0 +1,11 @@
+"0","wordcloud(gsub('""', '',
+          noun_verb_adj_f %>% 
+filter(upos %in% c(""ADJ"")) %>%
+  select(doc_id, token_id, lemma, upos) %>%
+  group_by(doc_id) %>%
+  mutate(sentence_id = cumsum(token_id == 1)) %>%
+  ungroup() %>%
+  select(lemma)),max.words = 30, random.order = FALSE, colors = brewer.pal(8, ""Dark2""))
+"
+"2","Error in gzfile(file, ""wb"") : cannot open the connection
+"

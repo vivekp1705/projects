@@ -1,0 +1,13 @@
+name: shinyassignment
+title:
+username:
+account: vivekp
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 8525280
+bundleId: 6937840
+url: https://vivekp.shinyapps.io/shinyassignment/
+when: 1678385606.24896
+lastSyncTime: 1678385606.24898
+asMultiple: FALSE
+asStatic: FALSE

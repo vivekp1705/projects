@@ -1,0 +1,1226 @@
+country,skill1,skill2,value,continent
+Australia,Basic Skills (Content),Reading Comprehension,0.259,Oceania
+Australia,Basic Skills (Content),Active Listening,0.237,Oceania
+Australia,Basic Skills (Content),Writing,0.255,Oceania
+Australia,Basic Skills (Content),Speaking,0.252,Oceania
+Australia,Basic Skills (Content),Mathematics Skills,0.139,Oceania
+Australia,Basic Skills (Content),Science,0.162,Oceania
+Australia,Basic Skills (Process),Critical Thinking,0.24,Oceania
+Australia,Basic Skills (Process),Active Learning,0.276,Oceania
+Australia,Basic Skills (Process),Learning Strategies,0.364,Oceania
+Australia,Basic Skills (Process),Monitoring,0.241,Oceania
+Australia,Social Skills,Social Perceptiveness,0.253,Oceania
+Australia,Social Skills,Coordination,0.17,Oceania
+Australia,Social Skills,Persuasion,0.144,Oceania
+Australia,Social Skills,Negotiation,0.144,Oceania
+Australia,Social Skills,Instructing,0.306,Oceania
+Australia,Social Skills,Service Orientation,0.187,Oceania
+Australia,Complex Problem Solving Skills,Complex Problem Solving,0.219,Oceania
+Australia,Technical Skills,Operations Analysis,0.122,Oceania
+Australia,Technical Skills,Technology Design,0.034,Oceania
+Australia,Technical Skills,Equipment Selection,0.007,Oceania
+Australia,Technical Skills,Installation,0.026,Oceania
+Australia,Technical Skills,Programming,-0.006,Oceania
+Australia,Technical Skills,Operation Monitoring,-0.011,Oceania
+Australia,Technical Skills,Operation and Control,-0.042,Oceania
+Australia,Technical Skills,Equipment Maintenance,-0.027,Oceania
+Australia,Technical Skills,Troubleshooting,0.004,Oceania
+Australia,Technical Skills,Repairing,0,Oceania
+Australia,Technical Skills,Quality Control Analysis,0.022,Oceania
+Australia,Systems Skills,Judgment and Decision Making,0.247,Oceania
+Australia,Systems Skills,Systems Analysis,0.198,Oceania
+Australia,Systems Skills,Systems Evaluation,0.234,Oceania
+Australia,Resource Management Skills,Time Management,0.197,Oceania
+Australia,Resource Management Skills,Management of Financial Resources,0.039,Oceania
+Australia,Resource Management Skills,Management of Material Resources,0.058,Oceania
+Australia,Resource Management Skills,Management of Personnel Resources,0.173,Oceania
+Austria,Basic Skills (Content),Reading Comprehension,0.352,Europe
+Austria,Basic Skills (Content),Active Listening,0.242,Europe
+Austria,Basic Skills (Content),Writing,0.321,Europe
+Austria,Basic Skills (Content),Speaking,0.255,Europe
+Austria,Basic Skills (Content),Mathematics Skills,0.183,Europe
+Austria,Basic Skills (Content),Science,0.159,Europe
+Austria,Basic Skills (Process),Critical Thinking,0.242,Europe
+Austria,Basic Skills (Process),Active Learning,0.253,Europe
+Austria,Basic Skills (Process),Learning Strategies,0.248,Europe
+Austria,Basic Skills (Process),Monitoring,0.149,Europe
+Austria,Social Skills,Social Perceptiveness,0.165,Europe
+Austria,Social Skills,Coordination,0.073,Europe
+Austria,Social Skills,Persuasion,0.044,Europe
+Austria,Social Skills,Negotiation,0.061,Europe
+Austria,Social Skills,Instructing,0.183,Europe
+Austria,Social Skills,Service Orientation,0.123,Europe
+Austria,Complex Problem Solving Skills,Complex Problem Solving,0.187,Europe
+Austria,Technical Skills,Operations Analysis,0.134,Europe
+Austria,Technical Skills,Technology Design,0.059,Europe
+Austria,Technical Skills,Equipment Selection,-0.032,Europe
+Austria,Technical Skills,Installation,0.033,Europe
+Austria,Technical Skills,Programming,0.096,Europe
+Austria,Technical Skills,Operation Monitoring,-0.097,Europe
+Austria,Technical Skills,Operation and Control,-0.194,Europe
+Austria,Technical Skills,Equipment Maintenance,-0.088,Europe
+Austria,Technical Skills,Troubleshooting,-0.075,Europe
+Austria,Technical Skills,Repairing,-0.067,Europe
+Austria,Technical Skills,Quality Control Analysis,-0.053,Europe
+Austria,Systems Skills,Judgment and Decision Making,0.226,Europe
+Austria,Systems Skills,Systems Analysis,0.223,Europe
+Austria,Systems Skills,Systems Evaluation,0.205,Europe
+Austria,Resource Management Skills,Time Management,0.145,Europe
+Austria,Resource Management Skills,Management of Financial Resources,-0.032,Europe
+Austria,Resource Management Skills,Management of Material Resources,-0.024,Europe
+Austria,Resource Management Skills,Management of Personnel Resources,0.039,Europe
+Belgium,Basic Skills (Content),Reading Comprehension,0.251,Europe
+Belgium,Basic Skills (Content),Active Listening,0.223,Europe
+Belgium,Basic Skills (Content),Writing,0.248,Europe
+Belgium,Basic Skills (Content),Speaking,0.237,Europe
+Belgium,Basic Skills (Content),Mathematics Skills,0.075,Europe
+Belgium,Basic Skills (Content),Science,0.205,Europe
+Belgium,Basic Skills (Process),Critical Thinking,0.197,Europe
+Belgium,Basic Skills (Process),Active Learning,0.199,Europe
+Belgium,Basic Skills (Process),Learning Strategies,0.22,Europe
+Belgium,Basic Skills (Process),Monitoring,0.144,Europe
+Belgium,Social Skills,Social Perceptiveness,0.215,Europe
+Belgium,Social Skills,Coordination,0.099,Europe
+Belgium,Social Skills,Persuasion,0.116,Europe
+Belgium,Social Skills,Negotiation,0.083,Europe
+Belgium,Social Skills,Instructing,0.188,Europe
+Belgium,Social Skills,Service Orientation,0.207,Europe
+Belgium,Complex Problem Solving Skills,Complex Problem Solving,0.147,Europe
+Belgium,Technical Skills,Operations Analysis,0.118,Europe
+Belgium,Technical Skills,Technology Design,0.041,Europe
+Belgium,Technical Skills,Equipment Selection,-0.12,Europe
+Belgium,Technical Skills,Installation,-0.086,Europe
+Belgium,Technical Skills,Programming,0.077,Europe
+Belgium,Technical Skills,Operation Monitoring,-0.163,Europe
+Belgium,Technical Skills,Operation and Control,-0.229,Europe
+Belgium,Technical Skills,Equipment Maintenance,-0.221,Europe
+Belgium,Technical Skills,Troubleshooting,-0.166,Europe
+Belgium,Technical Skills,Repairing,-0.223,Europe
+Belgium,Technical Skills,Quality Control Analysis,-0.096,Europe
+Belgium,Systems Skills,Judgment and Decision Making,0.172,Europe
+Belgium,Systems Skills,Systems Analysis,0.15,Europe
+Belgium,Systems Skills,Systems Evaluation,0.159,Europe
+Belgium,Resource Management Skills,Time Management,0.086,Europe
+Belgium,Resource Management Skills,Management of Financial Resources,-0.038,Europe
+Belgium,Resource Management Skills,Management of Material Resources,-0.02,Europe
+Belgium,Resource Management Skills,Management of Personnel Resources,0.063,Europe
+Canada,Basic Skills (Content),Reading Comprehension,0.154,Americas
+Canada,Basic Skills (Content),Active Listening,0.133,Americas
+Canada,Basic Skills (Content),Writing,0.137,Americas
+Canada,Basic Skills (Content),Speaking,0.137,Americas
+Canada,Basic Skills (Content),Mathematics Skills,0.098,Americas
+Canada,Basic Skills (Content),Science,0.166,Americas
+Canada,Basic Skills (Process),Critical Thinking,0.18,Americas
+Canada,Basic Skills (Process),Active Learning,0.169,Americas
+Canada,Basic Skills (Process),Learning Strategies,0.134,Americas
+Canada,Basic Skills (Process),Monitoring,0.134,Americas
+Canada,Social Skills,Social Perceptiveness,0.089,Americas
+Canada,Social Skills,Coordination,0.091,Americas
+Canada,Social Skills,Persuasion,0.121,Americas
+Canada,Social Skills,Negotiation,0.111,Americas
+Canada,Social Skills,Instructing,0.154,Americas
+Canada,Social Skills,Service Orientation,0.037,Americas
+Canada,Complex Problem Solving Skills,Complex Problem Solving,0.168,Americas
+Canada,Technical Skills,Operations Analysis,0.22,Americas
+Canada,Technical Skills,Technology Design,0.064,Americas
+Canada,Technical Skills,Equipment Selection,0.034,Americas
+Canada,Technical Skills,Installation,0.012,Americas
+Canada,Technical Skills,Programming,0.109,Americas
+Canada,Technical Skills,Operation Monitoring,0.03,Americas
+Canada,Technical Skills,Operation and Control,-0.013,Americas
+Canada,Technical Skills,Equipment Maintenance,0.003,Americas
+Canada,Technical Skills,Troubleshooting,0.052,Americas
+Canada,Technical Skills,Repairing,0.015,Americas
+Canada,Technical Skills,Quality Control Analysis,0.06,Americas
+Canada,Systems Skills,Judgment and Decision Making,0.179,Americas
+Canada,Systems Skills,Systems Analysis,0.187,Americas
+Canada,Systems Skills,Systems Evaluation,0.2,Americas
+Canada,Resource Management Skills,Time Management,0.09,Americas
+Canada,Resource Management Skills,Management of Financial Resources,0.094,Americas
+Canada,Resource Management Skills,Management of Material Resources,0.078,Americas
+Canada,Resource Management Skills,Management of Personnel Resources,0.144,Americas
+Chile,Basic Skills (Content),Reading Comprehension,-0.003,Americas
+Chile,Basic Skills (Content),Active Listening,0.033,Americas
+Chile,Basic Skills (Content),Writing,-0.007,Americas
+Chile,Basic Skills (Content),Speaking,-0.007,Americas
+Chile,Basic Skills (Content),Mathematics Skills,-0.012,Americas
+Chile,Basic Skills (Content),Science,-0.195,Americas
+Chile,Basic Skills (Process),Critical Thinking,-0.02,Americas
+Chile,Basic Skills (Process),Active Learning,-0.075,Americas
+Chile,Basic Skills (Process),Learning Strategies,-0.068,Americas
+Chile,Basic Skills (Process),Monitoring,0.009,Americas
+Chile,Social Skills,Social Perceptiveness,-0.019,Americas
+Chile,Social Skills,Coordination,0.053,Americas
+Chile,Social Skills,Persuasion,-0.06,Americas
+Chile,Social Skills,Negotiation,-0.022,Americas
+Chile,Social Skills,Instructing,-0.081,Americas
+Chile,Social Skills,Service Orientation,0.009,Americas
+Chile,Complex Problem Solving Skills,Complex Problem Solving,-0.086,Americas
+Chile,Technical Skills,Operations Analysis,-0.207,Americas
+Chile,Technical Skills,Technology Design,-0.102,Americas
+Chile,Technical Skills,Equipment Selection,0.027,Americas
+Chile,Technical Skills,Installation,0.021,Americas
+Chile,Technical Skills,Programming,-0.066,Americas
+Chile,Technical Skills,Operation Monitoring,0.13,Americas
+Chile,Technical Skills,Operation and Control,0.19,Americas
+Chile,Technical Skills,Equipment Maintenance,0.108,Americas
+Chile,Technical Skills,Troubleshooting,0.068,Americas
+Chile,Technical Skills,Repairing,0.091,Americas
+Chile,Technical Skills,Quality Control Analysis,0.066,Americas
+Chile,Systems Skills,Judgment and Decision Making,-0.083,Americas
+Chile,Systems Skills,Systems Analysis,-0.126,Americas
+Chile,Systems Skills,Systems Evaluation,-0.148,Americas
+Chile,Resource Management Skills,Time Management,0.035,Americas
+Chile,Resource Management Skills,Management of Financial Resources,-0.078,Americas
+Chile,Resource Management Skills,Management of Material Resources,-0.054,Americas
+Chile,Resource Management Skills,Management of Personnel Resources,-0.04,Americas
+Czech Republic,Basic Skills (Content),Reading Comprehension,0.239,Europe
+Czech Republic,Basic Skills (Content),Active Listening,0.19,Europe
+Czech Republic,Basic Skills (Content),Writing,0.205,Europe
+Czech Republic,Basic Skills (Content),Speaking,0.197,Europe
+Czech Republic,Basic Skills (Content),Mathematics Skills,0.17,Europe
+Czech Republic,Basic Skills (Content),Science,0.137,Europe
+Czech Republic,Basic Skills (Process),Critical Thinking,0.245,Europe
+Czech Republic,Basic Skills (Process),Active Learning,0.226,Europe
+Czech Republic,Basic Skills (Process),Learning Strategies,0.155,Europe
+Czech Republic,Basic Skills (Process),Monitoring,0.192,Europe
+Czech Republic,Social Skills,Social Perceptiveness,0.118,Europe
+Czech Republic,Social Skills,Coordination,0.125,Europe
+Czech Republic,Social Skills,Persuasion,0.119,Europe
+Czech Republic,Social Skills,Negotiation,0.111,Europe
+Czech Republic,Social Skills,Instructing,0.116,Europe
+Czech Republic,Social Skills,Service Orientation,0.052,Europe
+Czech Republic,Complex Problem Solving Skills,Complex Problem Solving,0.218,Europe
+Czech Republic,Technical Skills,Operations Analysis,0.208,Europe
+Czech Republic,Technical Skills,Technology Design,0.11,Europe
+Czech Republic,Technical Skills,Equipment Selection,0.102,Europe
+Czech Republic,Technical Skills,Installation,0.074,Europe
+Czech Republic,Technical Skills,Programming,0.089,Europe
+Czech Republic,Technical Skills,Operation Monitoring,0.131,Europe
+Czech Republic,Technical Skills,Operation and Control,0.065,Europe
+Czech Republic,Technical Skills,Equipment Maintenance,0.108,Europe
+Czech Republic,Technical Skills,Troubleshooting,0.148,Europe
+Czech Republic,Technical Skills,Repairing,0.13,Europe
+Czech Republic,Technical Skills,Quality Control Analysis,0.169,Europe
+Czech Republic,Systems Skills,Judgment and Decision Making,0.226,Europe
+Czech Republic,Systems Skills,Systems Analysis,0.219,Europe
+Czech Republic,Systems Skills,Systems Evaluation,0.212,Europe
+Czech Republic,Resource Management Skills,Time Management,0.179,Europe
+Czech Republic,Resource Management Skills,Management of Financial Resources,0.144,Europe
+Czech Republic,Resource Management Skills,Management of Material Resources,0.119,Europe
+Czech Republic,Resource Management Skills,Management of Personnel Resources,0.148,Europe
+Denmark,Basic Skills (Content),Reading Comprehension,0.344,Europe
+Denmark,Basic Skills (Content),Active Listening,0.233,Europe
+Denmark,Basic Skills (Content),Writing,0.309,Europe
+Denmark,Basic Skills (Content),Speaking,0.26,Europe
+Denmark,Basic Skills (Content),Mathematics Skills,0.243,Europe
+Denmark,Basic Skills (Content),Science,0.234,Europe
+Denmark,Basic Skills (Process),Critical Thinking,0.31,Europe
+Denmark,Basic Skills (Process),Active Learning,0.332,Europe
+Denmark,Basic Skills (Process),Learning Strategies,0.294,Europe
+Denmark,Basic Skills (Process),Monitoring,0.251,Europe
+Denmark,Social Skills,Social Perceptiveness,0.173,Europe
+Denmark,Social Skills,Coordination,0.187,Europe
+Denmark,Social Skills,Persuasion,0.13,Europe
+Denmark,Social Skills,Negotiation,0.161,Europe
+Denmark,Social Skills,Instructing,0.242,Europe
+Denmark,Social Skills,Service Orientation,-0.015,Europe
+Denmark,Complex Problem Solving Skills,Complex Problem Solving,0.274,Europe
+Denmark,Technical Skills,Operations Analysis,0.215,Europe
+Denmark,Technical Skills,Technology Design,0.042,Europe
+Denmark,Technical Skills,Equipment Selection,0.031,Europe
+Denmark,Technical Skills,Installation,0.012,Europe
+Denmark,Technical Skills,Programming,0.063,Europe
+Denmark,Technical Skills,Operation Monitoring,0.07,Europe
+Denmark,Technical Skills,Operation and Control,0.01,Europe
+Denmark,Technical Skills,Equipment Maintenance,0.019,Europe
+Denmark,Technical Skills,Troubleshooting,0.036,Europe
+Denmark,Technical Skills,Repairing,0.035,Europe
+Denmark,Technical Skills,Quality Control Analysis,0.102,Europe
+Denmark,Systems Skills,Judgment and Decision Making,0.313,Europe
+Denmark,Systems Skills,Systems Analysis,0.291,Europe
+Denmark,Systems Skills,Systems Evaluation,0.296,Europe
+Denmark,Resource Management Skills,Time Management,0.198,Europe
+Denmark,Resource Management Skills,Management of Financial Resources,0.137,Europe
+Denmark,Resource Management Skills,Management of Material Resources,0.128,Europe
+Denmark,Resource Management Skills,Management of Personnel Resources,0.237,Europe
+Estonia,Basic Skills (Content),Reading Comprehension,0.171,Europe
+Estonia,Basic Skills (Content),Active Listening,0.139,Europe
+Estonia,Basic Skills (Content),Writing,0.196,Europe
+Estonia,Basic Skills (Content),Speaking,0.173,Europe
+Estonia,Basic Skills (Content),Mathematics Skills,-0.03,Europe
+Estonia,Basic Skills (Content),Science,0,Europe
+Estonia,Basic Skills (Process),Critical Thinking,0.122,Europe
+Estonia,Basic Skills (Process),Active Learning,0.129,Europe
+Estonia,Basic Skills (Process),Learning Strategies,0.19,Europe
+Estonia,Basic Skills (Process),Monitoring,0.123,Europe
+Estonia,Social Skills,Social Perceptiveness,0.152,Europe
+Estonia,Social Skills,Coordination,0.055,Europe
+Estonia,Social Skills,Persuasion,0.096,Europe
+Estonia,Social Skills,Negotiation,0.079,Europe
+Estonia,Social Skills,Instructing,0.139,Europe
+Estonia,Social Skills,Service Orientation,0.111,Europe
+Estonia,Complex Problem Solving Skills,Complex Problem Solving,0.097,Europe
+Estonia,Technical Skills,Operations Analysis,-0.01,Europe
+Estonia,Technical Skills,Technology Design,0.014,Europe
+Estonia,Technical Skills,Equipment Selection,-0.07,Europe
+Estonia,Technical Skills,Installation,-0.031,Europe
+Estonia,Technical Skills,Programming,0.079,Europe
+Estonia,Technical Skills,Operation Monitoring,-0.151,Europe
+Estonia,Technical Skills,Operation and Control,-0.208,Europe
+Estonia,Technical Skills,Equipment Maintenance,-0.098,Europe
+Estonia,Technical Skills,Troubleshooting,-0.113,Europe
+Estonia,Technical Skills,Repairing,-0.098,Europe
+Estonia,Technical Skills,Quality Control Analysis,-0.12,Europe
+Estonia,Systems Skills,Judgment and Decision Making,0.121,Europe
+Estonia,Systems Skills,Systems Analysis,0.101,Europe
+Estonia,Systems Skills,Systems Evaluation,0.113,Europe
+Estonia,Resource Management Skills,Time Management,0.067,Europe
+Estonia,Resource Management Skills,Management of Financial Resources,0.011,Europe
+Estonia,Resource Management Skills,Management of Material Resources,0.002,Europe
+Estonia,Resource Management Skills,Management of Personnel Resources,0.041,Europe
+Finland,Basic Skills (Content),Reading Comprehension,0.696,Europe
+Finland,Basic Skills (Content),Active Listening,0.506,Europe
+Finland,Basic Skills (Content),Writing,0.6,Europe
+Finland,Basic Skills (Content),Speaking,0.52,Europe
+Finland,Basic Skills (Content),Mathematics Skills,0.49,Europe
+Finland,Basic Skills (Content),Science,0.429,Europe
+Finland,Basic Skills (Process),Critical Thinking,0.56,Europe
+Finland,Basic Skills (Process),Active Learning,0.538,Europe
+Finland,Basic Skills (Process),Learning Strategies,0.411,Europe
+Finland,Basic Skills (Process),Monitoring,0.389,Europe
+Finland,Social Skills,Social Perceptiveness,0.341,Europe
+Finland,Social Skills,Coordination,0.288,Europe
+Finland,Social Skills,Persuasion,0.355,Europe
+Finland,Social Skills,Negotiation,0.319,Europe
+Finland,Social Skills,Instructing,0.378,Europe
+Finland,Social Skills,Service Orientation,0.231,Europe
+Finland,Complex Problem Solving Skills,Complex Problem Solving,0.498,Europe
+Finland,Technical Skills,Operations Analysis,0.473,Europe
+Finland,Technical Skills,Technology Design,0.216,Europe
+Finland,Technical Skills,Equipment Selection,-0.06,Europe
+Finland,Technical Skills,Installation,-0.003,Europe
+Finland,Technical Skills,Programming,0.289,Europe
+Finland,Technical Skills,Operation Monitoring,-0.064,Europe
+Finland,Technical Skills,Operation and Control,-0.243,Europe
+Finland,Technical Skills,Equipment Maintenance,-0.193,Europe
+Finland,Technical Skills,Troubleshooting,-0.064,Europe
+Finland,Technical Skills,Repairing,-0.171,Europe
+Finland,Technical Skills,Quality Control Analysis,0.021,Europe
+Finland,Systems Skills,Judgment and Decision Making,0.525,Europe
+Finland,Systems Skills,Systems Analysis,0.564,Europe
+Finland,Systems Skills,Systems Evaluation,0.555,Europe
+Finland,Resource Management Skills,Time Management,0.324,Europe
+Finland,Resource Management Skills,Management of Financial Resources,0.261,Europe
+Finland,Resource Management Skills,Management of Material Resources,0.18,Europe
+Finland,Resource Management Skills,Management of Personnel Resources,0.307,Europe
+France,Basic Skills (Content),Reading Comprehension,0.173,Europe
+France,Basic Skills (Content),Active Listening,0.167,Europe
+France,Basic Skills (Content),Writing,0.182,Europe
+France,Basic Skills (Content),Speaking,0.22,Europe
+France,Basic Skills (Content),Mathematics Skills,0.109,Europe
+France,Basic Skills (Content),Science,0.153,Europe
+France,Basic Skills (Process),Critical Thinking,0.166,Europe
+France,Basic Skills (Process),Active Learning,0.189,Europe
+France,Basic Skills (Process),Learning Strategies,0.308,Europe
+France,Basic Skills (Process),Monitoring,0.181,Europe
+France,Social Skills,Social Perceptiveness,0.152,Europe
+France,Social Skills,Coordination,0.19,Europe
+France,Social Skills,Persuasion,0.1,Europe
+France,Social Skills,Negotiation,0.129,Europe
+France,Social Skills,Instructing,0.259,Europe
+France,Social Skills,Service Orientation,0.116,Europe
+France,Complex Problem Solving Skills,Complex Problem Solving,0.094,Europe
+France,Technical Skills,Operations Analysis,0.058,Europe
+France,Technical Skills,Technology Design,0.014,Europe
+France,Technical Skills,Equipment Selection,-0.027,Europe
+France,Technical Skills,Installation,-0.007,Europe
+France,Technical Skills,Programming,-0.049,Europe
+France,Technical Skills,Operation Monitoring,0.006,Europe
+France,Technical Skills,Operation and Control,-0.052,Europe
+France,Technical Skills,Equipment Maintenance,-0.062,Europe
+France,Technical Skills,Troubleshooting,-0.01,Europe
+France,Technical Skills,Repairing,-0.042,Europe
+France,Technical Skills,Quality Control Analysis,-0.003,Europe
+France,Systems Skills,Judgment and Decision Making,0.143,Europe
+France,Systems Skills,Systems Analysis,0.118,Europe
+France,Systems Skills,Systems Evaluation,0.139,Europe
+France,Resource Management Skills,Time Management,0.17,Europe
+France,Resource Management Skills,Management of Financial Resources,0.124,Europe
+France,Resource Management Skills,Management of Material Resources,0.144,Europe
+France,Resource Management Skills,Management of Personnel Resources,0.238,Europe
+Germany,Basic Skills (Content),Reading Comprehension,0.32,Europe
+Germany,Basic Skills (Content),Active Listening,0.279,Europe
+Germany,Basic Skills (Content),Writing,0.3,Europe
+Germany,Basic Skills (Content),Speaking,0.263,Europe
+Germany,Basic Skills (Content),Mathematics Skills,0.235,Europe
+Germany,Basic Skills (Content),Science,0.156,Europe
+Germany,Basic Skills (Process),Critical Thinking,0.255,Europe
+Germany,Basic Skills (Process),Active Learning,0.268,Europe
+Germany,Basic Skills (Process),Learning Strategies,0.223,Europe
+Germany,Basic Skills (Process),Monitoring,0.165,Europe
+Germany,Social Skills,Social Perceptiveness,0.225,Europe
+Germany,Social Skills,Coordination,0.117,Europe
+Germany,Social Skills,Persuasion,0.341,Europe
+Germany,Social Skills,Negotiation,0.293,Europe
+Germany,Social Skills,Instructing,0.219,Europe
+Germany,Social Skills,Service Orientation,0.175,Europe
+Germany,Complex Problem Solving Skills,Complex Problem Solving,0.244,Europe
+Germany,Technical Skills,Operations Analysis,0.242,Europe
+Germany,Technical Skills,Technology Design,0.103,Europe
+Germany,Technical Skills,Equipment Selection,-0.052,Europe
+Germany,Technical Skills,Installation,0.024,Europe
+Germany,Technical Skills,Programming,0.095,Europe
+Germany,Technical Skills,Operation Monitoring,-0.167,Europe
+Germany,Technical Skills,Operation and Control,-0.236,Europe
+Germany,Technical Skills,Equipment Maintenance,-0.123,Europe
+Germany,Technical Skills,Troubleshooting,-0.101,Europe
+Germany,Technical Skills,Repairing,-0.079,Europe
+Germany,Technical Skills,Quality Control Analysis,-0.077,Europe
+Germany,Systems Skills,Judgment and Decision Making,0.247,Europe
+Germany,Systems Skills,Systems Analysis,0.25,Europe
+Germany,Systems Skills,Systems Evaluation,0.291,Europe
+Germany,Resource Management Skills,Time Management,0.089,Europe
+Germany,Resource Management Skills,Management of Financial Resources,0.104,Europe
+Germany,Resource Management Skills,Management of Material Resources,0.062,Europe
+Germany,Resource Management Skills,Management of Personnel Resources,0.145,Europe
+Greece,Basic Skills (Content),Reading Comprehension,0.384,Europe
+Greece,Basic Skills (Content),Active Listening,0.387,Europe
+Greece,Basic Skills (Content),Writing,0.373,Europe
+Greece,Basic Skills (Content),Speaking,0.375,Europe
+Greece,Basic Skills (Content),Mathematics Skills,0.104,Europe
+Greece,Basic Skills (Content),Science,0.264,Europe
+Greece,Basic Skills (Process),Critical Thinking,0.316,Europe
+Greece,Basic Skills (Process),Active Learning,0.243,Europe
+Greece,Basic Skills (Process),Learning Strategies,0.169,Europe
+Greece,Basic Skills (Process),Monitoring,0.213,Europe
+Greece,Social Skills,Social Perceptiveness,0.285,Europe
+Greece,Social Skills,Coordination,0.164,Europe
+Greece,Social Skills,Persuasion,0.182,Europe
+Greece,Social Skills,Negotiation,0.143,Europe
+Greece,Social Skills,Instructing,0.205,Europe
+Greece,Social Skills,Service Orientation,0.168,Europe
+Greece,Complex Problem Solving Skills,Complex Problem Solving,0.241,Europe
+Greece,Technical Skills,Operations Analysis,0.129,Europe
+Greece,Technical Skills,Technology Design,0.021,Europe
+Greece,Technical Skills,Equipment Selection,-0.082,Europe
+Greece,Technical Skills,Installation,-0.112,Europe
+Greece,Technical Skills,Programming,0.047,Europe
+Greece,Technical Skills,Operation Monitoring,0.036,Europe
+Greece,Technical Skills,Operation and Control,0.003,Europe
+Greece,Technical Skills,Equipment Maintenance,-0.091,Europe
+Greece,Technical Skills,Troubleshooting,-0.075,Europe
+Greece,Technical Skills,Repairing,-0.091,Europe
+Greece,Technical Skills,Quality Control Analysis,-0.023,Europe
+Greece,Systems Skills,Judgment and Decision Making,0.245,Europe
+Greece,Systems Skills,Systems Analysis,0.187,Europe
+Greece,Systems Skills,Systems Evaluation,0.173,Europe
+Greece,Resource Management Skills,Time Management,0.166,Europe
+Greece,Resource Management Skills,Management of Financial Resources,0.016,Europe
+Greece,Resource Management Skills,Management of Material Resources,0.007,Europe
+Greece,Resource Management Skills,Management of Personnel Resources,0.149,Europe
+Hungary,Basic Skills (Content),Reading Comprehension,0.07,Europe
+Hungary,Basic Skills (Content),Active Listening,0.128,Europe
+Hungary,Basic Skills (Content),Writing,0.097,Europe
+Hungary,Basic Skills (Content),Speaking,0.136,Europe
+Hungary,Basic Skills (Content),Mathematics Skills,-0.044,Europe
+Hungary,Basic Skills (Content),Science,-0.059,Europe
+Hungary,Basic Skills (Process),Critical Thinking,0.075,Europe
+Hungary,Basic Skills (Process),Active Learning,0.1,Europe
+Hungary,Basic Skills (Process),Learning Strategies,0.169,Europe
+Hungary,Basic Skills (Process),Monitoring,0.098,Europe
+Hungary,Social Skills,Social Perceptiveness,0.157,Europe
+Hungary,Social Skills,Coordination,0.08,Europe
+Hungary,Social Skills,Persuasion,0.118,Europe
+Hungary,Social Skills,Negotiation,0.104,Europe
+Hungary,Social Skills,Instructing,0.129,Europe
+Hungary,Social Skills,Service Orientation,0.18,Europe
+Hungary,Complex Problem Solving Skills,Complex Problem Solving,0.028,Europe
+Hungary,Technical Skills,Operations Analysis,-0.036,Europe
+Hungary,Technical Skills,Technology Design,-0.016,Europe
+Hungary,Technical Skills,Equipment Selection,-0.077,Europe
+Hungary,Technical Skills,Installation,0.015,Europe
+Hungary,Technical Skills,Programming,-0.01,Europe
+Hungary,Technical Skills,Operation Monitoring,-0.155,Europe
+Hungary,Technical Skills,Operation and Control,-0.155,Europe
+Hungary,Technical Skills,Equipment Maintenance,-0.105,Europe
+Hungary,Technical Skills,Troubleshooting,-0.092,Europe
+Hungary,Technical Skills,Repairing,-0.098,Europe
+Hungary,Technical Skills,Quality Control Analysis,-0.104,Europe
+Hungary,Systems Skills,Judgment and Decision Making,0.069,Europe
+Hungary,Systems Skills,Systems Analysis,0.015,Europe
+Hungary,Systems Skills,Systems Evaluation,0.043,Europe
+Hungary,Resource Management Skills,Time Management,0.048,Europe
+Hungary,Resource Management Skills,Management of Financial Resources,-0.055,Europe
+Hungary,Resource Management Skills,Management of Material Resources,-0.025,Europe
+Hungary,Resource Management Skills,Management of Personnel Resources,0.017,Europe
+Iceland,Basic Skills (Content),Reading Comprehension,0.438,Europe
+Iceland,Basic Skills (Content),Active Listening,0.297,Europe
+Iceland,Basic Skills (Content),Writing,0.423,Europe
+Iceland,Basic Skills (Content),Speaking,0.328,Europe
+Iceland,Basic Skills (Content),Mathematics Skills,0.273,Europe
+Iceland,Basic Skills (Content),Science,0.272,Europe
+Iceland,Basic Skills (Process),Critical Thinking,0.376,Europe
+Iceland,Basic Skills (Process),Active Learning,0.407,Europe
+Iceland,Basic Skills (Process),Learning Strategies,0.378,Europe
+Iceland,Basic Skills (Process),Monitoring,0.327,Europe
+Iceland,Social Skills,Social Perceptiveness,0.276,Europe
+Iceland,Social Skills,Coordination,0.242,Europe
+Iceland,Social Skills,Persuasion,0.159,Europe
+Iceland,Social Skills,Negotiation,0.165,Europe
+Iceland,Social Skills,Instructing,0.327,Europe
+Iceland,Social Skills,Service Orientation,0.099,Europe
+Iceland,Complex Problem Solving Skills,Complex Problem Solving,0.356,Europe
+Iceland,Technical Skills,Operations Analysis,0.329,Europe
+Iceland,Technical Skills,Technology Design,0.087,Europe
+Iceland,Technical Skills,Equipment Selection,0.025,Europe
+Iceland,Technical Skills,Installation,0.059,Europe
+Iceland,Technical Skills,Programming,0.102,Europe
+Iceland,Technical Skills,Operation Monitoring,-0.008,Europe
+Iceland,Technical Skills,Operation and Control,-0.134,Europe
+Iceland,Technical Skills,Equipment Maintenance,-0.046,Europe
+Iceland,Technical Skills,Troubleshooting,0.012,Europe
+Iceland,Technical Skills,Repairing,-0.013,Europe
+Iceland,Technical Skills,Quality Control Analysis,0.104,Europe
+Iceland,Systems Skills,Judgment and Decision Making,0.39,Europe
+Iceland,Systems Skills,Systems Analysis,0.41,Europe
+Iceland,Systems Skills,Systems Evaluation,0.416,Europe
+Iceland,Resource Management Skills,Time Management,0.251,Europe
+Iceland,Resource Management Skills,Management of Financial Resources,0.209,Europe
+Iceland,Resource Management Skills,Management of Material Resources,0.192,Europe
+Iceland,Resource Management Skills,Management of Personnel Resources,0.291,Europe
+Ireland,Basic Skills (Content),Reading Comprehension,0.367,Europe
+Ireland,Basic Skills (Content),Active Listening,0.413,Europe
+Ireland,Basic Skills (Content),Writing,0.398,Europe
+Ireland,Basic Skills (Content),Speaking,0.444,Europe
+Ireland,Basic Skills (Content),Mathematics Skills,0.176,Europe
+Ireland,Basic Skills (Content),Science,0.188,Europe
+Ireland,Basic Skills (Process),Critical Thinking,0.451,Europe
+Ireland,Basic Skills (Process),Active Learning,0.404,Europe
+Ireland,Basic Skills (Process),Learning Strategies,0.489,Europe
+Ireland,Basic Skills (Process),Monitoring,0.471,Europe
+Ireland,Social Skills,Social Perceptiveness,0.469,Europe
+Ireland,Social Skills,Coordination,0.36,Europe
+Ireland,Social Skills,Persuasion,0.368,Europe
+Ireland,Social Skills,Negotiation,0.324,Europe
+Ireland,Social Skills,Instructing,0.459,Europe
+Ireland,Social Skills,Service Orientation,0.254,Europe
+Ireland,Complex Problem Solving Skills,Complex Problem Solving,0.414,Europe
+Ireland,Technical Skills,Operations Analysis,0.219,Europe
+Ireland,Technical Skills,Technology Design,0.062,Europe
+Ireland,Technical Skills,Equipment Selection,0.011,Europe
+Ireland,Technical Skills,Installation,-0.023,Europe
+Ireland,Technical Skills,Programming,0.03,Europe
+Ireland,Technical Skills,Operation Monitoring,0.107,Europe
+Ireland,Technical Skills,Operation and Control,0.023,Europe
+Ireland,Technical Skills,Equipment Maintenance,0.019,Europe
+Ireland,Technical Skills,Troubleshooting,0.059,Europe
+Ireland,Technical Skills,Repairing,0.046,Europe
+Ireland,Technical Skills,Quality Control Analysis,0.118,Europe
+Ireland,Systems Skills,Judgment and Decision Making,0.425,Europe
+Ireland,Systems Skills,Systems Analysis,0.362,Europe
+Ireland,Systems Skills,Systems Evaluation,0.391,Europe
+Ireland,Resource Management Skills,Time Management,0.348,Europe
+Ireland,Resource Management Skills,Management of Financial Resources,0.213,Europe
+Ireland,Resource Management Skills,Management of Material Resources,0.201,Europe
+Ireland,Resource Management Skills,Management of Personnel Resources,0.381,Europe
+Italy,Basic Skills (Content),Reading Comprehension,0.487,Europe
+Italy,Basic Skills (Content),Active Listening,0.377,Europe
+Italy,Basic Skills (Content),Writing,0.452,Europe
+Italy,Basic Skills (Content),Speaking,0.37,Europe
+Italy,Basic Skills (Content),Mathematics Skills,0.29,Europe
+Italy,Basic Skills (Content),Science,0.274,Europe
+Italy,Basic Skills (Process),Critical Thinking,0.373,Europe
+Italy,Basic Skills (Process),Active Learning,0.349,Europe
+Italy,Basic Skills (Process),Learning Strategies,0.275,Europe
+Italy,Basic Skills (Process),Monitoring,0.248,Europe
+Italy,Social Skills,Social Perceptiveness,0.209,Europe
+Italy,Social Skills,Coordination,0.138,Europe
+Italy,Social Skills,Persuasion,0.222,Europe
+Italy,Social Skills,Negotiation,0.208,Europe
+Italy,Social Skills,Instructing,0.28,Europe
+Italy,Social Skills,Service Orientation,0.082,Europe
+Italy,Complex Problem Solving Skills,Complex Problem Solving,0.341,Europe
+Italy,Technical Skills,Operations Analysis,0.295,Europe
+Italy,Technical Skills,Technology Design,0.122,Europe
+Italy,Technical Skills,Equipment Selection,0.045,Europe
+Italy,Technical Skills,Installation,0.018,Europe
+Italy,Technical Skills,Programming,0.155,Europe
+Italy,Technical Skills,Operation Monitoring,0.089,Europe
+Italy,Technical Skills,Operation and Control,-0.001,Europe
+Italy,Technical Skills,Equipment Maintenance,0.046,Europe
+Italy,Technical Skills,Troubleshooting,0.067,Europe
+Italy,Technical Skills,Repairing,0.069,Europe
+Italy,Technical Skills,Quality Control Analysis,0.125,Europe
+Italy,Systems Skills,Judgment and Decision Making,0.335,Europe
+Italy,Systems Skills,Systems Analysis,0.353,Europe
+Italy,Systems Skills,Systems Evaluation,0.355,Europe
+Italy,Resource Management Skills,Time Management,0.222,Europe
+Italy,Resource Management Skills,Management of Financial Resources,0.113,Europe
+Italy,Resource Management Skills,Management of Material Resources,0.082,Europe
+Italy,Resource Management Skills,Management of Personnel Resources,0.219,Europe
+Latvia,Basic Skills (Content),Reading Comprehension,0.198,Europe
+Latvia,Basic Skills (Content),Active Listening,0.167,Europe
+Latvia,Basic Skills (Content),Writing,0.188,Europe
+Latvia,Basic Skills (Content),Speaking,0.183,Europe
+Latvia,Basic Skills (Content),Mathematics Skills,0.141,Europe
+Latvia,Basic Skills (Content),Science,0.137,Europe
+Latvia,Basic Skills (Process),Critical Thinking,0.17,Europe
+Latvia,Basic Skills (Process),Active Learning,0.171,Europe
+Latvia,Basic Skills (Process),Learning Strategies,0.17,Europe
+Latvia,Basic Skills (Process),Monitoring,0.119,Europe
+Latvia,Social Skills,Social Perceptiveness,0.109,Europe
+Latvia,Social Skills,Coordination,0.081,Europe
+Latvia,Social Skills,Persuasion,0.13,Europe
+Latvia,Social Skills,Negotiation,0.124,Europe
+Latvia,Social Skills,Instructing,0.165,Europe
+Latvia,Social Skills,Service Orientation,0.113,Europe
+Latvia,Complex Problem Solving Skills,Complex Problem Solving,0.153,Europe
+Latvia,Technical Skills,Operations Analysis,0.129,Europe
+Latvia,Technical Skills,Technology Design,0.082,Europe
+Latvia,Technical Skills,Equipment Selection,0.003,Europe
+Latvia,Technical Skills,Installation,0.029,Europe
+Latvia,Technical Skills,Programming,0.077,Europe
+Latvia,Technical Skills,Operation Monitoring,0.004,Europe
+Latvia,Technical Skills,Operation and Control,-0.053,Europe
+Latvia,Technical Skills,Equipment Maintenance,-0.003,Europe
+Latvia,Technical Skills,Troubleshooting,0.038,Europe
+Latvia,Technical Skills,Repairing,0.016,Europe
+Latvia,Technical Skills,Quality Control Analysis,0.043,Europe
+Latvia,Systems Skills,Judgment and Decision Making,0.145,Europe
+Latvia,Systems Skills,Systems Analysis,0.161,Europe
+Latvia,Systems Skills,Systems Evaluation,0.168,Europe
+Latvia,Resource Management Skills,Time Management,0.138,Europe
+Latvia,Resource Management Skills,Management of Financial Resources,0.114,Europe
+Latvia,Resource Management Skills,Management of Material Resources,0.093,Europe
+Latvia,Resource Management Skills,Management of Personnel Resources,0.146,Europe
+Lithuania,Basic Skills (Content),Reading Comprehension,0.2,Europe
+Lithuania,Basic Skills (Content),Active Listening,0.154,Europe
+Lithuania,Basic Skills (Content),Writing,0.189,Europe
+Lithuania,Basic Skills (Content),Speaking,0.157,Europe
+Lithuania,Basic Skills (Content),Mathematics Skills,0.155,Europe
+Lithuania,Basic Skills (Content),Science,0.059,Europe
+Lithuania,Basic Skills (Process),Critical Thinking,0.176,Europe
+Lithuania,Basic Skills (Process),Active Learning,0.163,Europe
+Lithuania,Basic Skills (Process),Learning Strategies,0.12,Europe
+Lithuania,Basic Skills (Process),Monitoring,0.165,Europe
+Lithuania,Social Skills,Social Perceptiveness,0.105,Europe
+Lithuania,Social Skills,Coordination,0.101,Europe
+Lithuania,Social Skills,Persuasion,0.124,Europe
+Lithuania,Social Skills,Negotiation,0.121,Europe
+Lithuania,Social Skills,Instructing,0.111,Europe
+Lithuania,Social Skills,Service Orientation,0.043,Europe
+Lithuania,Complex Problem Solving Skills,Complex Problem Solving,0.179,Europe
+Lithuania,Technical Skills,Operations Analysis,0.197,Europe
+Lithuania,Technical Skills,Technology Design,0.079,Europe
+Lithuania,Technical Skills,Equipment Selection,-0.028,Europe
+Lithuania,Technical Skills,Installation,-0.011,Europe
+Lithuania,Technical Skills,Programming,0.122,Europe
+Lithuania,Technical Skills,Operation Monitoring,0.025,Europe
+Lithuania,Technical Skills,Operation and Control,-0.063,Europe
+Lithuania,Technical Skills,Equipment Maintenance,-0.063,Europe
+Lithuania,Technical Skills,Troubleshooting,-0.007,Europe
+Lithuania,Technical Skills,Repairing,-0.065,Europe
+Lithuania,Technical Skills,Quality Control Analysis,0.071,Europe
+Lithuania,Systems Skills,Judgment and Decision Making,0.171,Europe
+Lithuania,Systems Skills,Systems Analysis,0.188,Europe
+Lithuania,Systems Skills,Systems Evaluation,0.2,Europe
+Lithuania,Resource Management Skills,Time Management,0.123,Europe
+Lithuania,Resource Management Skills,Management of Financial Resources,0.133,Europe
+Lithuania,Resource Management Skills,Management of Material Resources,0.104,Europe
+Lithuania,Resource Management Skills,Management of Personnel Resources,0.134,Europe
+Luxembourg,Basic Skills (Content),Reading Comprehension,0.359,Europe
+Luxembourg,Basic Skills (Content),Active Listening,0.302,Europe
+Luxembourg,Basic Skills (Content),Writing,0.319,Europe
+Luxembourg,Basic Skills (Content),Speaking,0.284,Europe
+Luxembourg,Basic Skills (Content),Mathematics Skills,0.158,Europe
+Luxembourg,Basic Skills (Content),Science,0.153,Europe
+Luxembourg,Basic Skills (Process),Critical Thinking,0.27,Europe
+Luxembourg,Basic Skills (Process),Active Learning,0.211,Europe
+Luxembourg,Basic Skills (Process),Learning Strategies,0.079,Europe
+Luxembourg,Basic Skills (Process),Monitoring,0.147,Europe
+Luxembourg,Social Skills,Social Perceptiveness,0.188,Europe
+Luxembourg,Social Skills,Coordination,0.096,Europe
+Luxembourg,Social Skills,Persuasion,0.152,Europe
+Luxembourg,Social Skills,Negotiation,0.135,Europe
+Luxembourg,Social Skills,Instructing,0.08,Europe
+Luxembourg,Social Skills,Service Orientation,0.159,Europe
+Luxembourg,Complex Problem Solving Skills,Complex Problem Solving,0.203,Europe
+Luxembourg,Technical Skills,Operations Analysis,0.154,Europe
+Luxembourg,Technical Skills,Technology Design,0.008,Europe
+Luxembourg,Technical Skills,Equipment Selection,-0.076,Europe
+Luxembourg,Technical Skills,Installation,-0.031,Europe
+Luxembourg,Technical Skills,Programming,0.031,Europe
+Luxembourg,Technical Skills,Operation Monitoring,-0.088,Europe
+Luxembourg,Technical Skills,Operation and Control,-0.14,Europe
+Luxembourg,Technical Skills,Equipment Maintenance,-0.102,Europe
+Luxembourg,Technical Skills,Troubleshooting,-0.105,Europe
+Luxembourg,Technical Skills,Repairing,-0.098,Europe
+Luxembourg,Technical Skills,Quality Control Analysis,-0.088,Europe
+Luxembourg,Systems Skills,Judgment and Decision Making,0.224,Europe
+Luxembourg,Systems Skills,Systems Analysis,0.204,Europe
+Luxembourg,Systems Skills,Systems Evaluation,0.172,Europe
+Luxembourg,Resource Management Skills,Time Management,0.155,Europe
+Luxembourg,Resource Management Skills,Management of Financial Resources,0.086,Europe
+Luxembourg,Resource Management Skills,Management of Material Resources,0.027,Europe
+Luxembourg,Resource Management Skills,Management of Personnel Resources,0.094,Europe
+Mexico,Basic Skills (Content),Reading Comprehension,-0.17,Americas
+Mexico,Basic Skills (Content),Active Listening,-0.118,Americas
+Mexico,Basic Skills (Content),Writing,-0.153,Americas
+Mexico,Basic Skills (Content),Speaking,-0.155,Americas
+Mexico,Basic Skills (Content),Mathematics Skills,-0.109,Americas
+Mexico,Basic Skills (Content),Science,-0.054,Americas
+Mexico,Basic Skills (Process),Critical Thinking,-0.112,Americas
+Mexico,Basic Skills (Process),Active Learning,-0.17,Americas
+Mexico,Basic Skills (Process),Learning Strategies,-0.169,Americas
+Mexico,Basic Skills (Process),Monitoring,-0.144,Americas
+Mexico,Social Skills,Social Perceptiveness,-0.159,Americas
+Mexico,Social Skills,Coordination,-0.096,Americas
+Mexico,Social Skills,Persuasion,-0.215,Americas
+Mexico,Social Skills,Negotiation,-0.187,Americas
+Mexico,Social Skills,Instructing,-0.126,Americas
+Mexico,Social Skills,Service Orientation,-0.126,Americas
+Mexico,Complex Problem Solving Skills,Complex Problem Solving,-0.135,Americas
+Mexico,Technical Skills,Operations Analysis,-0.17,Americas
+Mexico,Technical Skills,Technology Design,-0.024,Americas
+Mexico,Technical Skills,Equipment Selection,0.087,Americas
+Mexico,Technical Skills,Installation,0.022,Americas
+Mexico,Technical Skills,Programming,-0.037,Americas
+Mexico,Technical Skills,Operation Monitoring,0.162,Americas
+Mexico,Technical Skills,Operation and Control,0.189,Americas
+Mexico,Technical Skills,Equipment Maintenance,0.125,Americas
+Mexico,Technical Skills,Troubleshooting,0.117,Americas
+Mexico,Technical Skills,Repairing,0.116,Americas
+Mexico,Technical Skills,Quality Control Analysis,0.092,Americas
+Mexico,Systems Skills,Judgment and Decision Making,-0.149,Americas
+Mexico,Systems Skills,Systems Analysis,-0.194,Americas
+Mexico,Systems Skills,Systems Evaluation,-0.218,Americas
+Mexico,Resource Management Skills,Time Management,-0.111,Americas
+Mexico,Resource Management Skills,Management of Financial Resources,-0.234,Americas
+Mexico,Resource Management Skills,Management of Material Resources,-0.166,Americas
+Mexico,Resource Management Skills,Management of Personnel Resources,-0.192,Americas
+Netherlands,Basic Skills (Content),Reading Comprehension,0.43,Europe
+Netherlands,Basic Skills (Content),Active Listening,0.363,Europe
+Netherlands,Basic Skills (Content),Writing,0.439,Europe
+Netherlands,Basic Skills (Content),Speaking,0.375,Europe
+Netherlands,Basic Skills (Content),Mathematics Skills,0.15,Europe
+Netherlands,Basic Skills (Content),Science,0.338,Europe
+Netherlands,Basic Skills (Process),Critical Thinking,0.386,Europe
+Netherlands,Basic Skills (Process),Active Learning,0.43,Europe
+Netherlands,Basic Skills (Process),Learning Strategies,0.392,Europe
+Netherlands,Basic Skills (Process),Monitoring,0.33,Europe
+Netherlands,Social Skills,Social Perceptiveness,0.399,Europe
+Netherlands,Social Skills,Coordination,0.259,Europe
+Netherlands,Social Skills,Persuasion,0.246,Europe
+Netherlands,Social Skills,Negotiation,0.228,Europe
+Netherlands,Social Skills,Instructing,0.356,Europe
+Netherlands,Social Skills,Service Orientation,0.235,Europe
+Netherlands,Complex Problem Solving Skills,Complex Problem Solving,0.36,Europe
+Netherlands,Technical Skills,Operations Analysis,0.293,Europe
+Netherlands,Technical Skills,Technology Design,0.068,Europe
+Netherlands,Technical Skills,Equipment Selection,-0.056,Europe
+Netherlands,Technical Skills,Installation,-0.026,Europe
+Netherlands,Technical Skills,Programming,0.098,Europe
+Netherlands,Technical Skills,Operation Monitoring,-0.083,Europe
+Netherlands,Technical Skills,Operation and Control,-0.192,Europe
+Netherlands,Technical Skills,Equipment Maintenance,-0.138,Europe
+Netherlands,Technical Skills,Troubleshooting,-0.086,Europe
+Netherlands,Technical Skills,Repairing,-0.133,Europe
+Netherlands,Technical Skills,Quality Control Analysis,0.006,Europe
+Netherlands,Systems Skills,Judgment and Decision Making,0.4,Europe
+Netherlands,Systems Skills,Systems Analysis,0.36,Europe
+Netherlands,Systems Skills,Systems Evaluation,0.392,Europe
+Netherlands,Resource Management Skills,Time Management,0.205,Europe
+Netherlands,Resource Management Skills,Management of Financial Resources,0.115,Europe
+Netherlands,Resource Management Skills,Management of Material Resources,0.088,Europe
+Netherlands,Resource Management Skills,Management of Personnel Resources,0.257,Europe
+New Zealand,Basic Skills (Content),Reading Comprehension,0.281,Oceania
+New Zealand,Basic Skills (Content),Active Listening,0.186,Oceania
+New Zealand,Basic Skills (Content),Writing,0.25,Oceania
+New Zealand,Basic Skills (Content),Speaking,0.173,Oceania
+New Zealand,Basic Skills (Content),Mathematics Skills,0.164,Oceania
+New Zealand,Basic Skills (Content),Science,0.226,Oceania
+New Zealand,Basic Skills (Process),Critical Thinking,0.23,Oceania
+New Zealand,Basic Skills (Process),Active Learning,0.255,Oceania
+New Zealand,Basic Skills (Process),Learning Strategies,0.297,Oceania
+New Zealand,Basic Skills (Process),Monitoring,0.198,Oceania
+New Zealand,Social Skills,Social Perceptiveness,0.152,Oceania
+New Zealand,Social Skills,Coordination,0.157,Oceania
+New Zealand,Social Skills,Persuasion,0.062,Oceania
+New Zealand,Social Skills,Negotiation,0.036,Oceania
+New Zealand,Social Skills,Instructing,0.257,Oceania
+New Zealand,Social Skills,Service Orientation,0.117,Oceania
+New Zealand,Complex Problem Solving Skills,Complex Problem Solving,0.224,Oceania
+New Zealand,Technical Skills,Operations Analysis,0.131,Oceania
+New Zealand,Technical Skills,Technology Design,0.085,Oceania
+New Zealand,Technical Skills,Equipment Selection,0.116,Oceania
+New Zealand,Technical Skills,Installation,0.103,Oceania
+New Zealand,Technical Skills,Programming,0.081,Oceania
+New Zealand,Technical Skills,Operation Monitoring,0.127,Oceania
+New Zealand,Technical Skills,Operation and Control,0.087,Oceania
+New Zealand,Technical Skills,Equipment Maintenance,0.114,Oceania
+New Zealand,Technical Skills,Troubleshooting,0.155,Oceania
+New Zealand,Technical Skills,Repairing,0.136,Oceania
+New Zealand,Technical Skills,Quality Control Analysis,0.168,Oceania
+New Zealand,Systems Skills,Judgment and Decision Making,0.24,Oceania
+New Zealand,Systems Skills,Systems Analysis,0.23,Oceania
+New Zealand,Systems Skills,Systems Evaluation,0.239,Oceania
+New Zealand,Resource Management Skills,Time Management,0.166,Oceania
+New Zealand,Resource Management Skills,Management of Financial Resources,-0.034,Oceania
+New Zealand,Resource Management Skills,Management of Material Resources,-0.005,Oceania
+New Zealand,Resource Management Skills,Management of Personnel Resources,0.109,Oceania
+Norway,Basic Skills (Content),Reading Comprehension,0.204,Europe
+Norway,Basic Skills (Content),Active Listening,0.059,Europe
+Norway,Basic Skills (Content),Writing,0.195,Europe
+Norway,Basic Skills (Content),Speaking,0.097,Europe
+Norway,Basic Skills (Content),Mathematics Skills,0.156,Europe
+Norway,Basic Skills (Content),Science,0.162,Europe
+Norway,Basic Skills (Process),Critical Thinking,0.186,Europe
+Norway,Basic Skills (Process),Active Learning,0.208,Europe
+Norway,Basic Skills (Process),Learning Strategies,0.158,Europe
+Norway,Basic Skills (Process),Monitoring,0.142,Europe
+Norway,Social Skills,Social Perceptiveness,0.049,Europe
+Norway,Social Skills,Coordination,0.086,Europe
+Norway,Social Skills,Persuasion,-0.149,Europe
+Norway,Social Skills,Negotiation,-0.095,Europe
+Norway,Social Skills,Instructing,0.092,Europe
+Norway,Social Skills,Service Orientation,-0.126,Europe
+Norway,Complex Problem Solving Skills,Complex Problem Solving,0.202,Europe
+Norway,Technical Skills,Operations Analysis,0.22,Europe
+Norway,Technical Skills,Technology Design,0.069,Europe
+Norway,Technical Skills,Equipment Selection,0.036,Europe
+Norway,Technical Skills,Installation,0.042,Europe
+Norway,Technical Skills,Programming,0.143,Europe
+Norway,Technical Skills,Operation Monitoring,0.077,Europe
+Norway,Technical Skills,Operation and Control,-0.063,Europe
+Norway,Technical Skills,Equipment Maintenance,0.016,Europe
+Norway,Technical Skills,Troubleshooting,0.06,Europe
+Norway,Technical Skills,Repairing,0.013,Europe
+Norway,Technical Skills,Quality Control Analysis,0.111,Europe
+Norway,Systems Skills,Judgment and Decision Making,0.199,Europe
+Norway,Systems Skills,Systems Analysis,0.286,Europe
+Norway,Systems Skills,Systems Evaluation,0.246,Europe
+Norway,Resource Management Skills,Time Management,0.125,Europe
+Norway,Resource Management Skills,Management of Financial Resources,0.128,Europe
+Norway,Resource Management Skills,Management of Material Resources,0.132,Europe
+Norway,Resource Management Skills,Management of Personnel Resources,0.131,Europe
+Poland,Basic Skills (Content),Reading Comprehension,0.009,Europe
+Poland,Basic Skills (Content),Active Listening,0.004,Europe
+Poland,Basic Skills (Content),Writing,0.042,Europe
+Poland,Basic Skills (Content),Speaking,0.004,Europe
+Poland,Basic Skills (Content),Mathematics Skills,-0.007,Europe
+Poland,Basic Skills (Content),Science,0.073,Europe
+Poland,Basic Skills (Process),Critical Thinking,0.036,Europe
+Poland,Basic Skills (Process),Active Learning,0.041,Europe
+Poland,Basic Skills (Process),Learning Strategies,0.081,Europe
+Poland,Basic Skills (Process),Monitoring,0.009,Europe
+Poland,Social Skills,Social Perceptiveness,-0.023,Europe
+Poland,Social Skills,Coordination,-0.045,Europe
+Poland,Social Skills,Persuasion,-0.029,Europe
+Poland,Social Skills,Negotiation,-0.063,Europe
+Poland,Social Skills,Instructing,0.066,Europe
+Poland,Social Skills,Service Orientation,-0.117,Europe
+Poland,Complex Problem Solving Skills,Complex Problem Solving,0.074,Europe
+Poland,Technical Skills,Operations Analysis,0.087,Europe
+Poland,Technical Skills,Technology Design,0.067,Europe
+Poland,Technical Skills,Equipment Selection,0.067,Europe
+Poland,Technical Skills,Installation,0,Europe
+Poland,Technical Skills,Programming,0.139,Europe
+Poland,Technical Skills,Operation Monitoring,0.095,Europe
+Poland,Technical Skills,Operation and Control,0.097,Europe
+Poland,Technical Skills,Equipment Maintenance,0.117,Europe
+Poland,Technical Skills,Troubleshooting,0.11,Europe
+Poland,Technical Skills,Repairing,0.12,Europe
+Poland,Technical Skills,Quality Control Analysis,0.108,Europe
+Poland,Systems Skills,Judgment and Decision Making,0.046,Europe
+Poland,Systems Skills,Systems Analysis,0.092,Europe
+Poland,Systems Skills,Systems Evaluation,0.114,Europe
+Poland,Resource Management Skills,Time Management,-0.026,Europe
+Poland,Resource Management Skills,Management of Financial Resources,-0.078,Europe
+Poland,Resource Management Skills,Management of Material Resources,-0.055,Europe
+Poland,Resource Management Skills,Management of Personnel Resources,0.002,Europe
+Portugal,Basic Skills (Content),Reading Comprehension,0.37,Europe
+Portugal,Basic Skills (Content),Active Listening,0.239,Europe
+Portugal,Basic Skills (Content),Writing,0.387,Europe
+Portugal,Basic Skills (Content),Speaking,0.292,Europe
+Portugal,Basic Skills (Content),Mathematics Skills,0.123,Europe
+Portugal,Basic Skills (Content),Science,0.25,Europe
+Portugal,Basic Skills (Process),Critical Thinking,0.295,Europe
+Portugal,Basic Skills (Process),Active Learning,0.352,Europe
+Portugal,Basic Skills (Process),Learning Strategies,0.419,Europe
+Portugal,Basic Skills (Process),Monitoring,0.287,Europe
+Portugal,Social Skills,Social Perceptiveness,0.254,Europe
+Portugal,Social Skills,Coordination,0.157,Europe
+Portugal,Social Skills,Persuasion,0.115,Europe
+Portugal,Social Skills,Negotiation,0.11,Europe
+Portugal,Social Skills,Instructing,0.347,Europe
+Portugal,Social Skills,Service Orientation,0.064,Europe
+Portugal,Complex Problem Solving Skills,Complex Problem Solving,0.283,Europe
+Portugal,Technical Skills,Operations Analysis,0.221,Europe
+Portugal,Technical Skills,Technology Design,0.06,Europe
+Portugal,Technical Skills,Equipment Selection,-0.002,Europe
+Portugal,Technical Skills,Installation,0.003,Europe
+Portugal,Technical Skills,Programming,0.124,Europe
+Portugal,Technical Skills,Operation Monitoring,0.034,Europe
+Portugal,Technical Skills,Operation and Control,-0.042,Europe
+Portugal,Technical Skills,Equipment Maintenance,-0.014,Europe
+Portugal,Technical Skills,Troubleshooting,0.013,Europe
+Portugal,Technical Skills,Repairing,-0.004,Europe
+Portugal,Technical Skills,Quality Control Analysis,0.039,Europe
+Portugal,Systems Skills,Judgment and Decision Making,0.324,Europe
+Portugal,Systems Skills,Systems Analysis,0.314,Europe
+Portugal,Systems Skills,Systems Evaluation,0.347,Europe
+Portugal,Resource Management Skills,Time Management,0.175,Europe
+Portugal,Resource Management Skills,Management of Financial Resources,0.072,Europe
+Portugal,Resource Management Skills,Management of Material Resources,0.084,Europe
+Portugal,Resource Management Skills,Management of Personnel Resources,0.202,Europe
+Slovak Republic,Basic Skills (Content),Reading Comprehension,0.254,Europe
+Slovak Republic,Basic Skills (Content),Active Listening,0.206,Europe
+Slovak Republic,Basic Skills (Content),Writing,0.207,Europe
+Slovak Republic,Basic Skills (Content),Speaking,0.211,Europe
+Slovak Republic,Basic Skills (Content),Mathematics Skills,0.16,Europe
+Slovak Republic,Basic Skills (Content),Science,0.126,Europe
+Slovak Republic,Basic Skills (Process),Critical Thinking,0.225,Europe
+Slovak Republic,Basic Skills (Process),Active Learning,0.194,Europe
+Slovak Republic,Basic Skills (Process),Learning Strategies,0.148,Europe
+Slovak Republic,Basic Skills (Process),Monitoring,0.18,Europe
+Slovak Republic,Social Skills,Social Perceptiveness,0.159,Europe
+Slovak Republic,Social Skills,Coordination,0.164,Europe
+Slovak Republic,Social Skills,Persuasion,0.174,Europe
+Slovak Republic,Social Skills,Negotiation,0.169,Europe
+Slovak Republic,Social Skills,Instructing,0.146,Europe
+Slovak Republic,Social Skills,Service Orientation,0.126,Europe
+Slovak Republic,Complex Problem Solving Skills,Complex Problem Solving,0.186,Europe
+Slovak Republic,Technical Skills,Operations Analysis,0.159,Europe
+Slovak Republic,Technical Skills,Technology Design,0.078,Europe
+Slovak Republic,Technical Skills,Equipment Selection,0.014,Europe
+Slovak Republic,Technical Skills,Installation,0.037,Europe
+Slovak Republic,Technical Skills,Programming,0.119,Europe
+Slovak Republic,Technical Skills,Operation Monitoring,0.025,Europe
+Slovak Republic,Technical Skills,Operation and Control,-0.026,Europe
+Slovak Republic,Technical Skills,Equipment Maintenance,-0.014,Europe
+Slovak Republic,Technical Skills,Troubleshooting,0.032,Europe
+Slovak Republic,Technical Skills,Repairing,0.01,Europe
+Slovak Republic,Technical Skills,Quality Control Analysis,0.064,Europe
+Slovak Republic,Systems Skills,Judgment and Decision Making,0.188,Europe
+Slovak Republic,Systems Skills,Systems Analysis,0.203,Europe
+Slovak Republic,Systems Skills,Systems Evaluation,0.206,Europe
+Slovak Republic,Resource Management Skills,Time Management,0.155,Europe
+Slovak Republic,Resource Management Skills,Management of Financial Resources,0.135,Europe
+Slovak Republic,Resource Management Skills,Management of Material Resources,0.117,Europe
+Slovak Republic,Resource Management Skills,Management of Personnel Resources,0.181,Europe
+Slovenia,Basic Skills (Content),Reading Comprehension,0.152,Europe
+Slovenia,Basic Skills (Content),Active Listening,0.133,Europe
+Slovenia,Basic Skills (Content),Writing,0.096,Europe
+Slovenia,Basic Skills (Content),Speaking,0.114,Europe
+Slovenia,Basic Skills (Content),Mathematics Skills,0.069,Europe
+Slovenia,Basic Skills (Content),Science,0.119,Europe
+Slovenia,Basic Skills (Process),Critical Thinking,0.079,Europe
+Slovenia,Basic Skills (Process),Active Learning,0.055,Europe
+Slovenia,Basic Skills (Process),Learning Strategies,0.012,Europe
+Slovenia,Basic Skills (Process),Monitoring,0.002,Europe
+Slovenia,Social Skills,Social Perceptiveness,0.061,Europe
+Slovenia,Social Skills,Coordination,0.003,Europe
+Slovenia,Social Skills,Persuasion,0.114,Europe
+Slovenia,Social Skills,Negotiation,0.091,Europe
+Slovenia,Social Skills,Instructing,0.031,Europe
+Slovenia,Social Skills,Service Orientation,0.183,Europe
+Slovenia,Complex Problem Solving Skills,Complex Problem Solving,0.021,Europe
+Slovenia,Technical Skills,Operations Analysis,0.006,Europe
+Slovenia,Technical Skills,Technology Design,0.057,Europe
+Slovenia,Technical Skills,Equipment Selection,-0.064,Europe
+Slovenia,Technical Skills,Installation,-0.017,Europe
+Slovenia,Technical Skills,Programming,0.061,Europe
+Slovenia,Technical Skills,Operation Monitoring,-0.129,Europe
+Slovenia,Technical Skills,Operation and Control,-0.169,Europe
+Slovenia,Technical Skills,Equipment Maintenance,-0.138,Europe
+Slovenia,Technical Skills,Troubleshooting,-0.097,Europe
+Slovenia,Technical Skills,Repairing,-0.131,Europe
+Slovenia,Technical Skills,Quality Control Analysis,-0.073,Europe
+Slovenia,Systems Skills,Judgment and Decision Making,0.021,Europe
+Slovenia,Systems Skills,Systems Analysis,0.002,Europe
+Slovenia,Systems Skills,Systems Evaluation,-0.008,Europe
+Slovenia,Resource Management Skills,Time Management,0.017,Europe
+Slovenia,Resource Management Skills,Management of Financial Resources,-0.076,Europe
+Slovenia,Resource Management Skills,Management of Material Resources,-0.059,Europe
+Slovenia,Resource Management Skills,Management of Personnel Resources,-0.049,Europe
+Spain,Basic Skills (Content),Reading Comprehension,0.475,Europe
+Spain,Basic Skills (Content),Active Listening,0.335,Europe
+Spain,Basic Skills (Content),Writing,0.433,Europe
+Spain,Basic Skills (Content),Speaking,0.364,Europe
+Spain,Basic Skills (Content),Mathematics Skills,0.269,Europe
+Spain,Basic Skills (Content),Science,0.175,Europe
+Spain,Basic Skills (Process),Critical Thinking,0.332,Europe
+Spain,Basic Skills (Process),Active Learning,0.328,Europe
+Spain,Basic Skills (Process),Learning Strategies,0.335,Europe
+Spain,Basic Skills (Process),Monitoring,0.234,Europe
+Spain,Social Skills,Social Perceptiveness,0.197,Europe
+Spain,Social Skills,Coordination,0.166,Europe
+Spain,Social Skills,Persuasion,0.177,Europe
+Spain,Social Skills,Negotiation,0.169,Europe
+Spain,Social Skills,Instructing,0.28,Europe
+Spain,Social Skills,Service Orientation,0.133,Europe
+Spain,Complex Problem Solving Skills,Complex Problem Solving,0.256,Europe
+Spain,Technical Skills,Operations Analysis,0.169,Europe
+Spain,Technical Skills,Technology Design,0.074,Europe
+Spain,Technical Skills,Equipment Selection,0.007,Europe
+Spain,Technical Skills,Installation,0.07,Europe
+Spain,Technical Skills,Programming,0.1,Europe
+Spain,Technical Skills,Operation Monitoring,-0.034,Europe
+Spain,Technical Skills,Operation and Control,-0.081,Europe
+Spain,Technical Skills,Equipment Maintenance,-0.018,Europe
+Spain,Technical Skills,Troubleshooting,-0.006,Europe
+Spain,Technical Skills,Repairing,0.014,Europe
+Spain,Technical Skills,Quality Control Analysis,0.002,Europe
+Spain,Systems Skills,Judgment and Decision Making,0.299,Europe
+Spain,Systems Skills,Systems Analysis,0.306,Europe
+Spain,Systems Skills,Systems Evaluation,0.302,Europe
+Spain,Resource Management Skills,Time Management,0.191,Europe
+Spain,Resource Management Skills,Management of Financial Resources,0.028,Europe
+Spain,Resource Management Skills,Management of Material Resources,0.031,Europe
+Spain,Resource Management Skills,Management of Personnel Resources,0.124,Europe
+Sweden,Basic Skills (Content),Reading Comprehension,0.321,Europe
+Sweden,Basic Skills (Content),Active Listening,0.266,Europe
+Sweden,Basic Skills (Content),Writing,0.298,Europe
+Sweden,Basic Skills (Content),Speaking,0.309,Europe
+Sweden,Basic Skills (Content),Mathematics Skills,0.089,Europe
+Sweden,Basic Skills (Content),Science,0.083,Europe
+Sweden,Basic Skills (Process),Critical Thinking,0.234,Europe
+Sweden,Basic Skills (Process),Active Learning,0.281,Europe
+Sweden,Basic Skills (Process),Learning Strategies,0.389,Europe
+Sweden,Basic Skills (Process),Monitoring,0.254,Europe
+Sweden,Social Skills,Social Perceptiveness,0.304,Europe
+Sweden,Social Skills,Coordination,0.206,Europe
+Sweden,Social Skills,Persuasion,0.161,Europe
+Sweden,Social Skills,Negotiation,0.151,Europe
+Sweden,Social Skills,Instructing,0.317,Europe
+Sweden,Social Skills,Service Orientation,0.225,Europe
+Sweden,Complex Problem Solving Skills,Complex Problem Solving,0.174,Europe
+Sweden,Technical Skills,Operations Analysis,0.07,Europe
+Sweden,Technical Skills,Technology Design,0.005,Europe
+Sweden,Technical Skills,Equipment Selection,-0.08,Europe
+Sweden,Technical Skills,Installation,-0.016,Europe
+Sweden,Technical Skills,Programming,0.038,Europe
+Sweden,Technical Skills,Operation Monitoring,-0.178,Europe
+Sweden,Technical Skills,Operation and Control,-0.221,Europe
+Sweden,Technical Skills,Equipment Maintenance,-0.155,Europe
+Sweden,Technical Skills,Troubleshooting,-0.137,Europe
+Sweden,Technical Skills,Repairing,-0.139,Europe
+Sweden,Technical Skills,Quality Control Analysis,-0.102,Europe
+Sweden,Systems Skills,Judgment and Decision Making,0.253,Europe
+Sweden,Systems Skills,Systems Analysis,0.181,Europe
+Sweden,Systems Skills,Systems Evaluation,0.207,Europe
+Sweden,Resource Management Skills,Time Management,0.193,Europe
+Sweden,Resource Management Skills,Management of Financial Resources,0.01,Europe
+Sweden,Resource Management Skills,Management of Material Resources,0.041,Europe
+Sweden,Resource Management Skills,Management of Personnel Resources,0.155,Europe
+Switzerland,Basic Skills (Content),Reading Comprehension,0.144,Europe
+Switzerland,Basic Skills (Content),Active Listening,0.145,Europe
+Switzerland,Basic Skills (Content),Writing,0.149,Europe
+Switzerland,Basic Skills (Content),Speaking,0.164,Europe
+Switzerland,Basic Skills (Content),Mathematics Skills,0.012,Europe
+Switzerland,Basic Skills (Content),Science,0.145,Europe
+Switzerland,Basic Skills (Process),Critical Thinking,0.139,Europe
+Switzerland,Basic Skills (Process),Active Learning,0.119,Europe
+Switzerland,Basic Skills (Process),Learning Strategies,0.175,Europe
+Switzerland,Basic Skills (Process),Monitoring,0.143,Europe
+Switzerland,Social Skills,Social Perceptiveness,0.183,Europe
+Switzerland,Social Skills,Coordination,0.12,Europe
+Switzerland,Social Skills,Persuasion,0.033,Europe
+Switzerland,Social Skills,Negotiation,0.034,Europe
+Switzerland,Social Skills,Instructing,0.147,Europe
+Switzerland,Social Skills,Service Orientation,0.09,Europe
+Switzerland,Complex Problem Solving Skills,Complex Problem Solving,0.101,Europe
+Switzerland,Technical Skills,Operations Analysis,0.039,Europe
+Switzerland,Technical Skills,Technology Design,-0.002,Europe
+Switzerland,Technical Skills,Equipment Selection,0.005,Europe
+Switzerland,Technical Skills,Installation,0.02,Europe
+Switzerland,Technical Skills,Programming,-0.022,Europe
+Switzerland,Technical Skills,Operation Monitoring,0.075,Europe
+Switzerland,Technical Skills,Operation and Control,0.06,Europe
+Switzerland,Technical Skills,Equipment Maintenance,0.033,Europe
+Switzerland,Technical Skills,Troubleshooting,0.049,Europe
+Switzerland,Technical Skills,Repairing,0.048,Europe
+Switzerland,Technical Skills,Quality Control Analysis,0.035,Europe
+Switzerland,Systems Skills,Judgment and Decision Making,0.121,Europe
+Switzerland,Systems Skills,Systems Analysis,0.097,Europe
+Switzerland,Systems Skills,Systems Evaluation,0.104,Europe
+Switzerland,Resource Management Skills,Time Management,0.123,Europe
+Switzerland,Resource Management Skills,Management of Financial Resources,0.013,Europe
+Switzerland,Resource Management Skills,Management of Material Resources,0.028,Europe
+Switzerland,Resource Management Skills,Management of Personnel Resources,0.096,Europe
+Turkey,Basic Skills (Content),Reading Comprehension,-0.076,Asia
+Turkey,Basic Skills (Content),Active Listening,0.008,Asia
+Turkey,Basic Skills (Content),Writing,-0.055,Asia
+Turkey,Basic Skills (Content),Speaking,-0.017,Asia
+Turkey,Basic Skills (Content),Mathematics Skills,-0.119,Asia
+Turkey,Basic Skills (Content),Science,0.108,Asia
+Turkey,Basic Skills (Process),Critical Thinking,0.004,Asia
+Turkey,Basic Skills (Process),Active Learning,-0.025,Asia
+Turkey,Basic Skills (Process),Learning Strategies,-0.007,Asia
+Turkey,Basic Skills (Process),Monitoring,0.011,Asia
+Turkey,Social Skills,Social Perceptiveness,0.029,Asia
+Turkey,Social Skills,Coordination,0.029,Asia
+Turkey,Social Skills,Persuasion,-0.041,Asia
+Turkey,Social Skills,Negotiation,-0.085,Asia
+Turkey,Social Skills,Instructing,0.033,Asia
+Turkey,Social Skills,Service Orientation,-0.026,Asia
+Turkey,Complex Problem Solving Skills,Complex Problem Solving,-0.024,Asia
+Turkey,Technical Skills,Operations Analysis,-0.104,Asia
+Turkey,Technical Skills,Technology Design,-0.024,Asia
+Turkey,Technical Skills,Equipment Selection,0.124,Asia
+Turkey,Technical Skills,Installation,-0.013,Asia
+Turkey,Technical Skills,Programming,-0.024,Asia
+Turkey,Technical Skills,Operation Monitoring,0.183,Asia
+Turkey,Technical Skills,Operation and Control,0.231,Asia
+Turkey,Technical Skills,Equipment Maintenance,0.182,Asia
+Turkey,Technical Skills,Troubleshooting,0.161,Asia
+Turkey,Technical Skills,Repairing,0.194,Asia
+Turkey,Technical Skills,Quality Control Analysis,0.146,Asia
+Turkey,Systems Skills,Judgment and Decision Making,-0.024,Asia
+Turkey,Systems Skills,Systems Analysis,-0.073,Asia
+Turkey,Systems Skills,Systems Evaluation,-0.078,Asia
+Turkey,Resource Management Skills,Time Management,-0.039,Asia
+Turkey,Resource Management Skills,Management of Financial Resources,-0.135,Asia
+Turkey,Resource Management Skills,Management of Material Resources,-0.092,Asia
+Turkey,Resource Management Skills,Management of Personnel Resources,-0.004,Asia
+United Kingdom,Basic Skills (Content),Reading Comprehension,0.053,Europe
+United Kingdom,Basic Skills (Content),Active Listening,0.015,Europe
+United Kingdom,Basic Skills (Content),Writing,0.037,Europe
+United Kingdom,Basic Skills (Content),Speaking,0.006,Europe
+United Kingdom,Basic Skills (Content),Mathematics Skills,0.068,Europe
+United Kingdom,Basic Skills (Content),Science,0.15,Europe
+United Kingdom,Basic Skills (Process),Critical Thinking,0.065,Europe
+United Kingdom,Basic Skills (Process),Active Learning,0.099,Europe
+United Kingdom,Basic Skills (Process),Learning Strategies,0.1,Europe
+United Kingdom,Basic Skills (Process),Monitoring,0.066,Europe
+United Kingdom,Social Skills,Social Perceptiveness,0.048,Europe
+United Kingdom,Social Skills,Coordination,0.035,Europe
+United Kingdom,Social Skills,Persuasion,-0.012,Europe
+United Kingdom,Social Skills,Negotiation,-0.029,Europe
+United Kingdom,Social Skills,Instructing,0.076,Europe
+United Kingdom,Social Skills,Service Orientation,0.035,Europe
+United Kingdom,Complex Problem Solving Skills,Complex Problem Solving,0.091,Europe
+United Kingdom,Technical Skills,Operations Analysis,0.084,Europe
+United Kingdom,Technical Skills,Technology Design,0.052,Europe
+United Kingdom,Technical Skills,Equipment Selection,0.078,Europe
+United Kingdom,Technical Skills,Installation,0.069,Europe
+United Kingdom,Technical Skills,Programming,-0.003,Europe
+United Kingdom,Technical Skills,Operation Monitoring,0.102,Europe
+United Kingdom,Technical Skills,Operation and Control,0.071,Europe
+United Kingdom,Technical Skills,Equipment Maintenance,0.1,Europe
+United Kingdom,Technical Skills,Troubleshooting,0.127,Europe
+United Kingdom,Technical Skills,Repairing,0.108,Europe
+United Kingdom,Technical Skills,Quality Control Analysis,0.109,Europe
+United Kingdom,Systems Skills,Judgment and Decision Making,0.092,Europe
+United Kingdom,Systems Skills,Systems Analysis,0.071,Europe
+United Kingdom,Systems Skills,Systems Evaluation,0.066,Europe
+United Kingdom,Resource Management Skills,Time Management,0.064,Europe
+United Kingdom,Resource Management Skills,Management of Financial Resources,0.04,Europe
+United Kingdom,Resource Management Skills,Management of Material Resources,0.053,Europe
+United Kingdom,Resource Management Skills,Management of Personnel Resources,0.023,Europe
+United States,Basic Skills (Content),Reading Comprehension,0.092,Americas
+United States,Basic Skills (Content),Active Listening,0.107,Americas
+United States,Basic Skills (Content),Writing,0.082,Americas
+United States,Basic Skills (Content),Speaking,0.116,Americas
+United States,Basic Skills (Content),Mathematics Skills,0.09,Americas
+United States,Basic Skills (Content),Science,0.074,Americas
+United States,Basic Skills (Process),Critical Thinking,0.083,Americas
+United States,Basic Skills (Process),Active Learning,0.102,Americas
+United States,Basic Skills (Process),Learning Strategies,0.116,Americas
+United States,Basic Skills (Process),Monitoring,0.068,Americas
+United States,Social Skills,Social Perceptiveness,0.105,Americas
+United States,Social Skills,Coordination,0.066,Americas
+United States,Social Skills,Persuasion,0.115,Americas
+United States,Social Skills,Negotiation,0.088,Americas
+United States,Social Skills,Instructing,0.127,Americas
+United States,Social Skills,Service Orientation,0.159,Americas
+United States,Complex Problem Solving Skills,Complex Problem Solving,0.057,Americas
+United States,Technical Skills,Operations Analysis,0.046,Americas
+United States,Technical Skills,Technology Design,0.012,Americas
+United States,Technical Skills,Equipment Selection,-0.05,Americas
+United States,Technical Skills,Installation,-0.022,Americas
+United States,Technical Skills,Programming,-0.002,Americas
+United States,Technical Skills,Operation Monitoring,-0.103,Americas
+United States,Technical Skills,Operation and Control,-0.144,Americas
+United States,Technical Skills,Equipment Maintenance,-0.104,Americas
+United States,Technical Skills,Troubleshooting,-0.084,Americas
+United States,Technical Skills,Repairing,-0.092,Americas
+United States,Technical Skills,Quality Control Analysis,-0.052,Americas
+United States,Systems Skills,Judgment and Decision Making,0.066,Americas
+United States,Systems Skills,Systems Analysis,0.054,Americas
+United States,Systems Skills,Systems Evaluation,0.068,Americas
+United States,Resource Management Skills,Time Management,0.049,Americas
+United States,Resource Management Skills,Management of Financial Resources,0.034,Americas
+United States,Resource Management Skills,Management of Material Resources,0.024,Americas
+United States,Resource Management Skills,Management of Personnel Resources,0.091,Americas
+European Union,Basic Skills (Content),Reading Comprehension,0.294,NA
+European Union,Basic Skills (Content),Active Listening,0.236,NA
+European Union,Basic Skills (Content),Writing,0.277,NA
+European Union,Basic Skills (Content),Speaking,0.25,NA
+European Union,Basic Skills (Content),Mathematics Skills,0.148,NA
+European Union,Basic Skills (Content),Science,0.168,NA
+European Union,Basic Skills (Process),Critical Thinking,0.241,NA
+European Union,Basic Skills (Process),Active Learning,0.244,NA
+European Union,Basic Skills (Process),Learning Strategies,0.242,NA
+European Union,Basic Skills (Process),Monitoring,0.192,NA
+European Union,Social Skills,Social Perceptiveness,0.194,NA
+European Union,Social Skills,Coordination,0.132,NA
+European Union,Social Skills,Persuasion,0.152,NA
+European Union,Social Skills,Negotiation,0.137,NA
+European Union,Social Skills,Instructing,0.211,NA
+European Union,Social Skills,Service Orientation,0.13,NA
+European Union,Complex Problem Solving Skills,Complex Problem Solving,0.206,NA
+European Union,Technical Skills,Operations Analysis,0.157,NA
+European Union,Technical Skills,Technology Design,0.062,NA
+European Union,Technical Skills,Equipment Selection,-0.024,NA
+European Union,Technical Skills,Installation,-0.001,NA
+European Union,Technical Skills,Programming,0.081,NA
+European Union,Technical Skills,Operation Monitoring,-0.039,NA
+European Union,Technical Skills,Operation and Control,-0.105,NA
+European Union,Technical Skills,Equipment Maintenance,-0.063,NA
+European Union,Technical Skills,Troubleshooting,-0.033,NA
+European Union,Technical Skills,Repairing,-0.05,NA
+European Union,Technical Skills,Quality Control Analysis,0.004,NA
+European Union,Systems Skills,Judgment and Decision Making,0.228,NA
+European Union,Systems Skills,Systems Analysis,0.214,NA
+European Union,Systems Skills,Systems Evaluation,0.222,NA
+European Union,Resource Management Skills,Time Management,0.149,NA
+European Union,Resource Management Skills,Management of Financial Resources,0.06,NA
+European Union,Resource Management Skills,Management of Material Resources,0.054,NA
+European Union,Resource Management Skills,Management of Personnel Resources,0.135,NA
+OECD,Basic Skills (Content),Reading Comprehension,0.242,NA
+OECD,Basic Skills (Content),Active Listening,0.198,NA
+OECD,Basic Skills (Content),Writing,0.23,NA
+OECD,Basic Skills (Content),Speaking,0.207,NA
+OECD,Basic Skills (Content),Mathematics Skills,0.123,NA
+OECD,Basic Skills (Content),Science,0.148,NA
+OECD,Basic Skills (Process),Critical Thinking,0.209,NA
+OECD,Basic Skills (Process),Active Learning,0.207,NA
+OECD,Basic Skills (Process),Learning Strategies,0.205,NA
+OECD,Basic Skills (Process),Monitoring,0.168,NA
+OECD,Social Skills,Social Perceptiveness,0.164,NA
+OECD,Social Skills,Coordination,0.122,NA
+OECD,Social Skills,Persuasion,0.112,NA
+OECD,Social Skills,Negotiation,0.103,NA
+OECD,Social Skills,Instructing,0.182,NA
+OECD,Social Skills,Service Orientation,0.1,NA
+OECD,Complex Problem Solving Skills,Complex Problem Solving,0.177,NA
+OECD,Technical Skills,Operations Analysis,0.128,NA
+OECD,Technical Skills,Technology Design,0.049,NA
+OECD,Technical Skills,Equipment Selection,-0.002,NA
+OECD,Technical Skills,Installation,0.009,NA
+OECD,Technical Skills,Programming,0.065,NA
+OECD,Technical Skills,Operation Monitoring,0.002,NA
+OECD,Technical Skills,Operation and Control,-0.051,NA
+OECD,Technical Skills,Equipment Maintenance,-0.025,NA
+OECD,Technical Skills,Troubleshooting,0.003,NA
+OECD,Technical Skills,Repairing,-0.012,NA
+OECD,Technical Skills,Quality Control Analysis,0.03,NA
+OECD,Systems Skills,Judgment and Decision Making,0.194,NA
+OECD,Systems Skills,Systems Analysis,0.181,NA
+OECD,Systems Skills,Systems Evaluation,0.187,NA
+OECD,Resource Management Skills,Time Management,0.131,NA
+OECD,Resource Management Skills,Management of Financial Resources,0.049,NA
+OECD,Resource Management Skills,Management of Material Resources,0.048,NA
+OECD,Resource Management Skills,Management of Personnel Resources,0.123,NA

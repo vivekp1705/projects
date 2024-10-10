@@ -1,0 +1,968 @@
+<?xml version="1.0"?>
+<AlteryxDocument yxmdVer="2022.3">
+  <Nodes>
+    <Node ToolID="30">
+      <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+        <Position x="67" y="54" width="1104" height="108" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Text>Data cleaning for portfolio analysis by Soundarya, Valeriia, Vivek and Yifei</Text>
+          <Font name="Arial" size="27.75" style="0" />
+          <TextColor name="Black" />
+          <FillColor name="White" />
+          <Shape shape="0" />
+          <Justification Justification="4" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="29">
+      <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+        <Position x="268" y="173" width="608" height="686" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Caption>Data Preparation</Caption>
+          <Style TextColor="#314c4a" FillColor="#ffb7b7" BorderColor="#000000" Transparency="25" Margin="25" />
+          <Disabled value="False" />
+          <Folded value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <ChildNodes>
+        <Node ToolID="3">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.CrossTab.CrossTab">
+            <Position x="307" y="321" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <GroupFields>
+                <Field field="ticker" />
+              </GroupFields>
+              <HeaderField field="Name" />
+              <DataField field="Value" />
+              <Methods>
+                <Method method="First" />
+                <Separator>,</Separator>
+                <FieldSize value="2048" />
+              </Methods>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="ticker" size="254" source="CrossTab:Group:First:" type="V_String" />
+                <Field name="ActualDate" size="254" source="File: C:\Users\Sakthi Sound\Documents\Eric PWC\Use case\Working files-20230106T133420Z-001 (1)\Working files\Portfolio5\System_file.csv" type="V_String" />
+                <Field name="actualPreviousClosePrice" size="254" source="File: C:\Users\Sakthi Sound\Documents\Eric PWC\Use case\Working files-20230106T133420Z-001 (1)\Working files\Portfolio5\System_file.csv" type="V_String" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxCrossTab" />
+        </Node>
+        <Node ToolID="8">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+            <Position x="320" y="454" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <OrderChanged value="False" />
+              <CommaDecimal value="False" />
+              <SelectFields>
+                <SelectField field="F7" selected="False" />
+                <SelectField field="F8" selected="False" />
+                <SelectField field="F9" selected="False" />
+                <SelectField field="F10" selected="False" />
+                <SelectField field="F11" selected="False" />
+                <SelectField field="FileName" selected="False" />
+                <SelectField field="*Unknown" selected="True" />
+              </SelectFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+        </Node>
+        <Node ToolID="20">
+          <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+            <Position x="293" y="222" width="143" height="96" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Text>Pivoting the orientation of data in "Name" column by moving vertical data fields onto a horizontal axis as "actualPreviousClosePrice" and  "ActualDate"</Text>
+              <Font name="Arial" size="8.25" style="0" />
+              <TextColor name="Black" />
+              <FillColor name="White" />
+              <Shape shape="0" />
+              <Justification Justification="4" />
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="9">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.Join.Join">
+            <Position x="416" y="335" />
+          </GuiSettings>
+          <Properties>
+            <Configuration joinByRecordPos="False">
+              <JoinInfo connection="Left">
+                <Field field="ticker" />
+                <Field field="ticker" />
+              </JoinInfo>
+              <JoinInfo connection="Right">
+                <Field field="ticker" />
+                <Field field="ticker" />
+              </JoinInfo>
+              <SelectConfiguration>
+                <Configuration outputConnection="Join">
+                  <OrderChanged value="True" />
+                  <CommaDecimal value="False" />
+                  <SelectFields>
+                    <SelectField field="Left_ticker" selected="True" input="Left_" />
+                    <SelectField field="Right_ticker" selected="False" rename="Right_ticker" input="Right_" />
+                    <SelectField field="Right_buyPrice" selected="True" input="Right_" />
+                    <SelectField field="Right_buyQuantity" selected="True" input="Right_" />
+                    <SelectField field="Right_buyValuation" selected="True" input="Right_" />
+                    <SelectField field="Right_buyDate" selected="True" input="Right_" />
+                    <SelectField field="Left_actualPreviousClosePrice" selected="True" input="Left_" />
+                    <SelectField field="Left_ActualDate" selected="True" input="Left_" />
+                    <SelectField field="Right_Ally Financial Inc." selected="True" input="Right_" />
+                    <SelectField field="Right_ALLY" selected="True" input="Right_" />
+                    <SelectField field="Right_35.65999985" selected="True" input="Right_" />
+                    <SelectField field="Right_88" selected="True" input="Right_" />
+                    <SelectField field="Right_3138,079987" selected="True" input="Right_" />
+                    <SelectField field="Right_2020-12-31T00:00:00.000Z" selected="True" input="Right_" />
+                    <SelectField field="*Unknown" selected="True" />
+                  </SelectFields>
+                </Configuration>
+              </SelectConfiguration>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxJoin" />
+        </Node>
+        <Node ToolID="15">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.Unique.Unique">
+            <Position x="500" y="458" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <UniqueFields>
+                <Field field="ticker" />
+                <Field field="buyPrice" />
+                <Field field="buyQuantity" />
+                <Field field="buyValuation" />
+                <Field field="buyDate" />
+              </UniqueFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxUnique" />
+        </Node>
+        <Node ToolID="16">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.Filter.Filter">
+            <Position x="607" y="450" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Expression>[buyPrice] = "0"
+OR
+[buyQuantity] ="0"</Expression>
+              <Mode>Custom</Mode>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <AnnotationText><![CDATA[ ]]></AnnotationText>
+              <DefaultAnnotationText>[buyPrice] = "0"
+OR
+[buyQuantity] ="0"</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFilter" />
+        </Node>
+        <Node ToolID="24">
+          <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+            <Position x="595" y="522" width="100" height="60" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Text>Removing the null values of "Buy Quantity" and "Buy Price"</Text>
+              <Font name="Arial" size="8.25" style="0" />
+              <TextColor name="Black" />
+              <FillColor name="White" />
+              <Shape shape="0" />
+              <Justification Justification="4" />
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="23">
+          <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+            <Position x="475" y="542" width="100" height="40" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Text>We use unique in order to omit the duplicates</Text>
+              <Font name="Arial" size="8.25" style="0" />
+              <TextColor name="Black" />
+              <FillColor name="White" />
+              <Shape shape="0" />
+              <Justification Justification="4" />
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="21">
+          <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+            <Position x="331" y="516" width="100" height="84" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Text>We select only the required columns by unchecking the boxes which are not required</Text>
+              <Font name="Arial" size="8.25" style="0" />
+              <TextColor name="Black" />
+              <FillColor name="White" />
+              <Shape shape="0" />
+              <Justification Justification="4" />
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="22">
+          <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+            <Position x="464" y="278" width="100" height="72" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Text>We are using joins to combine the data from these two input files</Text>
+              <Font name="Arial" size="8.25" style="0" />
+              <TextColor name="Black" />
+              <FillColor name="White" />
+              <Shape shape="0" />
+              <Justification Justification="4" />
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="31">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+            <Position x="691" y="462" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <OrderChanged value="True" />
+              <CommaDecimal value="False" />
+              <SelectFields>
+                <SelectField field="Name" selected="True" />
+                <SelectField field="ticker" selected="True" />
+                <SelectField field="buyPrice" selected="True" />
+                <SelectField field="buyQuantity" selected="True" />
+                <SelectField field="buyValuation" selected="True" />
+                <SelectField field="buyDate" selected="True" />
+                <SelectField field="actualPreviousClosePrice" selected="False" />
+                <SelectField field="ActualDate" selected="False" />
+                <SelectField field="*Unknown" selected="True" />
+              </SelectFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+        </Node>
+        <Node ToolID="33">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.Filter.Filter">
+            <Position x="330" y="642" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Mode>Simple</Mode>
+              <Simple>
+                <Operator>=</Operator>
+                <Field>level_1</Field>
+                <Operands>
+                  <IgnoreTimeInDateTime>True</IgnoreTimeInDateTime>
+                  <DateType>fixed</DateType>
+                  <PeriodDate>2023-01-19 13:10:43</PeriodDate>
+                  <PeriodType>days</PeriodType>
+                  <PeriodCount>0</PeriodCount>
+                  <Operand>2021-12-30</Operand>
+                  <StartDate>2023-01-19 13:10:43</StartDate>
+                  <EndDate>2023-01-19 13:10:43</EndDate>
+                </Operands>
+              </Simple>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>[level_1] = "2021-12-30"</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFilter" />
+        </Node>
+        <Node ToolID="35">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.Join.Join">
+            <Position x="739" y="618" />
+          </GuiSettings>
+          <Properties>
+            <Configuration joinByRecordPos="False">
+              <JoinInfo connection="Left">
+                <Field field="ticker" />
+              </JoinInfo>
+              <JoinInfo connection="Right">
+                <Field field="ticker" />
+              </JoinInfo>
+              <SelectConfiguration>
+                <Configuration outputConnection="Join">
+                  <OrderChanged value="False" />
+                  <CommaDecimal value="False" />
+                  <SelectFields>
+                    <SelectField field="Left_buyDate" selected="False" input="Left_" />
+                    <SelectField field="Right_F1" selected="False" input="Right_" />
+                    <SelectField field="Right_level_0" selected="False" input="Right_" />
+                    <SelectField field="Right_level_1" selected="True" rename="date" input="Right_" />
+                    <SelectField field="Right_open" selected="False" input="Right_" />
+                    <SelectField field="Right_high" selected="False" input="Right_" />
+                    <SelectField field="Right_low" selected="False" input="Right_" />
+                    <SelectField field="Right_close" selected="True" rename="current price" input="Right_" />
+                    <SelectField field="Right_adjclose" selected="False" input="Right_" />
+                    <SelectField field="Right_volume" selected="False" input="Right_" />
+                    <SelectField field="Right_ticker" selected="False" rename="Right_ticker" input="Right_" />
+                    <SelectField field="*Unknown" selected="True" />
+                  </SelectFields>
+                </Configuration>
+              </SelectConfiguration>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxJoin" />
+        </Node>
+        <Node ToolID="40">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.Join.Join">
+            <Position x="763" y="702" />
+          </GuiSettings>
+          <Properties>
+            <Configuration joinByRecordPos="False">
+              <JoinInfo connection="Left">
+                <Field field="ticker" />
+              </JoinInfo>
+              <JoinInfo connection="Right">
+                <Field field="ticker" />
+              </JoinInfo>
+              <SelectConfiguration>
+                <Configuration outputConnection="Join">
+                  <OrderChanged value="False" />
+                  <CommaDecimal value="False" />
+                  <SelectFields>
+                    <SelectField field="Left_Name" selected="True" input="Left_" />
+                    <SelectField field="Left_ticker" selected="True" input="Left_" />
+                    <SelectField field="Right_country" selected="True" input="Right_" />
+                    <SelectField field="Right_currency" selected="True" input="Right_" />
+                    <SelectField field="Right_exchange" selected="True" input="Right_" />
+                    <SelectField field="Right_finnhubIndustry" selected="True" rename="industry" input="Right_" />
+                    <SelectField field="Right_name" selected="False" rename="Right_name" input="Right_" />
+                    <SelectField field="Right_ticker" selected="False" rename="Right_ticker" input="Right_" />
+                    <SelectField field="*Unknown" selected="False" />
+                  </SelectFields>
+                </Configuration>
+              </SelectConfiguration>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxJoin" />
+        </Node>
+        <Node ToolID="42">
+          <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+            <Position x="715" y="510" width="96" height="36" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Text>Selecting the required columns</Text>
+              <Font name="Arial" size="8.25" style="0" />
+              <TextColor name="Black" />
+              <FillColor name="White" />
+              <Shape shape="0" />
+              <Justification Justification="4" />
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="43">
+          <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+            <Position x="667" y="666" width="100" height="48" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Text><![CDATA[joining the period file to match the client portfolio
+]]></Text>
+              <Font name="Arial" size="8.25" style="0" />
+              <TextColor name="Black" />
+              <FillColor name="White" />
+              <Shape shape="0" />
+              <Justification Justification="4" />
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="44">
+          <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+            <Position x="751" y="762" width="100" height="72" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Text><![CDATA[ 
+Matching the industry names with the client portfolio
+]]></Text>
+              <Font name="Arial" size="8.25" style="0" />
+              <TextColor name="Black" />
+              <FillColor name="White" />
+              <Shape shape="0" />
+              <Justification Justification="4" />
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+      </ChildNodes>
+    </Node>
+    <Node ToolID="28">
+      <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+        <Position x="906" y="353" width="263" height="477" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Caption>Formatting and output conso file</Caption>
+          <Style TextColor="#314c4a" FillColor="#c4ffff" BorderColor="#000000" Transparency="25" Margin="25" />
+          <Disabled value="False" />
+          <Folded value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <ChildNodes>
+        <Node ToolID="14">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileOutput.DbFileOutput">
+            <Position x="931" y="498" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <File MaxRecords="" FileFormat="25">_externals\1\output_next2.xlsx|||Sheet1</File>
+              <Passwords />
+              <Disable>False</Disable>
+              <FormatSpecificOptions>
+                <PreserveFormat>False</PreserveFormat>
+                <SkipFieldNames>False</SkipFieldNames>
+                <OutputOption>Overwrite</OutputOption>
+              </FormatSpecificOptions>
+              <MultiFile value="False" />
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>output_next2.xlsx
+Query=Sheet1</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileOutput" />
+        </Node>
+        <Node ToolID="17">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.BrowseV2.BrowseV2">
+            <Position x="943" y="426" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <TempFile>C:\Users\bluff\AppData\Local\Temp\Engine_15744_3ce5b3d401037f45a5bc48f697feffb8_\Engine_15744_5a557f9ae843244684a9b23da5684f54~.yxdb</TempFile>
+              <TempFileDataProfiling />
+              <Layout>
+                <ViewMode>Single</ViewMode>
+                <ViewSize value="100" />
+                <View1>
+                  <DefaultTab>Profile</DefaultTab>
+                  <Hints>
+                    <Table />
+                  </Hints>
+                </View1>
+                <View2 />
+              </Layout>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxBrowseV2" />
+        </Node>
+        <Node ToolID="26">
+          <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+            <Position x="1015" y="498" width="100" height="48" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Text>Exporting the final output to excel sheet</Text>
+              <Font name="Arial" size="8.25" style="0" />
+              <TextColor name="Black" />
+              <FillColor name="White" />
+              <Shape shape="0" />
+              <Justification Justification="4" />
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="25">
+          <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+            <Position x="1015" y="402" width="100" height="72" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Text>Exporting the values to excel sheet for better visualisaton of data</Text>
+              <Font name="Arial" size="8.25" style="0" />
+              <TextColor name="Black" />
+              <FillColor name="White" />
+              <Shape shape="0" />
+              <Justification Justification="4" />
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="36">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileOutput.DbFileOutput">
+            <Position x="931" y="606" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <File MaxRecords="" FileFormat="25">C:\Users\bluff\OneDrive - Burgundy School of Business\BSB\Altreyx\bell\other pwc thing\pwc\output.xlsx|||Sheet1</File>
+              <Passwords />
+              <Disable>False</Disable>
+              <FormatSpecificOptions>
+                <PreserveFormat>False</PreserveFormat>
+                <SkipFieldNames>False</SkipFieldNames>
+                <OutputOption>Overwrite</OutputOption>
+              </FormatSpecificOptions>
+              <MultiFile value="False" />
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>output.xlsx
+Query=Sheet1</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileOutput" />
+        </Node>
+        <Node ToolID="37">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.BrowseV2.BrowseV2">
+            <Position x="1063" y="654" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <TempFile>C:\Users\bluff\AppData\Local\Temp\Engine_15744_3ce5b3d401037f45a5bc48f697feffb8_\Engine_15744_83d650deea8f9645a80d3eaab63b96ad~.yxdb</TempFile>
+              <TempFileDataProfiling />
+              <Layout>
+                <ViewMode>Single</ViewMode>
+                <ViewSize value="100" />
+                <View1>
+                  <DefaultTab>Profile</DefaultTab>
+                  <Hints>
+                    <Table />
+                  </Hints>
+                </View1>
+                <View2 />
+              </Layout>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxBrowseV2" />
+        </Node>
+        <Node ToolID="41">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileOutput.DbFileOutput">
+            <Position x="943" y="714" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <File MaxRecords="" FileFormat="25">C:\Users\bluff\OneDrive - Burgundy School of Business\BSB\Altreyx\bell\other pwc thing\pwc\industry all.xlsx|||Sheet1</File>
+              <Passwords />
+              <Disable>False</Disable>
+              <FormatSpecificOptions>
+                <PreserveFormat>False</PreserveFormat>
+                <SkipFieldNames>False</SkipFieldNames>
+                <OutputOption>Overwrite</OutputOption>
+              </FormatSpecificOptions>
+              <MultiFile value="False" />
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>industry all.xlsx
+Query=Sheet1</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileOutput" />
+        </Node>
+      </ChildNodes>
+    </Node>
+    <Node ToolID="27">
+      <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+        <Position x="54" y="275" width="200" height="630" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Caption>Input files from client</Caption>
+          <Style TextColor="#314c4a" FillColor="#bfffbf" BorderColor="#000000" Transparency="25" Margin="25" />
+          <Disabled value="False" />
+          <Folded value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <ChildNodes>
+        <Node ToolID="2">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileInput.DbFileInput">
+            <Position x="79" y="324" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Passwords />
+              <File RecordLimit="" SearchSubDirs="False" FileFormat="0" OutputFileName="">C:\Users\bluff\OneDrive - Burgundy School of Business\BSB\Altreyx\bell\other pwc thing\pwc\System_file.csv</File>
+              <FormatSpecificOptions>
+                <HeaderRow>True</HeaderRow>
+                <IgnoreErrors>False</IgnoreErrors>
+                <AllowShareWrite>False</AllowShareWrite>
+                <ImportLine>1</ImportLine>
+                <FieldLen>254</FieldLen>
+                <SingleThreadRead>False</SingleThreadRead>
+                <IgnoreQuotes>DoubleQuotes</IgnoreQuotes>
+                <Delimeter>,</Delimeter>
+                <QuoteRecordBreak>False</QuoteRecordBreak>
+                <CodePage>28591</CodePage>
+              </FormatSpecificOptions>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>System_file.csv</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="ticker" size="254" source="File: C:\Users\Sakthi Sound\Documents\Eric PWC\Use case\Working files-20230106T133420Z-001 (1)\Working files\Portfolio5\System_file.csv" type="V_String" />
+                <Field name="Name" size="254" source="File: C:\Users\Sakthi Sound\Documents\Eric PWC\Use case\Working files-20230106T133420Z-001 (1)\Working files\Portfolio5\System_file.csv" type="V_String" />
+                <Field name="Value" size="254" source="File: C:\Users\Sakthi Sound\Documents\Eric PWC\Use case\Working files-20230106T133420Z-001 (1)\Working files\Portfolio5\System_file.csv" type="V_String" />
+                <Field name="RecordID" size="254" source="File: C:\Users\Sakthi Sound\Documents\Eric PWC\Use case\Working files-20230106T133420Z-001 (1)\Working files\Portfolio5\System_file.csv" type="V_String" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileInput" />
+        </Node>
+        <Node ToolID="7">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileInput.DbFileInput">
+            <Position x="79" y="456" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Passwords />
+              <File OutputFileName="Path" RecordLimit="" SearchSubDirs="False" FileFormat="25">C:\Users\bluff\OneDrive - Burgundy School of Business\BSB\Altreyx\bell\other pwc thing\pwc\Client_portfolio.xlsx</File>
+              <FormatSpecificOptions>
+                <FirstRowData>False</FirstRowData>
+                <ImportLine>1</ImportLine>
+              </FormatSpecificOptions>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Client_portfolio.xlsx</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="Name" size="255" source="File: C:\Users\bluff\OneDrive - Burgundy School of Business\BSB\Altreyx\bell\other pwc thing\pwc\Client_portfolio.xlsx" type="V_String" />
+                <Field name="ticker" size="255" source="File: C:\Users\bluff\OneDrive - Burgundy School of Business\BSB\Altreyx\bell\other pwc thing\pwc\Client_portfolio.xlsx" type="V_String" />
+                <Field name="buyPrice" size="255" source="File: C:\Users\bluff\OneDrive - Burgundy School of Business\BSB\Altreyx\bell\other pwc thing\pwc\Client_portfolio.xlsx" type="V_String" />
+                <Field name="buyQuantity" size="255" source="File: C:\Users\bluff\OneDrive - Burgundy School of Business\BSB\Altreyx\bell\other pwc thing\pwc\Client_portfolio.xlsx" type="V_String" />
+                <Field name="buyValuation" size="255" source="File: C:\Users\bluff\OneDrive - Burgundy School of Business\BSB\Altreyx\bell\other pwc thing\pwc\Client_portfolio.xlsx" type="V_String" />
+                <Field name="buyDate" size="255" source="File: C:\Users\bluff\OneDrive - Burgundy School of Business\BSB\Altreyx\bell\other pwc thing\pwc\Client_portfolio.xlsx" type="V_String" />
+                <Field name="F7" size="255" source="File: C:\Users\bluff\OneDrive - Burgundy School of Business\BSB\Altreyx\bell\other pwc thing\pwc\Client_portfolio.xlsx" type="V_String" />
+                <Field name="F8" source="File: C:\Users\bluff\OneDrive - Burgundy School of Business\BSB\Altreyx\bell\other pwc thing\pwc\Client_portfolio.xlsx" type="Double" />
+                <Field name="F9" source="File: C:\Users\bluff\OneDrive - Burgundy School of Business\BSB\Altreyx\bell\other pwc thing\pwc\Client_portfolio.xlsx" type="Double" />
+                <Field name="F10" size="255" source="File: C:\Users\bluff\OneDrive - Burgundy School of Business\BSB\Altreyx\bell\other pwc thing\pwc\Client_portfolio.xlsx" type="V_String" />
+                <Field name="F11" size="255" source="File: C:\Users\bluff\OneDrive - Burgundy School of Business\BSB\Altreyx\bell\other pwc thing\pwc\Client_portfolio.xlsx" type="V_String" />
+                <Field name="FileName" size="254" source="File: FileName" type="V_WString" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileInput" />
+        </Node>
+        <Node ToolID="38">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileInput.DbFileInput">
+            <Position x="79" y="642" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Passwords />
+              <File OutputFileName="" RecordLimit="" SearchSubDirs="False" FileFormat="25">C:\Users\bluff\OneDrive - Burgundy School of Business\BSB\Altreyx\bell\other pwc thing\pwc\Period_Price_94tickers.xlsx|||`Sheet1$`</File>
+              <FormatSpecificOptions>
+                <FirstRowData>False</FirstRowData>
+                <ImportLine>1</ImportLine>
+              </FormatSpecificOptions>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Period_Price_94tickers.xlsx
+Query=`Sheet1$`</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="F1" source="File: C:\Users\bluff\OneDrive - Burgundy School of Business\BSB\Altreyx\bell\other pwc thing\pwc\Period_Price_94tickers.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="level_0" size="255" source="File: C:\Users\bluff\OneDrive - Burgundy School of Business\BSB\Altreyx\bell\other pwc thing\pwc\Period_Price_94tickers.xlsx|||`Sheet1$`" type="V_String" />
+                <Field name="level_1" source="File: C:\Users\bluff\OneDrive - Burgundy School of Business\BSB\Altreyx\bell\other pwc thing\pwc\Period_Price_94tickers.xlsx|||`Sheet1$`" type="Date" />
+                <Field name="open" source="File: C:\Users\bluff\OneDrive - Burgundy School of Business\BSB\Altreyx\bell\other pwc thing\pwc\Period_Price_94tickers.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="high" source="File: C:\Users\bluff\OneDrive - Burgundy School of Business\BSB\Altreyx\bell\other pwc thing\pwc\Period_Price_94tickers.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="low" source="File: C:\Users\bluff\OneDrive - Burgundy School of Business\BSB\Altreyx\bell\other pwc thing\pwc\Period_Price_94tickers.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="close" source="File: C:\Users\bluff\OneDrive - Burgundy School of Business\BSB\Altreyx\bell\other pwc thing\pwc\Period_Price_94tickers.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="adjclose" source="File: C:\Users\bluff\OneDrive - Burgundy School of Business\BSB\Altreyx\bell\other pwc thing\pwc\Period_Price_94tickers.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="volume" source="File: C:\Users\bluff\OneDrive - Burgundy School of Business\BSB\Altreyx\bell\other pwc thing\pwc\Period_Price_94tickers.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="ticker" size="255" source="File: C:\Users\bluff\OneDrive - Burgundy School of Business\BSB\Altreyx\bell\other pwc thing\pwc\Period_Price_94tickers.xlsx|||`Sheet1$`" type="V_String" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileInput" />
+        </Node>
+        <Node ToolID="39">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileInput.DbFileInput">
+            <Position x="103" y="774" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Passwords />
+              <File OutputFileName="" RecordLimit="" SearchSubDirs="False" FileFormat="25">C:\Users\bluff\Downloads\All_final version (1).xlsx|||`Sheet1$`</File>
+              <FormatSpecificOptions>
+                <FirstRowData>False</FirstRowData>
+                <ImportLine>1</ImportLine>
+              </FormatSpecificOptions>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>All_final version (1).xlsx
+Query=`Sheet1$`</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="F1" source="File: C:\Users\bluff\Downloads\All_final version (1).xlsx|||`Sheet1$`" type="Double" />
+                <Field name="country" size="255" source="File: C:\Users\bluff\Downloads\All_final version (1).xlsx|||`Sheet1$`" type="V_String" />
+                <Field name="currency" size="255" source="File: C:\Users\bluff\Downloads\All_final version (1).xlsx|||`Sheet1$`" type="V_String" />
+                <Field name="exchange" size="255" source="File: C:\Users\bluff\Downloads\All_final version (1).xlsx|||`Sheet1$`" type="V_String" />
+                <Field name="finnhubIndustry" size="255" source="File: C:\Users\bluff\Downloads\All_final version (1).xlsx|||`Sheet1$`" type="V_String" />
+                <Field name="ipo" size="255" source="File: C:\Users\bluff\Downloads\All_final version (1).xlsx|||`Sheet1$`" type="V_String" />
+                <Field name="logo" size="255" source="File: C:\Users\bluff\Downloads\All_final version (1).xlsx|||`Sheet1$`" type="V_String" />
+                <Field name="marketCapitalization" source="File: C:\Users\bluff\Downloads\All_final version (1).xlsx|||`Sheet1$`" type="Double" />
+                <Field name="name" size="255" source="File: C:\Users\bluff\Downloads\All_final version (1).xlsx|||`Sheet1$`" type="V_String" />
+                <Field name="phone" size="255" source="File: C:\Users\bluff\Downloads\All_final version (1).xlsx|||`Sheet1$`" type="V_String" />
+                <Field name="shareOutstanding" source="File: C:\Users\bluff\Downloads\All_final version (1).xlsx|||`Sheet1$`" type="Double" />
+                <Field name="ticker" size="255" source="File: C:\Users\bluff\Downloads\All_final version (1).xlsx|||`Sheet1$`" type="V_String" />
+                <Field name="weburl" size="255" source="File: C:\Users\bluff\Downloads\All_final version (1).xlsx|||`Sheet1$`" type="V_String" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileInput" />
+        </Node>
+      </ChildNodes>
+    </Node>
+  </Nodes>
+  <Connections>
+    <Connection>
+      <Origin ToolID="3" Connection="Output" />
+      <Destination ToolID="9" Connection="Left" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="8" Connection="Output" />
+      <Destination ToolID="9" Connection="Right" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="9" Connection="Join" />
+      <Destination ToolID="15" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="15" Connection="Unique" />
+      <Destination ToolID="16" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="16" Connection="False" />
+      <Destination ToolID="31" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="31" Connection="Output" />
+      <Destination ToolID="17" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="31" Connection="Output" />
+      <Destination ToolID="14" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="31" Connection="Output" />
+      <Destination ToolID="35" Connection="Left" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="33" Connection="True" />
+      <Destination ToolID="35" Connection="Right" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="35" Connection="Join" />
+      <Destination ToolID="40" Connection="Left" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="39" Connection="Output" />
+      <Destination ToolID="40" Connection="Right" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="35" Connection="Join" />
+      <Destination ToolID="37" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="35" Connection="Join" />
+      <Destination ToolID="36" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="40" Connection="Join" />
+      <Destination ToolID="41" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="2" Connection="Output" />
+      <Destination ToolID="3" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="7" Connection="Output" />
+      <Destination ToolID="8" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="38" Connection="Output" />
+      <Destination ToolID="33" Connection="Input" />
+    </Connection>
+  </Connections>
+  <Properties>
+    <Memory default="True" />
+    <GlobalRecordLimit value="0" />
+    <TempFiles default="True" />
+    <Annotation on="True" includeToolName="False" />
+    <ConvErrorLimit value="10" />
+    <ConvErrorLimit_Stop value="False" />
+    <CancelOnError value="False" />
+    <DisableBrowse value="False" />
+    <EnablePerformanceProfiling value="False" />
+    <RunWithE2 value="True" />
+    <PredictiveToolsCodePage value="1252" />
+    <DisableAllOutput value="False" />
+    <ShowAllMacroMessages value="False" />
+    <ShowConnectionStatusIsOn value="True" />
+    <ShowConnectionStatusOnlyWhenRunning value="True" />
+    <ZoomLevel value="0" />
+    <LayoutType>Horizontal</LayoutType>
+    <MetaInfo>
+      <NameIsFileName value="True" />
+      <Name>Alteryx doc</Name>
+      <Description />
+      <RootToolName />
+      <ToolVersion />
+      <ToolInDb value="False" />
+      <CategoryName />
+      <SearchTags />
+      <Author />
+      <Company />
+      <Copyright />
+      <DescriptionLink actual="" displayed="" />
+      <Example>
+        <Description />
+        <File />
+      </Example>
+      <WorkflowId value="5a0b2c3d-87c4-4a00-9708-08958a2192f1" />
+      <Telemetry>
+        <PreviousWorkflowId value="2c0ea3ca-021b-4fc4-a93b-30aa2ba29046" />
+        <OriginWorkflowId value="64a9d7a8-14a9-457b-83ec-5e077db45bc9" />
+      </Telemetry>
+    </MetaInfo>
+    <Events>
+      <Enabled value="True" />
+    </Events>
+  </Properties>
+</AlteryxDocument>

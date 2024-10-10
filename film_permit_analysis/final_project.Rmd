@@ -1,0 +1,467 @@
+---
+title: "final_project"
+author: "Vivek"
+date: "2022-12-27"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+#loading the libraries
+library(ggplot2)
+library(tidyverse)
+library(dplyr)
+library(kableExtra)
+
+getwd() #checking and setting the directory
+
+#loading data set
+dir(path = "data")
+file_path_1 <- file.path("data", "Film_Permits.csv")
+permits <- read.csv(file = file_path_1, header = T)
+
+#glimpse of the data and its type
+str(permits)
+
+#All the further manipulations are done as and when required for plotting the data. But, the order is correct, all the plots would work if this order is followed
+
+#changing a column to date format
+permits$EnteredOn = as.Date(permits$EnteredOn, format =  "%m/%d/%Y %H:%M:%S")
+
+#check that column EnteredOn is changed to formate "date" from "chr"
+str(permits)
+
+#adding new columns to the data set for required calculations 
+permits <- permits %>% 
+  mutate(Month = format(EnteredOn, "%m"), Year = format(EnteredOn, "%y"))
+str(permits) #for viewing the data type of two new columns
+
+#changing the months to numeric for plotting a time series
+permits$Month <- as.numeric(permits$Month)
+
+#cleaning the year column
+permits$Year <- paste0(20, permits$Year) 
+str(permits)
+```
+
+# Newyork City Film Permit Analysis {.tabset}
+
+```{=html}
+<style>
+      a {
+        color: #000066;
+      }
+</style>
+```
+
+## Overview
+
+<div class = "row">
+<div class = col-md-2>
+
+![](https://www.nyc.gov/assets/mome/images/content/FilmOffice_Logo_Final_sm_black.png){width="150%"}
+```{r plt1, include=FALSE}
+options(dplyr.summarise.inform = FALSE)
+
+#creating a separate (table) data set for plot 1
+t1 <- permits %>% 
+  group_by(Month, Year) %>% 
+  summarise(`Number Of Permits` = n()) 
+
+str(t1)
+as.numeric(t1$`Number Of Permits`)
+
+
+kpi <- t1 %>% 
+  filter(Year != 2020) %>% 
+  group_by(Year) %>% 
+  summarise(`Per Month` = round(mean(`Number Of Permits`)), Total = sum(`Number Of Permits`))
+
+
+#creating a table for plotting table 1
+t1_piv <- t1 %>% pivot_wider(id_cols = NULL,
+                   names_from = "Year",
+                   values_from = "Number Of Permits") %>% 
+                  relocate(2, .after=3)
+t1_piv$Month <- month.name[t1_piv$Month]
+
+t1_piv[is.na(t1_piv)] <- 0 #replacing NA with 0
+
+
+
+```
+
+
+```{r plot t1_piv, echo = FALSE}
+
+t1_piv %>% 
+  select(Month, `2022`, `2021`) %>% 
+  kable(format = "html", row.names = T, escape = F) %>%
+  kable_minimal("striped", full_width = F, position = "left") %>%
+  #kable_styling(bootstrap_options = c("striped", "hover"),full_width = F, position = "center") %>% 
+  column_spec(2, color = "#005488") %>% 
+  column_spec(1, color = "#c65da3")%>% 
+  column_spec(3, color = ifelse(t1_piv$`2022` > 609, "darkgreen", "orange")) %>% 
+   #                             ifelse(t1_piv$`2022` = NA, "grey", "orange"))) %>% 
+  column_spec(4, color = ifelse(t1_piv$`2021` > 518, "darkgreen","orange"))
+
+```
+  </div>
+<div class = col-md-10>
+
+```{r plot 1, echo=FALSE, fig.align='right'}
+
+
+kpi %>%
+  kable(format = "html", row.names = F, escape = F) %>%
+  kable_minimal("striped", full_width = F, position = "right") %>% 
+  column_spec(1, color = ifelse(kpi$Year > 2021, "darkgreen","orange")) %>% 
+  column_spec(2, color = ifelse(kpi$`Per Month` > 550, "darkgreen","orange")) %>% 
+  column_spec(3, color = ifelse(kpi$Total > 6000, "darkgreen","orange"))
+
+t1 %>% 
+  filter(Year != 2020) %>% 
+  ggplot(aes(x = Month, y = `Number Of Permits`))+
+  #geom_hline(yintercept = 22, linetype = "dashed", color="red", linewidth = 0.75)+
+  geom_hline(yintercept = 518.41, linetype = "dashed", color="#c65da3", linewidth = 0.75)+ #518.41 is the monthly mean of permits issued 
+  geom_hline(yintercept = 609.55, linetype = "dashed", color="#005488", linewidth = 0.75)+ #609.55 is the monthly mean of permits issued
+  geom_line(aes(col = Year), alpha = 0.75, linewidth = 1.5)+
+  scale_color_manual(values = c("#c65da3","#005488"))+
+  geom_point()+
+  scale_x_continuous(breaks = seq(1,12,1))+
+  theme(panel.background = element_blank(),
+        panel.grid.major = element_line(colour = "grey70", linewidth = 0.2),
+        panel.grid.minor = element_blank(),
+        axis.title.x = element_text(face="italic", margin = margin(8, 00, 8, 00)),
+        axis.title.y = element_text(face="italic", margin = margin(0, 08, 0, 08)),
+        legend.position = "top", 
+        legend.background = element_blank(),
+        legend.key = element_rect(color = "white", fill = NA), 
+        axis.line = element_line(linewidth = 1),
+        axis.title = element_text(size = 12),
+        axis.text = element_text(size = 9),
+        legend.text = element_text(size = 10),
+        legend.title = element_text(size = 10),
+        plot.title = element_text(size = 18, hjust = 0.5, face = 'bold'),
+        plot.subtitle = element_text(size = 14, hjust = 0.5, face = "italic"),
+        plot.caption = element_text(size = 8, face = "italic")) +
+  labs(title = "Overview of the Number of Permits Issued",
+       subtitle = "Between January 2021 to September 2022",
+       caption = "Source: NYC Open Data(https://data.cityofnewyork.us/City-Government/Film-Permits/tg4x-b46p)")
+  
+
+```
+  </br>
+</br>
+  </div>
+</div>
+
+
+## Duration
+
+```{r table2 setup, include=F}
+#str(permits)
+#converting string to date time
+
+permits$StartDateTime <- as.POSIXct(permits$StartDateTime, format="%m/%d/%Y %I:%M:%S %p")
+permits$EndDateTime <- as.POSIXct(permits$EndDateTime, format="%m/%d/%Y %I:%M:%S %p")
+permits <- permits %>% 
+  mutate(Duration = round(difftime(permits$EndDateTime, permits$StartDateTime, "hours"), 2))
+
+#permits <- permits %>% 
+ # mutate(Month = format(EnteredOn, "%m"), Year = format(EnteredOn, "%y"))
+
+#Stats of duration for each category
+s <- permits %>% 
+  group_by(Category) %>% 
+  summarise(Mean = round(mean(Duration)),
+            Min = round(min(Duration)),
+            Max = round(max(Duration)),
+            #SD = round(sd(Duration)),
+            `Total Event Hours` = round(sum(Duration),1),
+            `Total Permits Issued` = n()
+            )
+
+#reordering in decreasing order of Mean and Total Event Hours
+s <- s[order(s$Mean,s$`Total Event Hours`, decreasing = T),]
+```
+
+### **Average Duration of an Event Category**
+
+```{r table 2, echo=FALSE}
+#plotting table 2
+
+s %>% 
+  kbl() %>% 
+  kable_paper(full_width = T) %>% 
+  column_spec(2, color = "#005488")
+  
+  
+```
+</br>
+</br>
+
+```{r plot2, echo=FALSE, warning=FALSE, message=FALSE, fig.height=6}
+
+#creating a facet wrap for comparing the duration of two categories across regions 
+
+permits %>% 
+  filter(Year == "2022", Category == "Theater" | Category == "Television") %>%
+  ggplot(aes(x = EnteredOn, y = Duration, color = Category)) + 
+  geom_line()+
+  geom_smooth()+
+  facet_wrap(~Borough)+
+  scale_x_date(date_breaks = "3 months", date_labels = "%B")+
+  scale_color_manual(values = c("#CC0066", "#000066"))+
+  theme_minimal()+
+  labs(title = "Duration of Permits for Theatres and Television filming",
+       subtitle = "among all the regions of NewYork City in 2022",
+       caption = "Source: NYC Open Data(https://data.cityofnewyork.us/City-Government/Film-Permits/tg4x-b46p)")+
+  theme(axis.title.x = element_text(face="italic", margin = margin(8, 00, 8, 00)),
+        axis.title.y = element_text(face="italic", margin = margin(0, 08, 0, 08)),
+        axis.line = element_line(size = 1),
+        axis.title = element_text(size = 9),
+        axis.text = element_text(size = 9),
+        legend.key = element_rect(color = "white", fill = NA),
+        legend.position = "top",
+        legend.text = element_text(size = 10),
+        plot.title = element_text(size = 16, hjust = 0.5, face = 'bold'),
+        plot.subtitle = element_text(size = 13, hjust = 0.5, face = "italic"))
+
+```
+
+</br>
+</br>
+
+### **Top 10 Duration of Permits according to Sub-Category of Events in 2022**
+
+```{r dur2, echo = FALSE}
+permits %>%
+  filter(Year == "2022", SubCategoryName != "Not Applicable") %>%
+  select(EventType, EnteredOn, Borough, Category, SubCategoryName, Duration) %>% 
+  arrange(desc(Duration)) %>% 
+  group_by(SubCategoryName) %>%
+  slice(1:1) %>% 
+  arrange(desc(Duration)) %>% 
+  head(10) %>% 
+  kbl() %>% 
+  kable_paper("striped", full_width = T, position = "left")
+
+```
+</br>
+</br>
+
+## Category
+
+<div class = "row">
+<div class = col-md-2>
+
+**Film Permit Categories per Region**
+```{r tbl 3, echo=F}
+t_piv <- permits %>% 
+  filter(Year != 2020) %>% 
+  #arrange(desc(Category)) %>%
+  group_by(Borough, Year) %>% 
+  summarise(`Number of Categories` = length(unique(Category))) %>% 
+  arrange(desc(`Number of Categories`)) %>% 
+  pivot_wider(names_from = "Year",
+              values_from = `Number of Categories`)
+
+t_piv%>% 
+  kbl() %>% 
+  kable_paper(full_width = F, position = "left") %>% 
+  column_spec(3, color = ifelse(t_piv$`2022` < 4, "#B71C1C",
+                                ifelse(t_piv$`2022` > 7, "darkgreen", "orange")),
+              background = ifelse(t_piv$`2022` < 4, "#EF9A9A",
+                            ifelse(t_piv$`2022` > 7, "#9CCC65", "#FFECB3")))%>% 
+  column_spec(2, color = ifelse(t_piv$`2021` < 4, "#B71C1C",
+                                ifelse(t_piv$`2021` > 7, "darkgreen", "orange")),
+              background = ifelse(t_piv$`2021` < 4, "#EF9A9A",
+                            ifelse(t_piv$`2021` > 7, "#9CCC65", "#FFECB3")))
+  
+```
+
+
+```{r adding colors, include = FALSE}
+library(thematic)
+colors <- thematic::okabe_ito(10)[-6]
+colors[c(9)] <- "#660000"
+colors[c(8)] <- "#99CC00"
+colors[c(7)] <- "#56B4E9"
+```
+
+ </div>
+<div class = col-md-10>
+
+
+```{r plot 3, echo=F, fig.align='left'}
+
+permits %>% 
+  group_by(Category) %>% 
+  summarise(`Number of Sub Categories` = length(unique(SubCategoryName))) %>% 
+  ggplot(aes(x = `Number of Sub Categories`, y = Category))+
+  geom_col(width = 0.75, fill = colors)+
+  labs(title = "Number of Sub Categories of Film Permits",
+       subtitle = "since November 2020 to September 2022",
+       caption = "Source: NYC Open Data(https://data.cityofnewyork.us/City-Government/Film-Permits/tg4x-b46p)")+
+  theme_classic()+
+  theme(panel.background = element_blank(),
+        axis.title.x = element_text(face="italic", margin = margin(8, 00, 8, 00)),
+        axis.title.y = element_text(face="italic", margin = margin(00, 8, 00, 8)),
+        legend.position = "right",
+        legend.background = element_blank(),
+        legend.title = element_text(size = 10),
+        axis.line = element_line(size = 1),
+        axis.title = element_text(size = 12),
+        axis.text = element_text(size = 10),
+        legend.text = element_text(size = 9),
+        legend.spacing = unit(2, 'cm'),
+        plot.title = element_text(size = 18, hjust = 0.5, face = 'bold'),
+        plot.subtitle = element_text(size = 14, hjust = 0.5, face = "italic"))
+  #scale_fill_continuous(name = "Percentage of Obesity")
+
+#permits %>% 
+ # ggplot(aes(y = SubCategoryName, x = mean(Duration)))+
+  #geom_col(aes(fill = Category))
+```
+
+</br>
+</div>
+</div>
+
+### **Summary of the Television Permits Issued by NYC**
+
+```{r tbl4 set up, include=F}
+t2 <- permits %>% 
+  filter(Category == "Television") %>% 
+  group_by(SubCategoryName) %>% 
+  summarise(Mean = round(mean(Duration)),
+            Min = round(min(Duration)),
+            Max = round(max(Duration)),
+            #SD = round(sd(Duration)),
+            `Total Event Hours` = round(sum(Duration),1),
+            `Total Permits Issued` = n()
+            )
+
+t2 <- t2[order(t2$`Total Permits Issued`, t2$`Total Event Hours`, decreasing = T),]
+```
+
+
+```{r table4, echo=F}
+
+t2 %>% 
+  kbl() %>% 
+  kable_material()
+
+```
+
+</br>
+</br>
+
+## Region
+</br>
+```{r plot 4, echo = FALSE}
+
+permits %>% 
+  filter(SubCategoryName == "Episodic series") %>% 
+  ggplot(aes(x = Borough))+
+  geom_bar(aes(fill = Borough), width = 0.5)+
+  scale_fill_manual(values = c("#E69F00", "#009E73", "#0072B2", "#CC79A7", "#999999"))+
+  theme_light()+
+  labs(title = "Regional Distribution of highest permit issued 
+       subcategory (Episodic Series)",
+       subtitle = "Manhattan drops to third position, 
+       even when the highest permits are issued for this region",
+       caption = "Source: NYC Open Data(https://data.cityofnewyork.us/City-Government/Film-Permits/tg4x-b46p)",
+       y = "Number of Permits Issued")+
+  theme(panel.background = element_blank(),
+        axis.title.x = element_text(face="italic", margin = margin(8, 00, 8, 00)),
+        axis.title.y = element_blank(),
+        legend.position = "right", 
+        legend.background = element_blank(),
+        legend.title = element_text(size = 10),
+        axis.line = element_line(size = 1),
+        axis.title = element_text(size = 10),
+        axis.text = element_text(size = 9),
+        legend.text = element_text(size = 8),
+        legend.spacing = unit(2, 'cm'),
+        plot.title = element_text(size = 14, hjust = 0.5, face = 'bold'),
+        plot.subtitle = element_text(size = 11, hjust = 0.5, face = "italic"))
+
+```
+
+
+</br>
+</br>
+
+
+### **Number of Categorical Permits Issued per Region by the NewYork City Council**
+
+```{r tbl5 set up, include=FALSE}
+t3 <- permits %>% 
+  filter(Year == 2022) %>% 
+  #arrange(desc(Category)) %>%
+  group_by(Borough, Category) %>%
+  summarise(`Permits Issued` = n())
+```
+
+
+```{r tbl5, echo=F}
+t3_piv <- t3%>% 
+            pivot_wider(names_from = "Category",
+              values_from = `Permits Issued`) 
+
+t3_piv[is.na(t3_piv)] <- 0 #replacing NA with 0
+
+
+
+(t3_piv) %>%  kbl() %>% 
+          kable_paper("striped", full_width = T) %>% 
+  column_spec(2, color = ifelse(t3_piv$Commercial > 200, "darkgreen","orange")) %>% 
+  column_spec(3, color = ifelse(t3_piv$Film > 220, "darkgreen","orange")) %>% 
+  column_spec(4, color = ifelse(t3_piv$`Music Video` > 7, "darkgreen","orange")) %>% 
+  column_spec(5, color = ifelse(t3_piv$`Still Photography` > 140, "darkgreen","orange")) %>% 
+  column_spec(6, color = ifelse(t3_piv$Television > 1000, "darkgreen","orange")) %>% 
+  column_spec(7, color = ifelse(t3_piv$Theater > 550, "darkgreen","orange")) %>% 
+  column_spec(8, color = ifelse(t3_piv$WEB > 95, "darkgreen","orange")) %>% 
+  column_spec(9, color = ifelse(t3_piv$Documentary > 5, "darkgreen","orange")) %>% 
+  column_spec(10, color = ifelse(t3_piv$Student > 10, "darkgreen","orange"))
+  
+```
+
+</br>
+</br>
+
+```{r plot 5, echo = FALSE}
+permits %>% 
+  filter(Year == "2021") %>% 
+  arrange(desc(Category)) %>% 
+  ggplot(aes(x = Borough))+
+  geom_bar(aes(fill = Category), width = 0.5)+
+  scale_fill_manual(values = c("#009E73","#E69F00","#0072B2","#99CC00", "#F2827F","#660000", 
+                               "#000033", "#FFE900","#56B4E9"))+
+  theme_light()+
+  labs(title = "Regional Categorical Distribution of Film Permits Issued by NYC",
+       subtitle = "Highest Permits for Manhattan (Year 2022)",
+       caption = "Source: NYC Open Data(https://data.cityofnewyork.us/City-Government/Film-Permits/tg4x-b46p)",
+       y = "Number of Permits Issued")+
+  theme(panel.background = element_blank(),
+        axis.title.x = element_text(face="italic", margin = margin(8, 00, 8, 00)),
+        axis.title.y = element_blank(),
+        legend.position = "right", 
+        legend.background = element_blank(),
+        legend.title = element_text(size = 10),
+        axis.line = element_line(size = 1),
+        axis.title = element_text(size = 10),
+        axis.text = element_text(size = 9),
+        legend.text = element_text(size = 8),
+        legend.spacing = unit(2, 'cm'),
+        plot.title = element_text(size = 14, hjust = 0.5, face = 'bold'),
+        plot.subtitle = element_text(size = 11, hjust = 0.5, face = "italic"))
+
+```
+
+
+</br>
+</br>

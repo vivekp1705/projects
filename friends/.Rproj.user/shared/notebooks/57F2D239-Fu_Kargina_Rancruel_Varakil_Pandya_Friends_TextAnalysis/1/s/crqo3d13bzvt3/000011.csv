@@ -1,0 +1,7 @@
+"0",""
+"0","# Create a data frame with the catchphrases and counts"
+"0","df <- data.frame(Catchphrases = rachel, Count = rachel_counts)"
+"0",""
+"0","# Print the data frame as an HTML table using kable()"
+"0","kable(df, format = ""html"", col.names = c(""Catchphrases"", ""Count"")) %>%"
+"0","  kable_styling(bootstrap_options = c(""striped"", ""hover""))"

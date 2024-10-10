@@ -1,0 +1,8 @@
+"0","wordcloud(gsub('""', '',"
+"0","          noun_verb_adj_f %>% "
+"0","filter(upos %in% c(""ADJ"")) %>%"
+"0","  select(doc_id, token_id, lemma, upos) %>%"
+"0","  group_by(doc_id) %>%"
+"0","  mutate(sentence_id = cumsum(token_id == 1)) %>%"
+"0","  ungroup() %>%"
+"0","  select(lemma)),max.words = 30, random.order = FALSE, colors = brewer.pal(8, ""Dark2""))"

@@ -1,0 +1,57 @@
+library(shiny)
+library(shinydashboard)
+
+ui <- dashboardPage(
+  dashboardHeader(),
+  dashboardSidebar(),
+  dashboardBody()
+)
+
+
+server <- function(input, output) { }
+
+shinyApp(ui, server)
+
+
+
+sjd2_oecd <- sjd2_reordered  %>% filter(country == "OECD" & region == "") %>%  select(-region)
+sjd2_eu <- sjd2_reordered  %>% filter(country == "European Union" & region == "") %>%  select(-region)
+
+sjd2_oecd <- sjd2_oecd %>% 
+  mutate(region = 'Oceania')
+sjd2_eu <- sjd2_eu %>% 
+  mutate(region = 'Oceania')
+
+sjd2_1 <- sjd2_oecd %>% 
+  mutate(region = 'Americas')
+sjd2_2 <- sjd2_oecd %>% 
+  mutate(region = 'Europe - EU')
+sjd2_3 <- sjd2_oecd %>% 
+  mutate(region = 'Europe - non-EU')
+
+sjd2_oecd <- rbind(sjd2_oecd, 
+                   sjd2_1,
+                   sjd2_2,
+                   sjd2_3)
+
+sjd2eu1 <- sjd2_eu %>% 
+  mutate(region = 'Americas')
+sjd2eu2 <- sjd2_eu %>% 
+  mutate(region = 'Europe - EU')
+sjd2eu3 <- sjd2_eu %>% 
+  mutate(region = 'Europe - non-EU')
+
+sjd2_eu <- rbind(sjd2_eu, 
+                 sjd2eu1,
+                 sjd2eu2,
+                 sjd2eu3)
+
+sjd2_oecd <- rbind(sjd2_reordered, sjd2_oecd, sjd2_eu)
+
+
+sjd2_oecd  <- sjd2_oecd %>% 
+  mutate(color = case_when(country %in% c('Australia', 'New Zealand') ~ "0", 
+                           country %in% c('Canada', 'Mexico', 'United States', 'Chile') ~ "1", 
+                           country %in% c('European Union', 'OECD') ~ "2",
+                           country %in% c('Iceland', 'Norway', 'Switzerland', 'Turkey') ~ "3",
+                           TRUE ~ '4'))

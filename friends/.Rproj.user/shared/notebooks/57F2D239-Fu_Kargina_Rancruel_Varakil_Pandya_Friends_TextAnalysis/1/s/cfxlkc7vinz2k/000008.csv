@@ -1,0 +1,6 @@
+"0","# Create a word cloud of humorous words
+wordcloud(friends_sentiment$word ,
+          max.words = 75, random.order = FALSE, colors = brewer.pal(8, ""Dark2""))
+"
+"2","Error in gzfile(file, ""wb"") : cannot open the connection
+"

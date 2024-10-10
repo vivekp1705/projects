@@ -1,0 +1,21 @@
+library(plumber)
+source(file = "models regression.R")
+
+#* @apititle Linear Prediction of something
+#* @apiDescription API Deployment of Lin Pred
+#* @apiContact Vivek
+#* @get /parameters
+
+function(){
+  paste("Y = ", model2$coefficients[2], "*X + 
+          ", model2$coefficients[1], sep = "")
+}
+#* Return the prediction
+#* 
+#* 
+#* @get /predict
+function(x){
+  predicted_value = predict.lm(model2, newdata = data.frame(as.numeric(x))
+                               )
+  list(prediction = predicted_value)
+}
